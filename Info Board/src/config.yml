@@ -1,0 +1,89 @@
+# Info Board Config, Last Edited in v0.1.1
+# Max rows is 15, and most characters in a row is 16(Unless you enable scroll) (This includes color/formating codes)
+# The group setting will always go to default if the players group isn't found.(Scoreboards per group requires vault to be on the server)
+# #
+# =============================================================
+# #                   Example
+# Info Board:
+# # Page Number
+#   '1':
+# # How Long this page is shown for
+#     Show Time: 10
+# # What world sees this page (global = All)(Remove global to make it so it's only seen by the set worlds)
+#     global:
+# # What Permissions group sees this page(Remove default to make it so it's only seen by the set ranks)
+#       default:
+# # Pages Title
+#         Title: '&4&lDuskHaven'
+# # Pages Rows
+#          Rows:
+#          - ' '
+#          - 'This board is only'
+#          - 'seen by defaults'
+#       Admin:
+#         Title: '&4&lAdmin Page'
+#         Rows:
+#         - ' '
+#         - 'This board is only'
+#         - 'seen by Admins'
+#   '2':
+#     Show Time: 5
+#     world:
+#       default:
+#         Title: '&a&lStats'
+#          Rows:
+# #               Splitting a line can be done in two ways: using <split>
+#          - 'Online Players: <split> <onlineplayers>'
+# #                Or Using ;
+#          - 'Money: ; <balance>'
+#          - 'PowerLevel: <split> <mcmmopowerlevel>'
+#          - 'Your Level: <split> <level>'
+#     world_the_nether:
+#       default:
+#         Title: '&a&lNether'
+#          Rows:
+# #         - 'Your Level: <split> <level>'
+# # Will only display if <exp> isn't "0" or "Unkown"
+# #         - '~!<exp>Your Exp:'
+# #         - '~!<exp><exp>'
+# ==================================================================
+# Just a heads up, using scroll MAY cause some lag. That's why it's a config option
+# <scroll> remove the limit of characters in a row as it scrolls through
+# To enable this turn, change "Scrolling Text.Enable" to true, and restart the server
+# Shift Time is how long between letters move
+# ==================================================================
+# Custom Variables are pretty simple, just follow this setup:
+# Custom Variables: 
+#  Variable: What it gets replaced to
+# but when you go to use them put <Variable>
+# ==================================================================
+Custom Variables:
+  website: Dusk-Haven.com
+  plugindev: SniperzCiinema
+  line: '<scroll>&l<247><247><247><247><247><247><247><247><247><247><247><247><247><247><247>'
+Disabled Worlds:
+- DisabledWorld1
+- DisabledWorld2
+Use Rotate: true
+Scrolling Text:
+  Enable: false
+  Shift Time: 1
+Update Time: 2
+Info Board:
+  '1':
+    Show Time: 5
+    global:
+      default:
+        Title: '&4&l<servername>'
+        Rows:
+        - ' '
+        - '&e&lWelcome!'
+        - '&l<player>'
+        - ' '
+        - ' '
+        - '&a&lOnline:'
+        - <onlineplayers>
+        - ' '
+        - '&e&lWebsite:'
+        - <website>
+        - <line>

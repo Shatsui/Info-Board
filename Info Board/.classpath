@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Vault (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Factions.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/mcore.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/mcMMO.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Towny.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/bukkit-1.6.4-R0.1-20130923.182036-4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/craftbukkit-1.6.4-R0.1-20130923.182200-5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/New folder/plugins/Infected.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Jobs.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Essentials.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/MCTowns-2.3.0-LTS-RC2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/PlotMe.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/WorldEdit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/WorldGuard.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/LWC.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
