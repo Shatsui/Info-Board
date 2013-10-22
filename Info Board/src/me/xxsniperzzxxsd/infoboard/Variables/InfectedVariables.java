@@ -2,6 +2,7 @@
 package me.xxsniperzzxxsd.infoboard.Variables;
 
 import me.xxsniperzzxx_sd.infected.Infected;
+
 import org.bukkit.entity.Player;
 
 

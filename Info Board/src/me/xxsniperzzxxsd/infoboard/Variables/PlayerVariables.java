@@ -57,7 +57,12 @@ public class PlayerVariables {
 			newString = newString.replaceAll("<boots>", String.valueOf((player.getInventory().getBoots() == null ? "None" : player.getInventory().getBoots().getType().name())+ ""));	
 		if (newString.contains("<hand>"))
 			newString = newString.replaceAll("<hand>", String.valueOf((player.getInventory().getItemInHand() == null ? "None" : player.getInventory().getItemInHand().getType().name())+ ""));	
-		
+		if (newString.contains("<doihave"))
+		{
+			String perm = newString.split("<doihave")[1].split(">")[0];
+
+			newString = newString.replaceAll("<doihave" + (perm) + ">", String.valueOf(player.hasPermission(perm)));
+		}
 		return newString;
 	}
 	

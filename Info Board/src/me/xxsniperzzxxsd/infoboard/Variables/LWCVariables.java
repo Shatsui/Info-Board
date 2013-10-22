@@ -13,6 +13,7 @@ public class LWCVariables {
 	public static String replaceVariables(String string, Player player) {
 		String newString = "Hi";
 		newString = string;
+
 		LWCPlugin lwcPlugin = (LWCPlugin) Bukkit.getPluginManager().getPlugin("LWC");
 		LWC lwc = lwcPlugin.getLWC();
 		if (newString.contains("<lwclocks>"))

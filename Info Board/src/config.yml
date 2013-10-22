@@ -47,69 +47,51 @@
 # # Will only display if <exp> isn't "0" or "Unkown"
 # #         - '~!<exp>Your Exp:'
 # #         - '~!<exp><exp>'
-
+# #
+# ==================================================================
 # ==================================================================
 # Custom Variables are pretty simple, just follow this setup:
 # Custom Variables: 
 #  Variable: What it gets replaced to
 # but when you go to use them put <Variable>
 # ==================================================================
-Custom Variables:
-  website: Dusk-Haven.com
-  plugindev: SniperzCiinema
-  
 # ==================================================================
-# Any worlds you want disabled put them here!  
+# For Disabled Worlds, Any worlds you want disabled put them here!  
 # ==================================================================
-Disabled Worlds:
-- DisabledWorld1
-- DisabledWorld2
-
 # ==================================================================
 # Just a heads up, using scroll MAY cause some lag. That's why it's a config option
 # <scroll> remove the limit of characters in a row as it scrolls through
 # To enable this turn, change "Scrolling Text.Enable" to true, and restart the server
 # Shift Time is how long between letters move
 # ==================================================================
-Scrolling Text:
-  Enable: false
-  Shift Time: 1
-  
 # ==================================================================
-# How many seconds between updating the scoreboard
+# For Update Time, How many seconds between updating the scoreboard
 # ==================================================================
-Update Time: 2
-
 # ==================    SCORE BOARDS      ======================
 # Max rows is 15, and most characters in a row is 16(Unless you enable scroll) (This includes color/formating codes)
 # The group setting will always go to default if the players group isn't found.(Scoreboards per group requires vault to be on the server)
 # The world setting will always go to global if the players world isn't found.
 # ==================================================================
+Custom Variables:
+  website: Dusk-Haven.com
+  plugindev: SniperzCiinema
+
+Disabled Worlds:
+- DisabledWorld1
+- DisabledWorld2
+
+Scrolling Text:
+  Enable: false
+  Shift Time: 1
+  
+Update Time: 2
 
 Info Board:
   '1':
-    Show Time: 10
+    Show Time: 20
     global:
       default:
-        Title: '&e<plugindev>'
-        Rows:
-        - ' '
-        - '&e&lWelcome! ; 99'
-        - '&l<player> ; 99'
-        - ' '
-        - '&e&lServer TPS:'
-        - '&7<tps>'
-        - ' '
-        - '&aSetting up '
-        - '&bInfoBoard is'
-        - '&cpretty simple.'
-        - '&dJust edit the'
-        - '&econfig!'
-  '2':
-    Show Time: 10
-    global:
-      default:
-        Title: '&dExample:'
+        Title: '<plugindev>'
         Rows:
         - '&6<nuke>----~<skull>~----<nuke>'
         - ' '

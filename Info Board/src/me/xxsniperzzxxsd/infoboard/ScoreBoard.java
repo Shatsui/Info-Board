@@ -24,7 +24,7 @@ public class ScoreBoard {
 		plugin = instance;
 	}
 
-	//TODO: Fix color support for scroll messages
+	//TODO: Fix color support for scroll messages, when they first get added to list, color is gone
 	
 	
 	int rotation = 1;

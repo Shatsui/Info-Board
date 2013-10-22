@@ -31,13 +31,11 @@ public class Commands implements CommandExecutor {
 					{
 						sender.sendMessage("");
 						sender.sendMessage(plugin.ib + "Invalid Permissions.");
-						sender.sendMessage("");
 						return true;
 					}
 					plugin.ScoreBoard.hidefrom.add(sender.getName());
 					sender.sendMessage("");
 					sender.sendMessage(plugin.ib + "Hiding Info Board.");
-					sender.sendMessage("");
 					((Player) sender).getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 				} else if (args[0].equalsIgnoreCase("Show"))
 				{
@@ -45,20 +43,17 @@ public class Commands implements CommandExecutor {
 					{
 						sender.sendMessage("");
 						sender.sendMessage(plugin.ib + "Invalid Permissions.");
-						sender.sendMessage("");
 						return true;
 					}
 					plugin.ScoreBoard.hidefrom.remove(sender.getName());
 					sender.sendMessage("");
 					sender.sendMessage(plugin.ib + "Showing Info Board.");
-					sender.sendMessage("");
 				} else if (args[0].equalsIgnoreCase("Set"))
 				{
 					if (!sender.hasPermission("InfoBoard.Set"))
 					{
 						sender.sendMessage("");
 						sender.sendMessage(plugin.ib + "Invalid Permissions.");
-						sender.sendMessage("");
 						return true;
 					} else if (args.length == 2)
 					{
@@ -70,14 +65,14 @@ public class Commands implements CommandExecutor {
 							plugin.ScoreBoard.rotation = Integer.valueOf(rotate);
 							sender.sendMessage("");
 							sender.sendMessage(plugin.ib + "Rotation set to: " + args[1]);
-							sender.sendMessage("");
+							plugin.timer = 0;
+							plugin.total = plugin.getConfig().getInt("Info Board." + args[1] + ".Show Time");
 							for(Player p : Bukkit.getOnlinePlayers())
 								plugin.ScoreBoard.createScoreBoard(p);
 						} else
 						{
 							sender.sendMessage("");
 							sender.sendMessage(plugin.ib + "Page not found: " + args[1]);
-							sender.sendMessage("");
 						}
 					}
 				} else if (args[0].equalsIgnoreCase("Reload"))
@@ -86,7 +81,6 @@ public class Commands implements CommandExecutor {
 					{
 						sender.sendMessage("");
 						sender.sendMessage(plugin.ib + "Invalid Permissions.");
-						sender.sendMessage("");
 						return true;
 					} else
 					{
@@ -97,18 +91,17 @@ public class Commands implements CommandExecutor {
 							player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 							plugin.ScoreBoard.createScoreBoard(player);
 						}
-						sender.sendMessage("");
 					}
 				}
 
 			} else
 			{
 				sender.sendMessage("");
-				sender.sendMessage(plugin.ib + "/IB Hide - Hide the board");
-				sender.sendMessage(plugin.ib + "/IB Show - Show the board");
-				sender.sendMessage(plugin.ib + "/IB Reload - Reload the config");
-				sender.sendMessage(plugin.ib + "/IB Set <Pg> - Set the page to view");
-				sender.sendMessage("");
+				sender.sendMessage(ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "============["+ ChatColor.DARK_GREEN + " Info Board " + ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "]============");
+				sender.sendMessage(plugin.ib + "/IB Hide "+ChatColor.YELLOW+"- Hide the board");
+				sender.sendMessage(plugin.ib + "/IB Show "+ChatColor.YELLOW+"- Show the board");
+				sender.sendMessage(plugin.ib + "/IB Reload "+ChatColor.YELLOW+"- Reload the config");
+				sender.sendMessage(plugin.ib + "/IB Set <Pg> "+ChatColor.YELLOW+"- Set the page to view");
 			}
 
 		}

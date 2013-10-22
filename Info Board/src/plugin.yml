@@ -3,7 +3,7 @@ main: me.xxsniperzzxxsd.infoboard.Main
 version: 0.1.1
 author: xXSniperzzXx_SD
 description: Show an info board
-softdepend: [WorldGuard, Vault, Factions, mcMMO, Towny, MCTowns, LWC, Infected, Jobs, Essentials]
+softdepend: [Essentials, Factions, Infected, Jobs, LWC, mcMMO, MCTowns, PlotMe, TownyVariables, WorldGuard]
 
 commands:
     InfoBoard:

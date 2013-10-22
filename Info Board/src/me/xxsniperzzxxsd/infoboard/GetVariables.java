@@ -12,6 +12,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ServerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.TownyVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.VaultVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.WorldGuardVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.mcMMOVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ALTVariables;
 import me.xxsniperzzxxsd.infoboard.Main;
@@ -82,6 +83,12 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("PlotMe") != null)
 			if (newString.contains("<plotme"))
 				newString = PlotMeVariables.replaceVariables(newString, player);
+
+		
+		// WorldGuard Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard") != null)
+			if (newString.contains("<worldguard"))
+				newString = WorldGuardVariables.replaceVariables(newString, player);
 
 		// UTF-8
 		newString = ALTVariables.replaceVariables(newString);

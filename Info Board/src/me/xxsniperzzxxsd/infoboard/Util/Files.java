@@ -13,13 +13,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class Files {
 
 	// Set up all the needed things for files
-	public static YamlConfiguration playerF = null;
-	public static File playerFile = null;
 	public static YamlConfiguration variableF = null;
 	public static File variableFile = null;
+	public static YamlConfiguration playerF = null;
+	public static File playerFile = null;
 
 
-	// Reload Kills File
+	
+	// /////////////////////////////////////////////////////////////////////////////////////////////////
+	// Reload Players File
 	public static void reloadPlayers() {
 		if (playerFile == null)
 			playerFile = new File(
@@ -35,7 +37,7 @@ public class Files {
 		}
 	}
 
-	// Get Kills file
+	// Get Players file
 	public static FileConfiguration getPlayers() {
 		if (playerF == null)
 		{
@@ -45,7 +47,7 @@ public class Files {
 		return playerF;
 	}
 
-	// Save Kills File
+	// Save Players File
 	public static void savePlayers() {
 		if (playerF == null || playerFile == null)
 			return;
@@ -57,11 +59,10 @@ public class Files {
 			Bukkit.getLogger().log(Level.SEVERE, "Could not save config " + playerFile, ex);
 		}
 	}
-	
-	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// Reload Kills File
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// Reload Variables File
 	public static void reloadVariables() {
 		if (variableFile == null)
 			variableFile = new File(
@@ -77,7 +78,7 @@ public class Files {
 		}
 	}
 
-	// Get Kills file
+	// Get Variables file
 	public static FileConfiguration getVariables() {
 		if (variableF == null)
 		{
@@ -87,7 +88,7 @@ public class Files {
 		return variableF;
 	}
 
-	// Save Kills File
+	// Save Variables File
 	public static void saveVariables() {
 		if (variableF == null || variableFile == null)
 			return;

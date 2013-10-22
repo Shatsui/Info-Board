@@ -21,7 +21,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 public class Main extends JavaPlugin {
 
-	public String ib = ChatColor.BLACK + "➳" + ChatColor.YELLOW + "➳" + ChatColor.BLACK + "➳" + ChatColor.GRAY;
+	public String ib = "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
 
 	public ArrayList<String> disabledPlayers = new ArrayList<String>();
 	public static Configuration config;
@@ -33,11 +33,11 @@ public class Main extends JavaPlugin {
 	public ScoreBoard ScoreBoard;
 	public ScrollText ScrollText;
 
-	private int total = 0;
-	private int timer = 0;
+	public int total = 0;
+	public int timer = 0;
 
 	public void onEnable() {
-		
+
 		PlayerListener PlayerListener = new PlayerListener(this);
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(PlayerListener, this);
@@ -48,16 +48,19 @@ public class Main extends JavaPlugin {
 		Files.savePlayers();
 		Files.getVariables().options().copyDefaults(true);
 		Files.saveVariables();
+		getConfig().options().copyDefaults(true);
+
+		saveConfig();
+
 		config = getConfig();
-		saveDefaultConfig();
+
 		ScrollManager = new ScrollManager();
 		ScoreBoard = new ScoreBoard(this);
 		ScrollText = new ScrollText(this);
-		total = config.getInt("Info Board." + String.valueOf(1) + ".Show Time");
-		
+
 		for (Player p : Bukkit.getOnlinePlayers())
 			ScoreBoard.createScoreBoard(p);
-		
+
 		// Start TPS
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 
@@ -74,7 +77,7 @@ public class Main extends JavaPlugin {
 
 			@Override
 			public void run() {
-				//System.out.println(timer +"/" + total);
+				// System.out.println(timer +"/" + total);
 				// Add one to the timer if it doesnt equal the total
 				if (!(timer >= total))
 					timer++;
@@ -82,21 +85,22 @@ public class Main extends JavaPlugin {
 				else if (timer >= total)
 				{
 
-					//Add on to scoreboard
-						ScoreBoard.rotation++;
-						total = config.getInt("Info Board." + String.valueOf(ScoreBoard.rotation) + ".Show Time");
-						timer = 0;
+					// Add on to scoreboard
+					ScoreBoard.rotation++;
+					total = getConfig().getInt("Info Board." + String.valueOf(ScoreBoard.rotation) + ".Show Time");
+					timer = 0;
 
-						if(total == 0){
-							ScoreBoard.rotation = 1;
-							timer = 0;
-							total = config.getInt("Info Board." + String.valueOf(ScoreBoard.rotation) + ".Show Time");
-						}
-					
-					//Set scoreboard of current rotation
+					if (total == 0)
+					{
+						ScoreBoard.rotation = 1;
+						timer = 0;
+						total = getConfig().getInt("Info Board." + String.valueOf(ScoreBoard.rotation) + ".Show Time");
+					}
+
+					// Set scoreboard of current rotation
 					for (Player p : Bukkit.getOnlinePlayers())
 						ScoreBoard.createScoreBoard(p);
-				}				
+				}
 			}
 		}, 0, 20);
 
@@ -106,12 +110,13 @@ public class Main extends JavaPlugin {
 
 			@Override
 			public void run() {
+
 				for (Player p : Bukkit.getOnlinePlayers())
 					ScoreBoard.updateScoreBoard(p);
 			}
-		}, 0, (long) (config.getDouble("Update Time") * 20));
+		}, 0, (long) (getConfig().getDouble("Update Time") * 20));
 
-		if (config.getBoolean("Scrolling Text.Enable"))
+		if (getConfig().getBoolean("Scrolling Text.Enable"))
 		{
 			getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable()
 			{
@@ -121,7 +126,7 @@ public class Main extends JavaPlugin {
 					for (Player player : Bukkit.getOnlinePlayers())
 						ScrollText.slideScore(player);
 				}
-			}, 0, (long) (config.getDouble("Scrolling Text.Shift Time") * 20));
+			}, 0, (long) (getConfig().getDouble("Scrolling Text.Shift Time") * 20));
 		}
 	}
 
@@ -151,4 +156,5 @@ public class Main extends JavaPlugin {
 
 		return (economy != null);
 	}
+
 }

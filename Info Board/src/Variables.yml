@@ -267,6 +267,17 @@
 # #
 # ################################################
 # +--------------------------------------------+ #
+# |             World Guard                    | #
+# +--------------------------------------------+ #
+# ################################################
+# <worldguardinid>      | The Region your in's name | S
+# <worldguardinowner>   | The Region your in's owner | S
+# <worldguardinvolume>  | The Region your in's volume | I
+# <worldguardinmembers> | The Region your in's members list size | I
+# <worldguardinflag%> | The Region your in's flag value(Replace % with a flag) | B
+# #
+# ################################################
+# +--------------------------------------------+ #
 # |                PlotMe                      | #
 # +--------------------------------------------+ #
 # ################################################

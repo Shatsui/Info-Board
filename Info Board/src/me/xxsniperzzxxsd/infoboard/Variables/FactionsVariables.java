@@ -59,8 +59,6 @@ public class FactionsVariables {
 			newString = newString.replaceAll("<factionsfinland>", String.valueOf(inFaction.getLandCount()));
 		if (newString.contains("<factionsfinofficer>"))
 			newString = newString.replaceAll("<factionsfinofficers>", String.valueOf(inFaction.getUPlayersWhereRole(Rel.OFFICER).size()));
-		
-		
 
 		return newString;
 	}
