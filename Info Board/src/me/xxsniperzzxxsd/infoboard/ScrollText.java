@@ -30,10 +30,18 @@ public class ScrollText {
 			Scoreboard infoBoard = player.getScoreboard();
 			Objective infoObjective = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR);
 			int score = plugin.ScrollManager.getScrollScore(message);
-				infoBoard.resetScores(Bukkit.getOfflinePlayer(lastString));
+			infoBoard.resetScores(Bukkit.getOfflinePlayer(lastString));
+			infoBoard.resetScores(Bukkit.getOfflinePlayer(ChatColor.stripColor(lastString)));
+
+			
+			Score tempScore = infoObjective.getScore(Bukkit.getOfflinePlayer(" "));
+			tempScore.setScore(1);
+			tempScore.setScore(score);
 			
 			//TODO: Add support for Titles
-			String newString = message.substring(scrollOver, Math.min(message.length(), 16 - plugin.ScrollManager.getScrollTextColor(message).length() + scrollOver));
+			String regularMessage = message;
+			message = ScoreBoard.getLine(message, player);
+			String newString = ChatColor.stripColor(message).substring(scrollOver, Math.min(ChatColor.stripColor(message).length(), 16 - plugin.ScrollManager.getScrollTextColor(message).length() + scrollOver));
 			try
 			{
 				@SuppressWarnings("unused")
@@ -42,15 +50,18 @@ public class ScrollText {
 			{
 				// RESETS TO THE WHOLE WORD
 				newString = message.substring(0, Math.min(message.length(), 16 - plugin.ScrollManager.getScrollTextColor(message).length()));
-				plugin.ScrollManager.setScroll(message, -1, newString, score, false);
+				plugin.ScrollManager.setScroll(regularMessage, -1, newString, score, false);
 				
 			}
 				newString = color + newString;
-				plugin.ScrollManager.setScroll(message, plugin.ScrollManager.getScrollCount(message)+1, newString, score, false);
+				plugin.ScrollManager.setScroll(regularMessage, plugin.ScrollManager.getScrollCount(message)+1, newString, score, false);
+
 				Score newScore = infoObjective.getScore(Bukkit.getOfflinePlayer(newString));
 				newScore.setScore(1);
 				newScore.setScore(score);
 			
+				infoBoard.resetScores(tempScore.getPlayer());
+				
 		}
 		return true;
 	}

@@ -49,8 +49,7 @@ public class Main extends JavaPlugin {
 		Files.getVariables().options().copyDefaults(true);
 		Files.saveVariables();
 		config = getConfig();
-		config.options().copyDefaults(true);
-		saveConfig();
+		saveDefaultConfig();
 		ScrollManager = new ScrollManager();
 		ScoreBoard = new ScoreBoard(this);
 		ScrollText = new ScrollText(this);
@@ -107,10 +106,10 @@ public class Main extends JavaPlugin {
 
 			@Override
 			public void run() {
-				//for (Player p : Bukkit.getOnlinePlayers())
-					//ScoreBoard.updateScoreBoard(p);
+				for (Player p : Bukkit.getOnlinePlayers())
+					ScoreBoard.updateScoreBoard(p);
 			}
-		}, 0, (long) config.getDouble("Update Time") * 20);
+		}, 0, (long) (config.getDouble("Update Time") * 20));
 
 		if (config.getBoolean("Scrolling Text.Enable"))
 		{
@@ -122,7 +121,7 @@ public class Main extends JavaPlugin {
 					for (Player player : Bukkit.getOnlinePlayers())
 						ScrollText.slideScore(player);
 				}
-			}, 0, (long) config.getDouble("Scrolling Text.Shift Time") * 20);
+			}, 0, (long) (config.getDouble("Scrolling Text.Shift Time") * 20));
 		}
 	}
 

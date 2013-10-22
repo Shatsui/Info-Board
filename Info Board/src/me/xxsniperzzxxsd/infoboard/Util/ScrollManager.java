@@ -6,9 +6,6 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 
@@ -20,6 +17,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 public class ScrollManager {
 
+	public boolean debug = false;
 	private ArrayList<String> scrollLines = new ArrayList<String>();
 	private HashMap<String, Integer> scrollCount = new HashMap<String, Integer>();
 	private HashMap<String, Integer> scrollScore = new HashMap<String, Integer>();
@@ -63,10 +61,10 @@ public class ScrollManager {
 	}
 
 	public String getScrollTextColor(String origionalMessage) {
-		if (ChatColor.getLastColors(getLastScrollText(origionalMessage)) != null)
-			return ChatColor.getLastColors(getLastScrollText(origionalMessage));
+		if (ChatColor.getLastColors(scrollLast.get(origionalMessage)) != null)
+			return ChatColor.getLastColors(scrollLast.get(origionalMessage));
 		else
-			return "§f";
+			return "";
 	}
 
 	public void setScroll(String message, int scrolls, String lastScroll, int score, boolean isTitle) {
@@ -75,7 +73,7 @@ public class ScrollManager {
 		scrollCount.put(message, scrolls);
 		scrollLast.put(message, lastScroll);
 		scrollScore.put(message, score);
-		System.out.println(message + "-" + scrolls + "-" + lastScroll + "-" + score);
+		if(debug)System.out.println(message + "-" + scrolls + "-" + lastScroll + "-" + score);
 		// TODO: Add support for title scrolls
 	}
 

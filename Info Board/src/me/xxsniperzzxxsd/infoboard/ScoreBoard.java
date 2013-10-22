@@ -24,6 +24,9 @@ public class ScoreBoard {
 		plugin = instance;
 	}
 
+	//TODO: Fix color support for scroll messages
+	
+	
 	int rotation = 1;
 	public ArrayList<String> hidefrom = new ArrayList<String>();
 	public String rank = "default";
@@ -74,7 +77,7 @@ public class ScoreBoard {
 						}
 						else{
 							for(String txt : plugin.ScrollManager.getAllMessages()){
-								if(plugin.ScrollManager.getLastScrollText(txt).equals(s))
+								if(plugin.ScrollManager.getLastScrollText(txt).equals(op.getName()))
 									onlist = true;
 							}
 						}
@@ -90,7 +93,6 @@ public class ScoreBoard {
 				{
 					if (!ChatColor.stripColor(s).equals(""))
 					{
-						System.out.println(s);
 						infoBoard.resetScores(Bukkit.getOfflinePlayer(s));
 					}
 				}
@@ -98,15 +100,13 @@ public class ScoreBoard {
 
 				for (String s : list)
 				{
-					s = s.replaceAll("<scroll>", "");
-					if (plugin.ScrollManager.isScroll(s))
-						return true;
 					String string = getLine(s, player);
 					if (!infoBoard.getPlayers().contains(Bukkit.getOfflinePlayer(string)))
 					{
 						boolean set = true;
 						Score score = null;
 						String line = list.get(row);
+						
 						if (getLine(line, player).equalsIgnoreCase(" "))
 						{
 							String space = "&" + spaces;
@@ -159,9 +159,10 @@ public class ScoreBoard {
 						{
 							if (numberScore == -1)
 								numberScore = list.size() - 1 - row;
-
-							score.setScore(1);
-							score.setScore(numberScore);
+							if(!score.getPlayer().getName().startsWith("<scroll>")){
+								score.setScore(1);
+								score.setScore(numberScore);
+							}
 							numberScore = -1;
 						}
 					}
@@ -248,8 +249,9 @@ public class ScoreBoard {
 						line = ChatColor.stripColor(line);
 						
 						//Re add the first few colors
-						line = ((color == null ) ? "": color ) + line;
+						line = ((color == null ) ? "" : color ) + line;
 						
+						line = getLine(line, player);
 						uncutline = line;
 						
 						line = line.substring(0, Math.min(line.length(), 16 - color.length()));
