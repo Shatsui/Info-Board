@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Lag;
+import me.xxsniperzzxxsd.infoboard.Util.ScrollManager;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
@@ -20,7 +21,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 public class Main extends JavaPlugin {
 
-	public String ib = ChatColor.BLACK + "➳ " + ChatColor.YELLOW + "➳ " +ChatColor.BLACK + "➳ "+ ChatColor.GRAY;
+	public String ib = ChatColor.BLACK + "➳" + ChatColor.YELLOW + "➳" + ChatColor.BLACK + "➳" + ChatColor.GRAY;
 
 	public ArrayList<String> disabledPlayers = new ArrayList<String>();
 	public static Configuration config;
@@ -28,15 +29,15 @@ public class Main extends JavaPlugin {
 	public static Economy economy;
 	public static Permission permission;
 
-	private boolean startover = true;
-
-	public int timer, total;
-
+	public ScrollManager ScrollManager;
 	public ScoreBoard ScoreBoard;
 	public ScrollText ScrollText;
 
-	public void onEnable() {
+	private int total = 0;
+	private int timer = 0;
 
+	public void onEnable() {
+		
 		PlayerListener PlayerListener = new PlayerListener(this);
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(PlayerListener, this);
@@ -50,8 +51,13 @@ public class Main extends JavaPlugin {
 		config = getConfig();
 		config.options().copyDefaults(true);
 		saveConfig();
+		ScrollManager = new ScrollManager();
 		ScoreBoard = new ScoreBoard(this);
-		ScrollText = new ScrollText();
+		ScrollText = new ScrollText(this);
+		total = config.getInt("Info Board." + String.valueOf(1) + ".Show Time");
+		
+		for (Player p : Bukkit.getOnlinePlayers())
+			ScoreBoard.createScoreBoard(p);
 		
 		// Start TPS
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
@@ -63,63 +69,60 @@ public class Main extends JavaPlugin {
 			setupEconomy();
 			setupPermissions();
 		}
-		//Start Rotation Timer
+		// Start Rotation Timer
 		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable()
 		{
 
 			@Override
 			public void run() {
-				// If timer is starting over
-				if (startover)
-				{
-					timer = 0;
-					total = config.getInt("Info Board." + String.valueOf(ScoreBoard.rotation) + ".Show Time");
-					for (Player p : Bukkit.getOnlinePlayers())
-						ScoreBoard.createScoreBoard(p);
-				}
-
-				startover = false;
-
+				//System.out.println(timer +"/" + total);
 				// Add one to the timer if it doesnt equal the total
 				if (!(timer >= total))
-				{
-					timer += 2;
-				}
-				// If they do equal, add to the scoreboard rotation
+					timer++;
+				// If they do equal, say that we're ready for a reset
 				else if (timer >= total)
 				{
-					if (config.getString("Info Board." + String.valueOf(ScoreBoard.rotation + 1) + "." + ScoreBoard.rank + ".Title") != null)
-					{
-						ScoreBoard.rotation++;
-					} else
-						ScoreBoard.rotation = 1;
 
-					startover = true;
-				}
+					//Add on to scoreboard
+						ScoreBoard.rotation++;
+						total = config.getInt("Info Board." + String.valueOf(ScoreBoard.rotation) + ".Show Time");
+						timer = 0;
+
+						if(total == 0){
+							ScoreBoard.rotation = 1;
+							timer = 0;
+							total = config.getInt("Info Board." + String.valueOf(ScoreBoard.rotation) + ".Show Time");
+						}
+					
+					//Set scoreboard of current rotation
+					for (Player p : Bukkit.getOnlinePlayers())
+						ScoreBoard.createScoreBoard(p);
+				}				
 			}
-		}, 50, config.getInt("Info Board." + String.valueOf(ScoreBoard.rotation) + ".Show Time") * 20);
-		
-		
+		}, 0, 20);
+
 		// Update Scores
 		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable()
 		{
 
 			@Override
 			public void run() {
-				for (Player p : Bukkit.getOnlinePlayers())
-					ScoreBoard.updateScoreBoard(p);
+				//for (Player p : Bukkit.getOnlinePlayers())
+					//ScoreBoard.updateScoreBoard(p);
 			}
-		}, 70, getConfig().getInt("Update Time") * 20);
+		}, 0, (long) config.getDouble("Update Time") * 20);
 
-		if(config.getBoolean("Scrolling Text.Enable")){
+		if (config.getBoolean("Scrolling Text.Enable"))
+		{
 			getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable()
 			{
+
 				@Override
 				public void run() {
-					for(Player player: Bukkit.getOnlinePlayers())
+					for (Player player : Bukkit.getOnlinePlayers())
 						ScrollText.slideScore(player);
 				}
-			}, 70, config.getInt("Scrolling Text.Shift Time")* 20);
+			}, 0, (long) config.getDouble("Scrolling Text.Shift Time") * 20);
 		}
 	}
 

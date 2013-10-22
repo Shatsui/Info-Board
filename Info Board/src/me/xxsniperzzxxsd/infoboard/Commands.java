@@ -62,11 +62,12 @@ public class Commands implements CommandExecutor {
 						return true;
 					} else if (args.length == 2)
 					{
-						if (plugin.getConfig().getString("Info Board." + String.valueOf(args[1]) + "." + plugin.ScoreBoard.rank + ".Title") != null)
+						String rotate = args[1];
+						
+						if (plugin.getConfig().getString("Info Board." + rotate + ".global.default.Title") != null)
 						{
 
-							plugin.ScoreBoard.rotation = Integer.valueOf(args[1]);
-							plugin.timer = 0;
+							plugin.ScoreBoard.rotation = Integer.valueOf(rotate);
 							sender.sendMessage("");
 							sender.sendMessage(plugin.ib + "Rotation set to: " + args[1]);
 							sender.sendMessage("");
@@ -94,6 +95,7 @@ public class Commands implements CommandExecutor {
 						plugin.reloadConfig();
 						for(Player player: Bukkit.getOnlinePlayers()){
 							player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+							plugin.ScoreBoard.createScoreBoard(player);
 						}
 						sender.sendMessage("");
 					}

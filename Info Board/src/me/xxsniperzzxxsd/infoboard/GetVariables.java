@@ -89,7 +89,7 @@ public class GetVariables {
 		// Custom Variables
 		for (String custom : Main.config.getConfigurationSection("Custom Variables").getKeys(true)){
 				if(newString.contains("<" + custom + ">"))
-						newString = newString.replaceAll("<" + custom + ">", ScoreBoard.getLine(Main.config.getString("Custom Variables." + custom), player));
+						newString = newString.replaceAll("<" + custom + ">", Main.config.getString("Custom Variables." + custom));
 		}
 
 		return newString;

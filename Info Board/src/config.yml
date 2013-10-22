@@ -9,9 +9,9 @@
 #   '1':
 # # How Long this page is shown for
 #     Show Time: 10
-# # What world sees this page (global = All)(Remove global to make it so it's only seen by the set worlds)
+# # What world sees this page (global = All)
 #     global:
-# # What Permissions group sees this page(Remove default to make it so it's only seen by the set ranks)
+# # What Permissions group sees this page
 #       default:
 # # Pages Title
 #         Title: '&4&lDuskHaven'
@@ -60,7 +60,6 @@
 Custom Variables:
   website: Dusk-Haven.com
   plugindev: SniperzCiinema
-  line: '<scroll>&l<247><247><247><247><247><247><247><247><247><247><247><247><247><247><247>'
 Disabled Worlds:
 - DisabledWorld1
 - DisabledWorld2
@@ -86,4 +85,4 @@ Info Board:
         - ' '
         - '&e&lWebsite:'
         - <website>
-        - <line>
+        - '<scroll>&l<247><247><247><247><247><247><247><247><247><247><247><247><247><247><247>'
