@@ -30,6 +30,8 @@ public class mcMMOVariables {
 			newString = newString.replaceAll("<mcmmofishing>", String.valueOf(mp.getFishingManager().getSkillLevel()));
 		if (newString.contains("<mcmmoherbalism>"))
 			newString = newString.replaceAll("<mcmmoherbalism>", String.valueOf(mp.getHerbalismManager().getSkillLevel()));
+		if (newString.contains("<mcmmomining>"))
+			newString = newString.replaceAll("<mcmmomining>", String.valueOf(mp.getMiningManager().getSkillLevel()));
 		if (newString.contains("<mcmmorepair>"))
 			newString = newString.replaceAll("<mcmmorepair>", String.valueOf(mp.getRepairManager().getSkillLevel()));
 		if (newString.contains("<mcmmosmelting>"))
@@ -57,6 +59,8 @@ public class mcMMOVariables {
 			newString = newString.replaceAll("<mcmmomaxfishing>", String.valueOf(ExperienceAPI.getLevelCap("FISHING")));
 		if (newString.contains("<mcmmomaxherbalism>"))
 			newString = newString.replaceAll("<mcmmomaxherbalism>", String.valueOf(ExperienceAPI.getLevelCap("HERBALISM")));
+		if (newString.contains("<mcmmomaxmining>"))
+			newString = newString.replaceAll("<mcmmomaxmining>", String.valueOf(ExperienceAPI.getLevelCap("MINING")));
 		if (newString.contains("<mcmmomaxrepair>"))
 			newString = newString.replaceAll("<mcmmomaxrepair>", String.valueOf(ExperienceAPI.getLevelCap("REPAIR")));
 		if (newString.contains("<mcmmomaxsmelting>"))
@@ -82,6 +86,8 @@ public class mcMMOVariables {
 			newString = newString.replaceAll("<mcmmonextfishing>", String.valueOf(ExperienceAPI.getXPToNextLevel(player, "FISHING")));
 		if (newString.contains("<mcmmonextherbalism>"))
 			newString = newString.replaceAll("<mcmmonextherbalism>", String.valueOf(ExperienceAPI.getXPToNextLevel(player, "HERBALISM")));
+		if (newString.contains("<mcmmonextmining>"))
+			newString = newString.replaceAll("<mcmmonextmining>", String.valueOf(ExperienceAPI.getXPToNextLevel(player, "MINING")));
 		if (newString.contains("<mcmmonextrepair>"))
 			newString = newString.replaceAll("<mcmmonextrepair>", String.valueOf(ExperienceAPI.getXPToNextLevel(player, "REPAIR")));
 		if (newString.contains("<mcmmonextsmelting>"))
