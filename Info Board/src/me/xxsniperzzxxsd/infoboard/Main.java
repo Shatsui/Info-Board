@@ -123,8 +123,9 @@ public class Main extends JavaPlugin {
 
 				@Override
 				public void run() {
-					for (Player player : Bukkit.getOnlinePlayers())
+					for (Player player : Bukkit.getOnlinePlayers()){
 						ScrollText.slideScore(player);
+					}
 				}
 			}, 0, (long) (getConfig().getDouble("Scrolling Text.Shift Time") * 20));
 		}

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import me.xxsniperzzxxsd.infoboard.Util.Scroller;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -15,6 +17,7 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+
 public class ScoreBoard {
 
 	public Main plugin;
@@ -24,9 +27,9 @@ public class ScoreBoard {
 		plugin = instance;
 	}
 
-	//TODO: Fix color support for scroll messages, when they first get added to list, color is gone
-	
-	
+	// TODO: Fix color support for scroll messages, when they first get added to
+	// list, color is gone
+
 	int rotation = 1;
 	public ArrayList<String> hidefrom = new ArrayList<String>();
 	public String rank = "default";
@@ -71,13 +74,14 @@ public class ScoreBoard {
 					while (iter.hasNext())
 					{
 						String s = iter.next();
-						if (getLine(s, player).equalsIgnoreCase(op.getName()) || s.length() == 2 )
+						if (getLine(s, player).equalsIgnoreCase(op.getName()) || s.length() == 2)
 						{
 							onlist = true;
-						}
-						else{
-							for(String txt : plugin.ScrollManager.getAllMessages()){
-								if(plugin.ScrollManager.getLastScrollText(txt).equals(op.getName()))
+						} else
+						{
+							for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
+							{
+								scroller.getLastMessage().equals(op.getName());
 									onlist = true;
 							}
 						}
@@ -106,7 +110,7 @@ public class ScoreBoard {
 						boolean set = true;
 						Score score = null;
 						String line = list.get(row);
-						
+
 						if (getLine(line, player).equalsIgnoreCase(" "))
 						{
 							String space = "&" + spaces;
@@ -159,7 +163,8 @@ public class ScoreBoard {
 						{
 							if (numberScore == -1)
 								numberScore = list.size() - 1 - row;
-							if(!score.getPlayer().getName().startsWith("<scroll>")){
+							if (!score.getPlayer().getName().startsWith("<scroll>"))
+							{
 								score.setScore(1);
 								score.setScore(numberScore);
 							}
@@ -203,19 +208,29 @@ public class ScoreBoard {
 			Scoreboard infoBoard = manager.getNewScoreboard();
 			Objective infoObjective = infoBoard.registerNewObjective("InfoBoard", "dummy");
 			infoObjective.setDisplaySlot(DisplaySlot.SIDEBAR);
-			infoObjective.setDisplayName(getLine(plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title"), player));
+
+			plugin.ScrollManager.reset(player);
+			
+			String title = plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title");
+			if (title.startsWith("<scroll>"))
+			{
+				// Replace <scroll>
+				title = title.replaceAll("<scroll>", "");
+
+				title = plugin.ScrollManager.createTitleScroller(player, title).getScrolled();
+				
+			}
+
+			infoObjective.setDisplayName(title);
 			// Set ScoreBoard
 			int row;
 			int spaces = 0;
 
-			plugin.ScrollManager.resetAllScroll(player);
-			
+
 			List<String> list = plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows");
 			for (row = 0; row != plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows").size(); row++)
 			{
 				boolean set = true;
-				boolean scroll = false;
-				String uncutline = null;
 				Score score = null;
 				String line = list.get(row);
 				if (getLine(line, player).equalsIgnoreCase(" "))
@@ -237,25 +252,10 @@ public class ScoreBoard {
 					}
 					if (line.startsWith("<scroll>"))
 					{
-						//Replace <scroll>
+						// Replace <scroll>
 						line = line.replaceAll("<scroll>", "");
-						
-						//Get Color codes
-						line = ChatColor.translateAlternateColorCodes('&', line);
-						
-						String color = ChatColor.getLastColors(line);
-						
-						//Remove all color codes
-						line = ChatColor.stripColor(line);
-						
-						//Re add the first few colors
-						line = ((color == null ) ? "" : color ) + line;
-						
-						line = getLine(line, player);
-						uncutline = line;
-						
-						line = line.substring(0, Math.min(line.length(), 16 - color.length()));
-						scroll = true;
+
+						line = plugin.ScrollManager.createScroller(player, line).getScrolled();
 					}
 					if (line.contains("<split>"))
 					{
@@ -297,9 +297,7 @@ public class ScoreBoard {
 
 					score.setScore(1);
 					score.setScore(numberScore);
-					if(scroll)
-						plugin.ScrollManager.setScroll(uncutline, 0, line, numberScore, false);
-					
+
 					numberScore = -1;
 				}
 			}
@@ -316,7 +314,7 @@ public class ScoreBoard {
 		String newString = GetVariables.replaceVariables(string, user);
 
 		// Repalce color codes
-		newString = ChatColor.translateAlternateColorCodes('&', ChatColor.stripColor(newString));
+		newString = ChatColor.translateAlternateColorCodes('&', newString);
 
 		// Make sure string isnt to long
 		if (newString.length() > 16)

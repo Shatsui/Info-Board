@@ -215,6 +215,7 @@
 # <mcmmoexcavation>  | Players excavation level | I
 # <mcmmofishing>     | Players fishing level | I
 # <mcmmoherbalism>   | Players herbalism level | I
+# <mcmmomining>      | Players mining level | I
 # <mcmmorepair>      | Players repair level | I
 # <mcmmosmelting>    | Players smelting level | I
 # <mcmmoswords>      | Players swords level | I
@@ -228,6 +229,7 @@
 # <mcmmomaxexcavation>| Max excavation level | I
 # <mcmmomaxfishing>  | Max fishing level | I
 # <mcmmomaxherbalism>| Max herbalism level | I
+# <mcmmomaxmining>   | Max mining level | I
 # <mcmmomaxrepair>   | Max repair level | I
 # <mcmmomaxsmelting> | Max smelting level | I
 # <mcmmomaxswords>   | Max swords level | I
@@ -241,6 +243,7 @@
 # <mcmmonextexcavation>| Exp to next excavation level | I
 # <mcmmonextfishing> | Exp to next fishing level | I
 # <mcmmonextherbalism>| Exp to next herbalism level | I
+# <mcmmonextmining>  | Exp to next mining level | I
 # <mcmmonextrepair>  | Exp to next repair level | I
 # <mcmmonextsmelting>| Exp to next smelting level | I
 # <mcmmonextswords>  | Exp to next swords level | I
