@@ -1,7 +1,7 @@
 
-package me.xxsniperzzxxsd.infoboard;
+package me.xxsniperzzxxsd.infoboard.Util;
 
-import me.xxsniperzzxxsd.infoboard.Util.Scroller;
+import me.xxsniperzzxxsd.infoboard.Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

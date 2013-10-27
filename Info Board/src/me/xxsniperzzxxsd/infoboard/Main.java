@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Lag;
 import me.xxsniperzzxxsd.infoboard.Util.ScrollManager;
+import me.xxsniperzzxxsd.infoboard.Util.ScrollText;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 

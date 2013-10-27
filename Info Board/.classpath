@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/WorldEdit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/WorldGuard.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/LWC.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/Server/plugins/Cranked.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
