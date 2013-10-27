@@ -10,8 +10,7 @@ import com.palmergames.bukkit.towny.object.TownyUniverse;
 public class TownyVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		if (newString.contains("<townytown>"))
 		{

@@ -4,8 +4,7 @@ package me.xxsniperzzxxsd.infoboard.Variables;
 public class ALTVariables {
 
 	public static String replaceVariables(String string) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		// UTF-8
 		if (newString.contains("<1>"))

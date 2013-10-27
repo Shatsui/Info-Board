@@ -9,8 +9,7 @@ import org.bukkit.entity.Player;
 public class VaultVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 		if (Main.economy != null)
 		{
 			if (newString.contains("<money>"))

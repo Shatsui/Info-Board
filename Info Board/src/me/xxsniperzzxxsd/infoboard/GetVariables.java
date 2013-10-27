@@ -1,6 +1,7 @@
 
 package me.xxsniperzzxxsd.infoboard;
 
+import me.xxsniperzzxxsd.infoboard.Variables.CrankedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.EssentialsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.FactionsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.InfectedVariables;
@@ -24,8 +25,7 @@ import org.bukkit.entity.Player;
 public class GetVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		// Server Variables
 		newString = ServerVariables.replaceVariables(newString);
@@ -47,6 +47,11 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("LWC") != null)
 			if (newString.contains("<lwc"))
 				newString = LWCVariables.replaceVariables(newString, player);
+
+		// Cranked Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("Cranked") != null)
+			if (newString.contains("<cranked"))
+				newString = CrankedVariables.replaceVariables(newString, player);
 
 		// McTowns Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("MCTowns") != null)

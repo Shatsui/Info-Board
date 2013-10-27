@@ -11,8 +11,7 @@ public class PlayerVariables {
 
 	public static String replaceVariables(String string, Player player) {
 
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		// Player Variables
 		if (newString.contains("<ping>") && (Bukkit.getBukkitVersion().split("-")[0]).equalsIgnoreCase("1.6.4"))

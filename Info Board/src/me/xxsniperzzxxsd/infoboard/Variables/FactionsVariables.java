@@ -13,8 +13,7 @@ import com.massivecraft.mcore.ps.PS;
 public class FactionsVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		UPlayer uplayer = UPlayer.get(player);
 		Faction faction = uplayer.getFaction();

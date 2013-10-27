@@ -14,8 +14,7 @@ import com.worldcretornica.plotme.PlotManager;
 public class PlotMeVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 			HashMap<String, Plot> plotsMap = PlotManager.getPlots(player);
 			ArrayList<Plot> plots = new ArrayList<Plot>();

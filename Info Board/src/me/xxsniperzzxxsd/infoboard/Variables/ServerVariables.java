@@ -10,8 +10,7 @@ import org.bukkit.entity.Player;
 public class ServerVariables {
 
 	public static String replaceVariables(String string) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 		double tps = Lag.getTPS();
 
 		// Server Variables

@@ -9,8 +9,7 @@ import org.bukkit.entity.Player;
 public class JobsVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		if (newString.contains("<jobsin>"))
 			newString = newString.replaceAll("<jobsin>", String.valueOf(Jobs.getJobsDAO().getAllJobs(Jobs.getPlayerManager().getJobsPlayer(player.getName())).size()));

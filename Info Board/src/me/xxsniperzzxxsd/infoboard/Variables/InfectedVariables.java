@@ -9,8 +9,7 @@ import org.bukkit.entity.Player;
 public class InfectedVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		if (newString.contains("<infectedpoints>"))
 			newString = newString.replaceAll("<infectedpoints>", String.valueOf(Infected.playerGetPoints(player.getName())));

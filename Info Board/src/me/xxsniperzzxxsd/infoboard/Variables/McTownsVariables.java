@@ -12,8 +12,7 @@ import org.bukkit.entity.Player;
 public class McTownsVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		List<Town> towns = MCTowns.getTownManager().matchPlayerToTowns(player.getName());
 

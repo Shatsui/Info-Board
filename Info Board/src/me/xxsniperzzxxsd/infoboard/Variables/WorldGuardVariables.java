@@ -18,8 +18,7 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 public class WorldGuardVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		ArrayList<String> playersRegions = new ArrayList<String>();
 		ArrayList<ProtectedRegion> inRegions = new ArrayList<ProtectedRegion>();

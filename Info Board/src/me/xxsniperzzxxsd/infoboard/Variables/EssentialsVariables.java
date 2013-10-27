@@ -11,9 +11,7 @@ import com.earth2me.essentials.User;
 public class EssentialsVariables {
 
 	public static String replaceVariables(String string, Player player) {
-
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		Essentials e = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
 		User user = e.getUser(player);

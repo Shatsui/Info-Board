@@ -12,8 +12,7 @@ import com.gmail.nossr50.util.player.UserManager;
 public class mcMMOVariables {
 
 	public static String replaceVariables(String string, Player player) {
-		String newString = "Hi";
-		newString = string;
+		String newString = string;
 
 		McMMOPlayer mp = UserManager.getPlayer(player.getName());
 		if (newString.contains("<mcmmopowerlevel>"))
