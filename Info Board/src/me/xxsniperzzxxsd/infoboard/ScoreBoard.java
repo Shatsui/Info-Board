@@ -27,9 +27,6 @@ public class ScoreBoard {
 		plugin = instance;
 	}
 
-	// TODO: Fix color support for scroll messages, when they first get added to
-	// list, color is gone
-
 	int rotation = 1;
 	public ArrayList<String> hidefrom = new ArrayList<String>();
 	public String rank = "default";
