@@ -14,7 +14,7 @@ public class PlayerVariables {
 		String newString = string;
 
 		// Player Variables
-		if (newString.contains("<ping>") && (Bukkit.getBukkitVersion().split("-")[0]).equalsIgnoreCase("1.6.4"))
+		if (newString.contains("<ping>"))
 			newString = newString.replaceAll("<ping>", String.valueOf(Bukkit.getOnlinePlayers().length));
 		if (newString.contains("<onlineplayers>"))
 			newString = newString.replaceAll("<onlineplayers>", String.valueOf(Bukkit.getOnlinePlayers().length));
