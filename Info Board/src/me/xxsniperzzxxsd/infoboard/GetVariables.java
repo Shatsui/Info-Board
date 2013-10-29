@@ -4,6 +4,7 @@ package me.xxsniperzzxxsd.infoboard;
 import me.xxsniperzzxxsd.infoboard.Variables.CrankedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.EssentialsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.FactionsVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.HeroesVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.InfectedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.JobsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.LWCVariables;
@@ -67,6 +68,11 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("Factions") != null)
 			if (newString.contains("<factions"))
 				newString = FactionsVariables.replaceVariables(newString, player);
+
+		// Heroes Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("Heroes") != null)
+			if (newString.contains("<heroes"))
+				newString = HeroesVariables.replaceVariables(newString, player);
 
 		// mcMMO Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("mcMMO") != null)

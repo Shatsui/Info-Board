@@ -7,8 +7,6 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/mcore.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/mcMMO.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Towny.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/bukkit-1.6.4-R0.1-20130923.182036-4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/craftbukkit-1.6.4-R0.1-20130923.182200-5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/New folder/plugins/Infected.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Jobs.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Essentials.jar"/>
@@ -18,5 +16,9 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/WorldGuard.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/LWC.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/Server/plugins/Cranked.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/bukkit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/craftbukkit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Minigames.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Heroes.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

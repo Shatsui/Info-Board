@@ -70,9 +70,6 @@
 # |           Player Variables                 | #
 # +--------------------------------------------+ #
 # ################################################
-# !!! <ping> will ONLY work if you're using !!!
-# !!!  the CB this version was compiled for !!!
-# ---------------------------------------------
 # <ping>             | Players Ping       | I
 # <onlineplayers>    | Players Online     | I
 # <player>           | The player name    | S
@@ -298,4 +295,25 @@
 # <plotmebidder#>    | The plots bidder (Replace # with a number [1 and up]) | S
 # <plotmefinished#>  | Is the plots finished (Replace # with a number [1 and up]) | B
 # <plotmeforsale#>   | Is the plot for sale (Replace # with a number [1 and up]) | B
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                Heroes                      | #
+# +--------------------------------------------+ #
+# ################################################
+# <heroesmana>            | The Heroes' mana | I
+# <heroesmaxmana>         | The Heroes' max mana | I
+# <heroeslevel>           | The Heroes' level | I
+# <heroesmanaregen>       | The Heros' mana regen | I
+# <heroesismaster>        | Is the Hero is a master in their class| B
+# <heroespartyleader>     | The Heroes' partys leader S
+# <heroespartysize>       | The Heroes' party size | B
+# <heroespartyisnopvp>    | Is the Heroes' party prevent pvp | B
+# <heroesclass>           | The Heroes' classes' name | S
+# <heroesclasstier>       | The Heroes' classes' tier | I
+# <heroesclassbasehealth> | The Heroes' classes' base health  I
+# <heroesclassbasemana>   | The Heroes' classes' base mana  | I
+# <heroesclassexpchange>  | The Heroes' classes' exp modifier  | I
+# <heroesclassexploss>    | The Heroes' classes' exp loss  | I
+# <heroesclassmaxlevel>   | The Heroes' classes' max level | I
 # #
