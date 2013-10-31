@@ -2,23 +2,28 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Vault (1).jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Factions.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/mcore.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/mcMMO.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Towny.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/New folder/plugins/Infected.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Jobs.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Essentials.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/MCTowns-2.3.0-LTS-RC2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/PlotMe.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/WorldEdit.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/WorldGuard.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/LWC.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/Server/plugins/Cranked.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/bukkit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/craftbukkit.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Minigames.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Heroes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/mcore.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Factions.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Minigames.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Heroes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/LibsDisguises.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/PlotMe.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/WorldEdit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/WorldGuard.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/MCTowns.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Jobs.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/LWC.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/DisguiseCraft.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/iDisguise.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/TagAPI.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Essentials.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/CrackShot.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/mcMMO.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Towny.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

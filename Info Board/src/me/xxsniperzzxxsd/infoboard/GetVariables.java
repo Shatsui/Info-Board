@@ -9,6 +9,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.InfectedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.JobsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.LWCVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.McTownsVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.MiniGamesVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ServerVariables;
@@ -95,11 +96,16 @@ public class GetVariables {
 			if (newString.contains("<plotme"))
 				newString = PlotMeVariables.replaceVariables(newString, player);
 
-		
+
 		// WorldGuard Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard") != null)
 			if (newString.contains("<worldguard"))
 				newString = WorldGuardVariables.replaceVariables(newString, player);
+
+		// MiniGames Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("MiniGames") != null)
+			if (newString.contains("<minigames"))
+				newString = MiniGamesVariables.replaceVariables(newString, player);
 
 		// UTF-8
 		newString = ALTVariables.replaceVariables(newString);
@@ -110,6 +116,7 @@ public class GetVariables {
 						newString = newString.replaceAll("<" + custom + ">", ScoreBoard.getLine(Main.config.getString("Custom Variables." + custom), player));
 		}
 
+		
 		return newString;
 	}
 }
