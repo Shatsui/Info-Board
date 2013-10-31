@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Ping {
 
-	public int getPing(Player p){
+	public static int getPing(Player p){
 		int ping = new Random(50).nextInt();
 		try {
 			Method getHandleMethod = p.getClass().getDeclaredMethod("getHandle");
@@ -22,6 +22,5 @@ public class Ping {
 		}
 		return ping;
 	}
-	
 	
 }

@@ -2,6 +2,7 @@
 package me.xxsniperzzxxsd.infoboard.Variables;
 
 import me.xxsniperzzxxsd.infoboard.Util.Files;
+import me.xxsniperzzxxsd.infoboard.Util.Ping;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ public class PlayerVariables {
 
 		// Player Variables
 		if (newString.contains("<ping>"))
-			newString = newString.replaceAll("<ping>", String.valueOf(Bukkit.getOnlinePlayers().length));
+			newString = newString.replaceAll("<ping>", String.valueOf(Ping.getPing(player)));
 		if (newString.contains("<onlineplayers>"))
 			newString = newString.replaceAll("<onlineplayers>", String.valueOf(Bukkit.getOnlinePlayers().length));
 		if (newString.contains("<player"))
