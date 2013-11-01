@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import me.xxsniperzzxxsd.infoboard.Util.RandomChatColor;
 import me.xxsniperzzxxsd.infoboard.Util.Scroller;
 
 import org.bukkit.Bukkit;
@@ -47,11 +48,13 @@ public class ScoreBoard {
 				}
 				if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null)
 					if (Main.permission != null)
-					{
+					{try{
 						rank = Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
-
 						if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
 							rank = "default";
+						}catch(UnsupportedOperationException UOE){
+							rank = "default";
+						}
 					}
 				if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
 					return true;
@@ -76,6 +79,7 @@ public class ScoreBoard {
 							onlist = true;
 						} else
 						{
+							if(plugin.ScrollManager.getScrollers(player) != null)
 							for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
 							{
 								scroller.getLastMessage().equals(op.getName());
@@ -188,9 +192,13 @@ public class ScoreBoard {
 
 				if (Main.permission != null)
 				{
+					try{
 					rank = Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
 					if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
 						rank = "default";
+					}catch(UnsupportedOperationException UOE){
+						rank = "default";
+					}
 				}
 			if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
 				return true;
@@ -209,13 +217,15 @@ public class ScoreBoard {
 			plugin.ScrollManager.reset(player);
 			
 			String title = plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title");
-			if (title.startsWith("<scroll>"))
+			if (title.startsWith("<scroll>") && plugin.getConfig().getBoolean("Scrolling Text.Enable"))
 			{
 				// Replace <scroll>
 				title = title.replaceAll("<scroll>", "");
 
 				title = plugin.ScrollManager.createTitleScroller(player, title).getScrolled();
 				
+			}else{
+				title = getLine(title,player);
 			}
 
 			infoObjective.setDisplayName(title);
@@ -247,7 +257,7 @@ public class ScoreBoard {
 						}
 						line = line.replaceAll("~!<" + l + ">", "");
 					}
-					if (line.startsWith("<scroll>"))
+					if (line.startsWith("<scroll>") && plugin.getConfig().getBoolean("Scrolling Text.Enable"))
 					{
 						// Replace <scroll>
 						line = line.replaceAll("<scroll>", "");
@@ -312,6 +322,8 @@ public class ScoreBoard {
 
 		// Repalce color codes
 		newString = ChatColor.translateAlternateColorCodes('&', newString);
+		newString = newString.replaceAll("&x", RandomChatColor.getColor().toString());
+		newString = newString.replaceAll("&y", RandomChatColor.getFormat().toString());
 
 		// Make sure string isnt to long
 		if (newString.length() > 16)

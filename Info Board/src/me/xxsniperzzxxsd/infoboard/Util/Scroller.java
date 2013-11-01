@@ -13,12 +13,15 @@ public class Scroller {
 	private String origional;
 	private int position;
 	private String lastMessage;
-	private String color = "§f";
+	private String color = "ï¿½f";
 	
 	public Scroller(Player player,String message){
 		this.player = player;
 		String string = message;
 		lastMessage = null;
+		string = string.replaceAll("&x", RandomChatColor.getColor().toString());
+		string = string.replaceAll("&y", RandomChatColor.getFormat().toString());
+
 		if(ChatColor.getLastColors(ChatColor.translateAlternateColorCodes('&', string)) != null)
 		color = ChatColor.getLastColors(ChatColor.translateAlternateColorCodes('&', string));
 		
@@ -54,6 +57,7 @@ public class Scroller {
 		{
 			// RESETS TO THE WHOLE WORD
 			newLine = color + origional.substring(color.length()+color.length(), Math.min(origional.length(), 16));
+			position = 0;
 		}
 		lastMessage = newLine;
 				
