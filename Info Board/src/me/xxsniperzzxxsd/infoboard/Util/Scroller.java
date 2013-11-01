@@ -11,9 +11,10 @@ public class Scroller {
 	@SuppressWarnings("unused")
 	private Player player;
 	private String origional;
-	private int position;
+	private int position = 0;
 	private String lastMessage;
-	private String color = "�f";
+	private String color = "§f";
+	private int holded= 0;
 	
 	public Scroller(Player player,String message){
 		this.player = player;
@@ -21,9 +22,9 @@ public class Scroller {
 		lastMessage = null;
 		string = string.replaceAll("&x", RandomChatColor.getColor().toString());
 		string = string.replaceAll("&y", RandomChatColor.getFormat().toString());
-
-		if(ChatColor.getLastColors(ChatColor.translateAlternateColorCodes('&', string)) != null)
-		color = ChatColor.getLastColors(ChatColor.translateAlternateColorCodes('&', string));
+		string = ChatColor.translateAlternateColorCodes('&', string);
+		if(ChatColor.getLastColors(string) != null)
+			color = ChatColor.getLastColors(string);
 		
 		// Replace all the variables
 				string = GetVariables.replaceVariables(string, player);
@@ -42,13 +43,16 @@ public class Scroller {
 		return position;
 	}
 	public void scroll(){
-		position++;
+		if(holded == 2)
+			position++;
+		else
+			holded++;
 	}
 	public String getScrolled(){
 		String newLine = null;
 		try
 		{
-		newLine = color + origional.substring(position + color.length() + color.length(), Math.min(origional.length(), 16 + position));
+		newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
 		
 		
 			@SuppressWarnings("unused")
@@ -56,8 +60,10 @@ public class Scroller {
 		} catch (StringIndexOutOfBoundsException npe)
 		{
 			// RESETS TO THE WHOLE WORD
-			newLine = color + origional.substring(color.length()+color.length(), Math.min(origional.length(), 16));
 			position = 0;
+			newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
+			
+			holded = 0;
 		}
 		lastMessage = newLine;
 				

@@ -4,6 +4,7 @@ package me.xxsniperzzxxsd.infoboard.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 
@@ -37,6 +38,12 @@ public class ScrollManager {
 		return title.get(p);
 	}
 	public void reset(Player p){
+		if (getScrollers(p) != null)
+			for (Scroller sc : getScrollers(p))
+			{
+				String lastString = sc.getLastMessage();
+				p.getScoreboard().resetScores(Bukkit.getOfflinePlayer(lastString));
+			}
 		scrollers.remove(p);
 	}
 }

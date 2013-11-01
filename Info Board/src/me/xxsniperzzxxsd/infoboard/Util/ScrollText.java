@@ -4,7 +4,6 @@ package me.xxsniperzzxxsd.infoboard.Util;
 import me.xxsniperzzxxsd.infoboard.Main;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -35,7 +34,6 @@ public class ScrollText {
 				int score = infoObjective.getScore(Bukkit.getOfflinePlayer(lastString)).getScore();
 
 				infoBoard.resetScores(Bukkit.getOfflinePlayer(lastString));
-				infoBoard.resetScores(Bukkit.getOfflinePlayer(ChatColor.stripColor(lastString)));
 
 				Score tempScore = infoObjective.getScore(Bukkit.getOfflinePlayer(" "));
 				tempScore.setScore(1);
