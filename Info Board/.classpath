@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/New folder/plugins/Infected.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/Server/plugins/Cranked.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/bukkit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/craftbukkit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/CrackShot.jar"/>
@@ -20,10 +19,11 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/MCTowns.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/Minigames.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/PlotMe.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/TagAPI.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/Towny.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/Vault.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/WorldEdit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/WorldGuard.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/CommandPoints.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/Cranked.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
