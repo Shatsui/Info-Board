@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scoreboard.DisplaySlot;
 
 
@@ -40,5 +41,13 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
 		event.getPlayer().getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+	}
+
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		if (event.getPlayer().isOp() && plugin.update)
+		{
+			System.out.println("Theres a new update for InfoBoard(v" + plugin.name + ").");
+		}
 	}
 }

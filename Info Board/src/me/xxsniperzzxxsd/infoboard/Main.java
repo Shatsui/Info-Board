@@ -1,12 +1,15 @@
 
 package me.xxsniperzzxxsd.infoboard;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import me.xxsniperzzxxsd.infoboard.Util.Metrics;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Lag;
 import me.xxsniperzzxxsd.infoboard.Util.ScrollManager;
 import me.xxsniperzzxxsd.infoboard.Util.ScrollText;
+import me.xxsniperzzxxsd.infoboard.Util.Updater;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
@@ -24,7 +27,9 @@ import org.bukkit.scoreboard.DisplaySlot;
 public class Main extends JavaPlugin {
 
 	public static Plugin me;
-
+	public boolean update = false;
+	public String name = "InfoBoard";
+	
 	public String ib = "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
 
 	public ArrayList<String> disabledPlayers = new ArrayList<String>();
@@ -42,6 +47,30 @@ public class Main extends JavaPlugin {
 
 	public void onEnable() {
 		me = this;
+		try
+		{
+			Metrics metrics = new Metrics(this);
+			metrics.start();
+			System.out.println("Metrics was started!");
+		} catch (IOException e)
+		{
+			System.out.println("Metrics was unable to start...");
+		}
+		try
+		{
+			Updater updater = new Updater(this, 65787, getFile(),
+					Updater.UpdateType.NO_DOWNLOAD, false);
+
+			update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
+			name = updater.getLatestName();
+
+		} catch (Exception ex)
+		{
+			System.out.println("The auto-updater tried to contact dev.bukkit.org, but was unsuccessful.");
+		}
+		if(update){
+			System.out.println("Theres a new update for InfoBoard(v"+name+").");	
+		}
 		PlayerListener PlayerListener = new PlayerListener(this);
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(PlayerListener, this);
