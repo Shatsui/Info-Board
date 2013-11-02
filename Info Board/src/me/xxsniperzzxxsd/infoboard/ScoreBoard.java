@@ -35,7 +35,7 @@ public class ScoreBoard {
 	private static int numberScore = -1;
 
 	public boolean updateScoreBoard(Player player) {
-		if (!plugin.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) || !hidefrom.contains(player.getName()))
+		if (!plugin.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && !hidefrom.contains(player.getName()) &&(player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
 			if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null)
 			{
