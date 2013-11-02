@@ -14,6 +14,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,8 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 
 public class Main extends JavaPlugin {
+
+	public static Plugin me;
 
 	public String ib = "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
 
@@ -38,7 +41,7 @@ public class Main extends JavaPlugin {
 	public int timer = 0;
 
 	public void onEnable() {
-
+		me = this;
 		PlayerListener PlayerListener = new PlayerListener(this);
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(PlayerListener, this);
@@ -124,7 +127,8 @@ public class Main extends JavaPlugin {
 
 				@Override
 				public void run() {
-					for (Player player : Bukkit.getOnlinePlayers()){
+					for (Player player : Bukkit.getOnlinePlayers())
+					{
 						ScrollText.slideScore(player);
 					}
 				}

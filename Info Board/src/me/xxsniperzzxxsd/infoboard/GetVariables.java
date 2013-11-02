@@ -1,6 +1,7 @@
 
 package me.xxsniperzzxxsd.infoboard;
 
+import me.xxsniperzzxxsd.infoboard.Variables.CommandPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.CrankedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.EssentialsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.FactionsVariables;
@@ -54,6 +55,11 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("Cranked") != null)
 			if (newString.contains("<cranked"))
 				newString = CrankedVariables.replaceVariables(newString, player);
+
+		// Cranked Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("CommandPoints") != null)
+			if (newString.contains("<commandpoints"))
+				newString = CommandPointsVariables.replaceVariables(newString, player);
 
 		// McTowns Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("MCTowns") != null)
