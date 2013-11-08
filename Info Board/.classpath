@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/WorldGuard.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/CommandPoints.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/Cranked.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/git/Info Board/Info Board/lib/PlayerPoints.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

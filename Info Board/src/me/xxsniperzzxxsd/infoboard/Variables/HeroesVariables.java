@@ -20,9 +20,11 @@ public class HeroesVariables {
 		Heroes heroes = (Heroes) Bukkit.getPluginManager().getPlugin("Heroes");
 		CharacterManager cm = heroes.getCharacterManager();
 		Hero hero = cm.getHero(player);
+		
 		HeroParty hp = hero.getParty();
 		HeroClass hc = hero.getHeroClass();
-
+		HeroClass hc2 = hero.getSecondClass();
+		
 		if (newString.contains("<heroesmana>"))
 			newString = newString.replaceAll("<heroesmana>", String.valueOf(hero.getMana()));
 		if (newString.contains("<heroeslevel>"))
@@ -35,11 +37,23 @@ public class HeroesVariables {
 			newString = newString.replaceAll("<heroesismaster>", String.valueOf(hero.isMaster(hc)));
 		
 		if (newString.contains("<heroespartyleader>"))
-			newString = newString.replaceAll("<heroespartyleader>", String.valueOf(hp.getLeader()));
+			if(hp != null)
+				newString = newString.replaceAll("<heroespartyleader>", String.valueOf(hp.getLeader()));
+			else
+				newString = newString.replaceAll("<heroespartyleader>", "Unkown");
+				
 		if (newString.contains("<heroespartysize>"))
-			newString = newString.replaceAll("<heroespartysize>", String.valueOf(hp.getMembers().size()));
+			if(hp != null)
+				newString = newString.replaceAll("<heroespartysize>", String.valueOf(hp.getMembers().size()));
+			else
+				newString = newString.replaceAll("<heroespartysize>", "0");
+			
 		if (newString.contains("<heroespartyisnopvp>"))
-			newString = newString.replaceAll("<heroespartyisnopvp>", String.valueOf(hp.isNoPvp()));
+			if(hp != null)
+				newString = newString.replaceAll("<heroespartyisnopvp>", String.valueOf(hp.isNoPvp()));
+			else
+				newString = newString.replaceAll("<heroespartyisnopvp>", "false");
+		
 		
 		if (newString.contains("<heroesclass>"))
 			newString = newString.replaceAll("<heroesclass>", String.valueOf(hc.getName()));
@@ -55,6 +69,49 @@ public class HeroesVariables {
 			newString = newString.replaceAll("<heroesclassexploss>", String.valueOf(hc.getExpLoss()));
 		if (newString.contains("<heroesclassmaxlevel>"))
 			newString = newString.replaceAll("<heroesclassmaxlevel>", String.valueOf(hc.getMaxLevel()));
+
+		
+		if (newString.contains("<heroesclass2>"))
+			if(hc2 != null)
+				newString = newString.replaceAll("<heroesclass2>", String.valueOf(hc2.getName()));
+			else
+				newString = newString.replaceAll("<heroesclass2>", "Unkown");
+			
+		if (newString.contains("<heroesclass2tier>"))
+			if(hc2 != null)
+				newString = newString.replaceAll("<heroesclass2tier>", String.valueOf(hc2.getTier()));
+			else
+				newString = newString.replaceAll("<heroesclass2tier>", "0");
+		
+		if (newString.contains("<heroesclass2basehealth>"))
+			if(hc2 != null)
+				newString = newString.replaceAll("<heroesclass2basehealth>", String.valueOf(hc2.getBaseMaxHealth()));
+			else
+				newString = newString.replaceAll("<heroesclass2basehealth>", "0");
+			
+		if (newString.contains("<heroesclass2basemana>"))
+			if(hc2 != null)
+				newString = newString.replaceAll("<heroesclass2basemana>", String.valueOf(hc2.getBaseMaxMana()));
+			else
+				newString = newString.replaceAll("<heroesclass2basemana>", "0");
+			
+		if (newString.contains("<heroesclass2expchange>"))
+			if(hc2 != null)
+				newString = newString.replaceAll("<heroesclass2expchange>", String.valueOf(hc2.getExpModifier()));
+			else
+				newString = newString.replaceAll("<heroesclass2expchange>", "0");
+		
+		if (newString.contains("<heroesclass2exploss>"))
+			if(hc2 != null)
+				newString = newString.replaceAll("<heroesclass2exploss>", String.valueOf(hc2.getExpLoss()));
+			else
+				newString = newString.replaceAll("<heroesclass2exploss>", "0");
+		
+		if (newString.contains("<heroesclass2maxlevel>"))
+			if(hc2 != null)
+				newString = newString.replaceAll("<heroesclass2maxlevel>", String.valueOf(hc2.getMaxLevel()));
+			else
+				newString = newString.replaceAll("<heroesclass2maxlevel>", "0");
 		
 		
 		return newString;
