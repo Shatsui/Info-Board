@@ -11,6 +11,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.JobsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.LWCVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.McTownsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.MiniGamesVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.PlayerPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ServerVariables;
@@ -101,6 +102,11 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("PlotMe") != null)
 			if (newString.contains("<plotme"))
 				newString = PlotMeVariables.replaceVariables(newString, player);
+
+		// PlayerPoints Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("PlayerPoints") != null)
+			if (newString.contains("<playerpoints"))
+				newString = PlayerPointsVariables.replaceVariables(newString, player);
 
 
 		// WorldGuard Support
