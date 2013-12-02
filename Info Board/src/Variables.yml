@@ -1,4 +1,4 @@
-# Info Board Config, Last Edited in v0.1.1
+# Info Board Config, Last Edited in v0.1.4
 # ################################################
 # #
 # __Legend__ #
@@ -13,7 +13,7 @@
 # ################################################
 # <split>           | split the line to set the score of that line to what ever follows(ONLY WORKS WITH NUMBERS)
 #   ;               | split the line to set the score of that line to what ever follows(ONLY WORKS WITH NUMBERS)
-#   &#              | color codes ( Replace # with 1-0, a-f)
+#   &#              | color codes ( Replace # with 1-0, a-f, x-y(x is random color, y is random format)
 #   ' '             | This by it's self on a line will represet a blank line
 # ~!<variable><variable> | will only display the variable if <variable> isn't "0" or "Unkown"
 # <scroll>   | *Has to be first thing on the line to work, color codes can follow though (<scroll>&4&lHi <player>)* 
@@ -127,11 +127,14 @@
 # |               Infected                     | #
 # +--------------------------------------------+ #
 # ################################################
-# <infectedpoints>   | The players points | I
-# <infectedscore>    | The players score | I
-# <infectedkills>    | The players kills | I
-# <infecteddeaths>   | The players deaths | I
-# <infectedgamestate>| The gamestate | S
+# <infectedplaying>          | How many players are playing | I
+# <infectedpoints>           | The players points | I
+# <infectedscore>            | The players score | I
+# <infectedkills>            | The players kills | I
+# <infecteddeaths>           | The players deaths | I
+# <infectedhighestkillstreak>| The players highestkillstreak | I
+# <infectedgamestate>        | The gamestate | S
+# <infectedactivearena>      | The activearena | S
 # #
 # ################################################
 # +--------------------------------------------+ #
