@@ -16,11 +16,13 @@ public class CommandPointsVariables {
 		String newString = string;
 		CommandPointsAPI cp = ((CommandPoints) Bukkit.getServer().getPluginManager().getPlugin("CommandPoints")).getAPI();
 		if (newString.contains("<commandpoints>"))
-			try{
-			newString = newString.replaceAll("<commandpoints>", String.valueOf(cp.getPoints(player.getName(), Main.me)));
-			}catch(Exception e){
-				newString = newString.replaceAll("<commandpoints>", "0");	
+			try
+			{
+				newString = newString.replaceAll("<commandpoints>", String.valueOf(cp.getPoints(player.getName(), Main.me)));
+			} catch (Exception e)
+			{
+				newString = newString.replaceAll("<commandpoints>", "0");
 			}
-			return newString;
+		return newString;
 	}
 }

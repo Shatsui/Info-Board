@@ -12,7 +12,6 @@ public class MiniGamesVariables {
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 
-
 		MinigamePlayer gp =  Minigames.plugin.getPlayerData().getMinigamePlayer(player);
 	
 		if (newString.contains("<minigamesdeaths>"))

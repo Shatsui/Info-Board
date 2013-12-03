@@ -35,7 +35,7 @@ public class ScoreBoard {
 	private static int numberScore = -1;
 
 	public boolean updateScoreBoard(Player player) {
-		if (!plugin.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && !hidefrom.contains(player.getName()) &&(player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
+		if (!plugin.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && !hidefrom.contains(player.getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
 			if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null)
 			{
@@ -48,11 +48,14 @@ public class ScoreBoard {
 				}
 				if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null)
 					if (Main.permission != null)
-					{try{
-						rank = Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
-						if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
-							rank = "default";
-						}catch(UnsupportedOperationException UOE){
+					{
+						try
+						{
+							rank = Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
+							if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
+								rank = "default";
+						} catch (UnsupportedOperationException UOE)
+						{
 							rank = "default";
 						}
 					}
@@ -74,17 +77,17 @@ public class ScoreBoard {
 					while (iter.hasNext())
 					{
 						String s = iter.next();
-						if (getLine(s, player).equalsIgnoreCase(op.getName()) || s.length() == 2)
+						if (getLine(s, player).equalsIgnoreCase(op.getName()) || s.length() == 2 || s.equals("Enable Scroll 1st"))
 						{
 							onlist = true;
 						} else
 						{
-							if(plugin.ScrollManager.getScrollers(player) != null)
-							for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
-							{
-								scroller.getLastMessage().equals(op.getName());
+							if (plugin.ScrollManager.getScrollers(player) != null)
+								for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
+								{
+									scroller.getLastMessage().equals(op.getName());
 									onlist = true;
-							}
+								}
 						}
 					}
 					if (!onlist)
@@ -121,11 +124,23 @@ public class ScoreBoard {
 						{
 							if (line.contains("~!"))
 							{
+								// If variable is unkown or 0, dont show
 								String l = (line.split("<")[1]).split(">")[0];
 								String l1 = getLine("<" + l + ">", player);
 								if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("0"))
 								{
 									set = false;
+								}
+								line = line.replaceAll("~!<" + l + ">", "");
+							}
+							if (line.contains("~@"))
+							{
+								// If variable is unkown or 0, do show
+								String l = (line.split("<")[1]).split(">")[0];
+								String l1 = getLine("<" + l + ">", player);
+								if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("0"))
+								{
+									set = true;
 								}
 								line = line.replaceAll("~!<" + l + ">", "");
 							}
@@ -192,11 +207,13 @@ public class ScoreBoard {
 
 				if (Main.permission != null)
 				{
-					try{
-					rank = Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
-					if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
-						rank = "default";
-					}catch(UnsupportedOperationException UOE){
+					try
+					{
+						rank = Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
+						if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
+							rank = "default";
+					} catch (UnsupportedOperationException UOE)
+					{
 						rank = "default";
 					}
 				}
@@ -215,7 +232,7 @@ public class ScoreBoard {
 			infoObjective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
 			plugin.ScrollManager.reset(player);
-			
+
 			String title = plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title");
 			if (title.startsWith("<scroll>") && plugin.getConfig().getBoolean("Scrolling Text.Enable"))
 			{
@@ -223,16 +240,16 @@ public class ScoreBoard {
 				title = title.replaceAll("<scroll>", "");
 
 				title = plugin.ScrollManager.createTitleScroller(player, title).getScrolled();
-				
-			}else{
-				title = getLine(title,player);
+
+			} else
+			{
+				title = getLine(title, player);
 			}
 
 			infoObjective.setDisplayName(title);
 			// Set ScoreBoard
 			int row;
 			int spaces = 0;
-
 
 			List<String> list = plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows");
 			for (row = 0; row != plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows").size(); row++)
@@ -257,12 +274,27 @@ public class ScoreBoard {
 						}
 						line = line.replaceAll("~!<" + l + ">", "");
 					}
-					if (line.startsWith("<scroll>") && plugin.getConfig().getBoolean("Scrolling Text.Enable"))
+					if (line.contains("~@"))
+					{
+						// If variable is unkown or 0, do show
+						String l = (line.split("<")[1]).split(">")[0];
+						String l1 = getLine("<" + l + ">", player);
+						if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("0"))
+						{
+							set = true;
+						}
+						line = line.replaceAll("~!<" + l + ">", "");
+					}
+					if (line.startsWith("<scroll>"))
 					{
 						// Replace <scroll>
-						line = line.replaceAll("<scroll>", "");
-
-						line = plugin.ScrollManager.createScroller(player, line).getScrolled();
+						if (plugin.getConfig().getBoolean("Scrolling Text.Enable"))
+						{
+							line = line.replaceAll("<scroll>", "");
+							line = plugin.ScrollManager.createScroller(player, line).getScrolled();
+						}else{
+							line = "Enable Scroll 1st";
+						}
 					}
 					if (line.contains("<split>"))
 					{

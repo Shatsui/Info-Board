@@ -47,6 +47,11 @@ public class GetVariables {
 			if (newString.contains("<ess"))
 				newString = EssentialsVariables.replaceVariables(newString, player);
 
+		// AncientRPG Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("AncientRPG") != null)
+			if (newString.contains("<ancientrpg"))
+				newString = EssentialsVariables.replaceVariables(newString, player);
+
 		// LWC Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("LWC") != null)
 			if (newString.contains("<lwc"))

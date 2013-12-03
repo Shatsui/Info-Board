@@ -20,12 +20,12 @@ public class WorldGuardVariables {
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 
-		ArrayList<String> playersRegions = new ArrayList<String>();
 		ArrayList<ProtectedRegion> inRegions = new ArrayList<ProtectedRegion>();
 		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getPluginManager().getPlugin("WorldGuard");
 		LocalPlayer lplayer = wg.wrapPlayer(player);
 		RegionManager regions = wg.getRegionManager(player.getWorld());
 
+		ArrayList<String> playersRegions = new ArrayList<String>();
 		for (Entry<String, ProtectedRegion> r : regions.getRegions().entrySet())
 		{
 			if (r.getValue().isOwner(lplayer))

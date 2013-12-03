@@ -15,7 +15,8 @@
 #   ;               | split the line to set the score of that line to what ever follows(ONLY WORKS WITH NUMBERS)
 #   &#              | color codes ( Replace # with 1-0, a-f, x-y(x is random color, y is random format)
 #   ' '             | This by it's self on a line will represet a blank line
-# ~!<variable><variable> | will only display the variable if <variable> isn't "0" or "Unkown"
+# ~!<variable><variable> | will only display the variable if <variable> isn't "0" or "Unkown"(Best used if you only want to show a variable if that value isn't "0")
+# ~@<variable><variable> | will only display the variable if <variable> is "0" or "Unkown"(Best used if you only want to show a variable if another value is 0")
 # <scroll>   | *Has to be first thing on the line to work, color codes can follow though (<scroll>&4&lHi <player>)* 
 #            |  Will scroll the variable across the screen, if Scroll is enabled in the config
 #            |  also it remove the limit of characters in a row as it scrolls through.
@@ -301,7 +302,7 @@
 # #
 # ################################################
 # +--------------------------------------------+ #
-# |                Heroes                      | #
+# |                  Heroes                    | #
 # +--------------------------------------------+ #
 # ################################################
 # <heroesmana>            | The Heroes' mana | I
@@ -309,7 +310,7 @@
 # <heroeslevel>           | The Heroes' level | I
 # <heroesmanaregen>       | The Heros' mana regen | I
 # <heroesismaster>        | Is the Hero is a master in their class| B
-# <heroespartyleader>     | The Heroes' partys leader S
+# <heroespartyleader>     | The Heroes' partys leader | S
 # <heroespartysize>       | The Heroes' party size | B
 # <heroespartyisnopvp>    | Is the Heroes' party prevent pvp | B
 # <heroesclass>           | The Heroes' classes' name | S
@@ -319,4 +320,33 @@
 # <heroesclassexpchange>  | The Heroes' classes' exp modifier  | I
 # <heroesclassexploss>    | The Heroes' classes' exp loss  | I
 # <heroesclassmaxlevel>   | The Heroes' classes' max level | I
+# <heroesclassismaster>   | Is the Player is a master in their class| B
+# <heroesclass2>          | The Heroes' classes' name | S
+# <heroesclass2tier>      | The Heroes' classes' tier | I
+# <heroesclass2basehealth>| The Heroes' classes' base health  I
+# <heroesclass2basemana>  | The Heroes' classes' base mana  | I
+# <heroesclass2expchange> | The Heroes' classes' exp modifier  | I
+# <heroesclass2exploss>   | The Heroes' classes' exp loss  | I
+# <heroesclass2maxlevel>  | The Heroes' classes' max level | I
+# <heroesclass2ismaster>  | Is the Player is a master in their class2| B
 # #
+# ################################################
+# +--------------------------------------------+ #
+# |                AncientRPG                  | #
+# +--------------------------------------------+ #
+# ################################################
+# <ancientrpgrace>             | The Players race | S
+# <ancientrpgstance>           | The Players stance | S
+# <ancientrpgclass>            | The Players class | S
+# <ancientrpgclasslevel>       | The Players classe level | I
+# <ancientrpgclassminlevel>    | The Players class min level | I
+# <ancientrpgclasshp>          | The Players class hp | I
+# <ancientrpgclassreghp>       | The Players class hp regen| I
+# <ancientrpgguild>            | The Players guild | S
+# <ancientrpgguildleader>      | The Players guild's Leader | S
+# <ancientrpgguildleader>      | The Players guild's motd | S
+# <ancientrpgguildfriendlyfire>| Does the Players guild allow friendly fire| B
+# <ancientrpgguildmaxmembers>  | The max players allowed in a guild| I
+# <ancientrpgpartyleader>      | The Players party's Leader | S
+# <ancientrpgpartymaxmembers>  | The max players allowed in a party | I
+# <ancientrpgpartyfriendlyfire>| Does the Players party allow friendly fire| B

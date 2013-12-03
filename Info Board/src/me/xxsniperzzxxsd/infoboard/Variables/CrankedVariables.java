@@ -25,21 +25,22 @@ public class CrankedVariables {
 
 		if (newString.contains("<crankedplayers"))
 		{
-			String arenaName = newString.split("<crankedplayers")[1].split(">")[0] ;
+			String arenaName = newString.split("<crankedplayers")[1].split(">")[0];
 
-			if (ArenaManager.getArena(arenaName)!=null)
+			if (ArenaManager.getArena(arenaName) != null)
 				newString = newString.replaceAll("<crankedplayers" + arenaName + ">", String.valueOf(ArenaManager.getArena(arenaName).getPlayers().size()));
 			else
 				newString = newString.replaceAll("<crankedplayers" + arenaName + ">", "0");
 		}
 		if (newString.contains("<crankedcreator"))
 		{
-			String arenaName = newString.split("<crankedcreator")[1].split(">")[0] ;
+			String arenaName = newString.split("<crankedcreator")[1].split(">")[0];
 
-			if (ArenaManager.getArena(arenaName)!=null)
+			if (ArenaManager.getArena(arenaName) != null)
 				newString = newString.replaceAll("<crankedcreator" + arenaName + ">", String.valueOf(ArenaManager.getArena(arenaName).getCreator()));
 			else
 				newString = newString.replaceAll("<crankedcreator" + arenaName + ">", "Unkown");
-		}		return newString;
+		}
+		return newString;
 	}
 }
