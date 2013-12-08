@@ -1,10 +1,10 @@
 
 package me.xxsniperzzxxsd.infoboard.Variables;
 
+import me.sniperzciinema.infected.GameMechanics.Settings;
 import me.sniperzciinema.infected.Handlers.Lobby;
 import me.sniperzciinema.infected.Handlers.Player.InfPlayer;
 import me.sniperzciinema.infected.Handlers.Player.InfPlayerManager;
-import me.sniperzciinema.infected.Tools.Settings;
 
 import org.bukkit.entity.Player;
 
