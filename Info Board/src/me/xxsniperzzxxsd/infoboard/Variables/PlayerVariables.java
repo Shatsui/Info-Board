@@ -2,7 +2,8 @@
 package me.xxsniperzzxxsd.infoboard.Variables;
 
 import me.xxsniperzzxxsd.infoboard.Util.Files;
-import me.xxsniperzzxxsd.infoboard.Util.Ping;
+import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.Direction;
+import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.Ping;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -28,7 +29,7 @@ public class PlayerVariables {
 		if (newString.contains("<hunger>"))
 			newString = newString.replaceAll("<hunger>", String.valueOf(player.getFoodLevel()));
 		if (newString.contains("<health>"))
-			newString = newString.replaceAll("<health>", String.valueOf(player.getHealth()));
+			newString = newString.replaceAll("<health>", String.valueOf((int) ((double) Math.round(player.getHealth() * 100.0D))));
 		if (newString.contains("<maxhealth>"))
 			newString = newString.replaceAll("<maxhealth>", String.valueOf(player.getMaxHealth()));
 		if (newString.contains("<kills>"))
@@ -37,12 +38,18 @@ public class PlayerVariables {
 			newString = newString.replaceAll("<deaths>", String.valueOf(Files.getPlayers().getInt(player.getName() + ".Deaths")));
 		if (newString.contains("<world>"))
 			newString = newString.replaceAll("<world>", player.getWorld().getName());
+		if (newString.contains("<pitch>"))
+			newString = newString.replaceAll("<pitch>", String.valueOf((int) player.getLocation().getPitch()));
+		if (newString.contains("<yaw>"))
+			newString = newString.replaceAll("<yaw>", String.valueOf((int) player.getLocation().getYaw()));
 		if (newString.contains("<x>"))
 			newString = newString.replaceAll("<x>", String.valueOf((int) player.getLocation().getX()));
 		if (newString.contains("<y>"))
 			newString = newString.replaceAll("<y>", String.valueOf((int) player.getLocation().getY()));
 		if (newString.contains("<z>"))
 			newString = newString.replaceAll("<z>", String.valueOf((int) player.getLocation().getZ()));
+		if (newString.contains("<direction>"))
+			newString = newString.replaceAll("<direction>", String.valueOf(Direction.getCardinalDirection(player)));
 		if (newString.contains("<lifetime>"))
 			newString = newString.replaceAll("<lifetime>", String.valueOf((int) player.getTicksLived() / 20));
 		if (newString.contains("<time>"))

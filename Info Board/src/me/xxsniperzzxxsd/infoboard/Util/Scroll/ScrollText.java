@@ -1,5 +1,5 @@
 
-package me.xxsniperzzxxsd.infoboard.Util;
+package me.xxsniperzzxxsd.infoboard.Util.Scroll;
 
 import me.xxsniperzzxxsd.infoboard.Main;
 

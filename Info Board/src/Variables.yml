@@ -86,6 +86,9 @@
 # <x>                | The players x position | I
 # <y>                | The players y position | I
 # <z>                | The players z position | I
+# <pitch>            | The players pitch| I
+# <yaw>              | The players yaw| I
+# <direction>        | The players direction| S
 # <helmet>           | The players helemet | S
 # <chestplate>       | The players chestplate | S
 # <leggings>         | The players leggings | S

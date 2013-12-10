@@ -1,4 +1,4 @@
-package me.xxsniperzzxxsd.infoboard.Util;
+package me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils;
 
 
 

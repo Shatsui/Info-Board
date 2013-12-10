@@ -1,6 +1,7 @@
-package me.xxsniperzzxxsd.infoboard.Util;
+package me.xxsniperzzxxsd.infoboard.Util.Scroll;
 
 import me.xxsniperzzxxsd.infoboard.GetVariables;
+import me.xxsniperzzxxsd.infoboard.Util.RandomChatColor;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

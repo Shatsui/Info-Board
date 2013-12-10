@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import me.xxsniperzzxxsd.infoboard.Util.Metrics;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
-import me.xxsniperzzxxsd.infoboard.Util.Lag;
-import me.xxsniperzzxxsd.infoboard.Util.ScrollManager;
-import me.xxsniperzzxxsd.infoboard.Util.ScrollText;
 import me.xxsniperzzxxsd.infoboard.Util.Updater;
+import me.xxsniperzzxxsd.infoboard.Util.Scroll.ScrollManager;
+import me.xxsniperzzxxsd.infoboard.Util.Scroll.ScrollText;
+import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.Lag;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 

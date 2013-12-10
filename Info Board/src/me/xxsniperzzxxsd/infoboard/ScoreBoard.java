@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import me.xxsniperzzxxsd.infoboard.Util.RandomChatColor;
-import me.xxsniperzzxxsd.infoboard.Util.Scroller;
+import me.xxsniperzzxxsd.infoboard.Util.Scroll.Scroller;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -76,34 +76,28 @@ public class ScoreBoard {
 					boolean onlist = false;
 					while (iter.hasNext())
 					{
-						String s = iter.next();
-						if (getLine(s, player).equalsIgnoreCase(op.getName()) || s.length() == 2 || s.equals("Enable Scroll 1st"))
-						{
-							onlist = true;
-						} else
-						{
-							if (plugin.ScrollManager.getScrollers(player) != null)
+						
+							String s = iter.next();
+							if (getLine(s, player).equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || op.getName().contains("Enable Scroll"))
+								onlist = true;
+
+							else if (plugin.ScrollManager.getScrollers(player) != null)
 								for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
 								{
 									scroller.getLastMessage().equals(op.getName());
 									onlist = true;
 								}
-						}
+
+						
 					}
 					if (!onlist)
-					{
 						if (!remove.contains(op.getName()))
 							remove.add(op.getName());
-					}
 				}
-
-				for (String s : remove)
-				{
-					if (!ChatColor.stripColor(s).equals(""))
-					{
+				if (!remove.isEmpty())
+					for (String s : remove)
 						infoBoard.resetScores(Bukkit.getOfflinePlayer(s));
-					}
-				}
+
 				list = plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows");
 
 				for (String s : list)
@@ -292,7 +286,8 @@ public class ScoreBoard {
 						{
 							line = line.replaceAll("<scroll>", "");
 							line = plugin.ScrollManager.createScroller(player, line).getScrolled();
-						}else{
+						} else
+						{
 							line = "Enable Scroll 1st";
 						}
 					}

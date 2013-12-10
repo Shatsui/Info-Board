@@ -1,7 +1,7 @@
 
 package me.xxsniperzzxxsd.infoboard.Variables;
 
-import me.xxsniperzzxxsd.infoboard.Util.Lag;
+import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.Lag;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
