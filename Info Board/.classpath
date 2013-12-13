@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/WorldEdit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/WorldGuard.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/Minecraft Servers/Infected Test Server/plugins/Infected.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Stats.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -72,6 +72,7 @@
 # The group setting will always go to default if the players group isn't found.(Scoreboards per group requires vault to be on the server)
 # The world setting will always go to global if the players world isn't found.
 # ==================================================================
+Check for Updates: true
 Custom Variables:
   website: Dusk-Haven.com
   plugindev: SniperzCiinema

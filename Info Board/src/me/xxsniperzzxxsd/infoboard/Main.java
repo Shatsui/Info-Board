@@ -29,7 +29,7 @@ public class Main extends JavaPlugin {
 	public static Plugin me;
 	public boolean update = false;
 	public String name = "InfoBoard";
-	
+
 	public String ib = "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
 
 	public ArrayList<String> disabledPlayers = new ArrayList<String>();
@@ -56,21 +56,6 @@ public class Main extends JavaPlugin {
 		{
 			System.out.println("Metrics was unable to start...");
 		}
-		try
-		{
-			Updater updater = new Updater(this, 65787, getFile(),
-					Updater.UpdateType.NO_DOWNLOAD, false);
-
-			update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
-			name = updater.getLatestName();
-
-		} catch (Exception ex)
-		{
-			System.out.println("The auto-updater tried to contact dev.bukkit.org, but was unsuccessful.");
-		}
-		if(update){
-			System.out.println("Theres a new update for InfoBoard(v"+name+").");	
-		}
 		PlayerListener PlayerListener = new PlayerListener(this);
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(PlayerListener, this);
@@ -90,6 +75,24 @@ public class Main extends JavaPlugin {
 		ScrollManager = new ScrollManager();
 		ScoreBoard = new ScoreBoard(this);
 		ScrollText = new ScrollText(this);
+
+		if (config.getBoolean("Check for updates"))
+		{
+			try
+			{
+				Updater updater = new Updater(this, 65787, getFile(),
+						Updater.UpdateType.NO_DOWNLOAD, false);
+
+				update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
+				name = updater.getLatestName();
+
+			} catch (Exception ex)
+			{
+				System.out.println("The auto-updater tried to contact dev.bukkit.org, but was unsuccessful.");
+			}
+			if (update)
+				System.out.println("Theres a new update for InfoBoard(v" + name + ").");
+		}
 
 		for (Player p : Bukkit.getOnlinePlayers())
 			ScoreBoard.createScoreBoard(p);

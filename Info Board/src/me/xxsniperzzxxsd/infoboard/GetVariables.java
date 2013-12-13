@@ -15,6 +15,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.PlayerPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ServerVariables;
+//import me.xxsniperzzxxsd.infoboard.Variables.StatsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.TownyVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.VaultVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.WorldGuardVariables;
@@ -112,6 +113,12 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("PlayerPoints") != null)
 			if (newString.contains("<playerpoints"))
 				newString = PlayerPointsVariables.replaceVariables(newString, player);
+
+
+		// Stats Support
+		//if (Bukkit.getServer().getPluginManager().getPlugin("Stats") != null)
+		//	if (newString.contains("<stats"))
+		//		newString = StatsVariables.replaceVariables(newString, player);
 
 
 		// WorldGuard Support
