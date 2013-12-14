@@ -20,7 +20,6 @@ public class HeroesVariables {
 		CharacterManager cm = heroes.getCharacterManager();
 		Hero hero = cm.getHero(player);
 
-
 		if (newString.contains("<heroesmana>"))
 			newString = newString.replaceAll("<heroesmana>", String.valueOf(hero.getMana()));
 		if (newString.contains("<heroeslevel>"))
@@ -78,7 +77,7 @@ public class HeroesVariables {
 		{
 
 			HeroClass hc2 = hero.getSecondClass();
-			
+
 			if (newString.contains("<heroesclass2>"))
 				if (hc2 != null)
 					newString = newString.replaceAll("<heroesclass2>", String.valueOf(hc2.getName()));
@@ -120,7 +119,6 @@ public class HeroesVariables {
 					newString = newString.replaceAll("<heroesclass2maxlevel>", String.valueOf(hc2.getMaxLevel()));
 				else
 					newString = newString.replaceAll("<heroesclass2maxlevel>", "0");
-			
 
 			if (newString.contains("<heroesclass2ismaster>"))
 				if (hc2 != null)

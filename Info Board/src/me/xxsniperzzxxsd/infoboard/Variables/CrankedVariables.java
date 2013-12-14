@@ -4,6 +4,7 @@ package me.xxsniperzzxxsd.infoboard.Variables;
 import me.sniperzciinema.cranked.ArenaHandlers.ArenaManager;
 import me.sniperzciinema.cranked.PlayerHandlers.CPlayer;
 import me.sniperzciinema.cranked.PlayerHandlers.CPlayerManager;
+
 import org.bukkit.entity.Player;
 
 

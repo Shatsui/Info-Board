@@ -76,19 +76,18 @@ public class ScoreBoard {
 					boolean onlist = false;
 					while (iter.hasNext())
 					{
-						
-							String s = iter.next();
-							if (getLine(s, player).equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || op.getName().contains("Enable Scroll"))
+
+						String s = iter.next();
+						if (getLine(s, player).equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || op.getName().contains("Enable Scroll"))
+							onlist = true;
+
+						else if (plugin.ScrollManager.getScrollers(player) != null)
+							for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
+							{
+								scroller.getLastMessage().equals(op.getName());
 								onlist = true;
+							}
 
-							else if (plugin.ScrollManager.getScrollers(player) != null)
-								for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
-								{
-									scroller.getLastMessage().equals(op.getName());
-									onlist = true;
-								}
-
-						
 					}
 					if (!onlist)
 						if (!remove.contains(op.getName()))

@@ -42,7 +42,7 @@ public class AncientRPGVariables {
 		if (newString.contains("ancientrpgguild"))
 		{
 			AncientRPGGuild pg = api.getPlayerGuild(player.getName());
-			
+
 			if (newString.contains("<ancientrpgguild>"))
 				newString = newString.replaceAll("<ancientrpgguild>", String.valueOf(pg.gName));
 			if (newString.contains("<ancientrpgguildleader>"))
@@ -57,7 +57,7 @@ public class AncientRPGVariables {
 		if (newString.contains("ancientrpgparty"))
 		{
 			AncientRPGParty pp = api.getPlayerParty(player);
-			
+
 			if (newString.contains("<ancientrpgpartyleader>"))
 				newString = newString.replaceAll("<ancientrpgpartyleader>", String.valueOf(pp.mLeader));
 			if (newString.contains("<ancientrpgpartymaxmembers>"))

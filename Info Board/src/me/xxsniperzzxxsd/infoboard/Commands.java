@@ -58,7 +58,7 @@ public class Commands implements CommandExecutor {
 					} else if (args.length == 2)
 					{
 						String rotate = args[1];
-						
+
 						if (plugin.getConfig().getString("Info Board." + rotate + ".global.default.Title") != null)
 						{
 
@@ -67,7 +67,7 @@ public class Commands implements CommandExecutor {
 							sender.sendMessage(plugin.ib + "Rotation set to: " + args[1]);
 							plugin.timer = 0;
 							plugin.total = plugin.getConfig().getInt("Info Board." + args[1] + ".Show Time");
-							for(Player p : Bukkit.getOnlinePlayers())
+							for (Player p : Bukkit.getOnlinePlayers())
 								plugin.ScoreBoard.createScoreBoard(p);
 						} else
 						{
@@ -87,7 +87,8 @@ public class Commands implements CommandExecutor {
 						sender.sendMessage("");
 						sender.sendMessage(plugin.ib + ChatColor.GREEN + "Configs been reloaded");
 						plugin.reloadConfig();
-						for(Player player: Bukkit.getOnlinePlayers()){
+						for (Player player : Bukkit.getOnlinePlayers())
+						{
 							player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 							plugin.ScoreBoard.createScoreBoard(player);
 						}
@@ -97,11 +98,11 @@ public class Commands implements CommandExecutor {
 			} else
 			{
 				sender.sendMessage("");
-				sender.sendMessage(ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "============["+ ChatColor.DARK_GREEN + " Info Board " + ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "]============");
-				sender.sendMessage(plugin.ib + "/IB Hide "+ChatColor.YELLOW+"- Hide the board");
-				sender.sendMessage(plugin.ib + "/IB Show "+ChatColor.YELLOW+"- Show the board");
-				sender.sendMessage(plugin.ib + "/IB Reload "+ChatColor.YELLOW+"- Reload the config");
-				sender.sendMessage(plugin.ib + "/IB Set <Pg> "+ChatColor.YELLOW+"- Set the page to view");
+				sender.sendMessage(ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "============[" + ChatColor.DARK_GREEN + " Info Board " + ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "]============");
+				sender.sendMessage(plugin.ib + "/IB Hide " + ChatColor.YELLOW + "- Hide the board");
+				sender.sendMessage(plugin.ib + "/IB Show " + ChatColor.YELLOW + "- Show the board");
+				sender.sendMessage(plugin.ib + "/IB Reload " + ChatColor.YELLOW + "- Reload the config");
+				sender.sendMessage(plugin.ib + "/IB Set <Pg> " + ChatColor.YELLOW + "- Set the page to view");
 			}
 
 		}

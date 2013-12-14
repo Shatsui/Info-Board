@@ -4,8 +4,8 @@ package me.xxsniperzzxxsd.infoboard;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import me.xxsniperzzxxsd.infoboard.Util.Metrics;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
+import me.xxsniperzzxxsd.infoboard.Util.Metrics;
 import me.xxsniperzzxxsd.infoboard.Util.Updater;
 import me.xxsniperzzxxsd.infoboard.Util.Scroll.ScrollManager;
 import me.xxsniperzzxxsd.infoboard.Util.Scroll.ScrollText;

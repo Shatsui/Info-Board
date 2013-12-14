@@ -1,6 +1,7 @@
 
 package me.xxsniperzzxxsd.infoboard;
 
+import me.xxsniperzzxxsd.infoboard.Variables.ALTVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.CommandPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.CrankedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.EssentialsVariables;
@@ -15,13 +16,10 @@ import me.xxsniperzzxxsd.infoboard.Variables.PlayerPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ServerVariables;
-//import me.xxsniperzzxxsd.infoboard.Variables.StatsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.TownyVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.VaultVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.WorldGuardVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.mcMMOVariables;
-import me.xxsniperzzxxsd.infoboard.Variables.ALTVariables;
-import me.xxsniperzzxxsd.infoboard.Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -103,7 +101,6 @@ public class GetVariables {
 			if (newString.contains("<jobs"))
 				newString = JobsVariables.replaceVariables(newString, player);
 
-
 		// PlotMe Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PlotMe") != null)
 			if (newString.contains("<plotme"))
@@ -114,12 +111,10 @@ public class GetVariables {
 			if (newString.contains("<playerpoints"))
 				newString = PlayerPointsVariables.replaceVariables(newString, player);
 
-
 		// Stats Support
-		//if (Bukkit.getServer().getPluginManager().getPlugin("Stats") != null)
-		//	if (newString.contains("<stats"))
-		//		newString = StatsVariables.replaceVariables(newString, player);
-
+		// if (Bukkit.getServer().getPluginManager().getPlugin("Stats") != null)
+		// if (newString.contains("<stats"))
+		// newString = StatsVariables.replaceVariables(newString, player);
 
 		// WorldGuard Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard") != null)
@@ -135,12 +130,12 @@ public class GetVariables {
 		newString = ALTVariables.replaceVariables(newString);
 
 		// Custom Variables
-		for (String custom : Main.config.getConfigurationSection("Custom Variables").getKeys(true)){
-				if(newString.contains("<" + custom + ">"))
-						newString = newString.replaceAll("<" + custom + ">", ScoreBoard.getLine(Main.config.getString("Custom Variables." + custom), player));
+		for (String custom : Main.config.getConfigurationSection("Custom Variables").getKeys(true))
+		{
+			if (newString.contains("<" + custom + ">"))
+				newString = newString.replaceAll("<" + custom + ">", ScoreBoard.getLine(Main.config.getString("Custom Variables." + custom), player));
 		}
 
-		
 		return newString;
 	}
 }

@@ -55,15 +55,15 @@ public class PlayerVariables {
 		if (newString.contains("<time>"))
 			newString = newString.replaceAll("<time>", String.valueOf(player.getWorld().getTime()));
 		if (newString.contains("<helmet>"))
-			newString = newString.replaceAll("<helmet>", String.valueOf((player.getInventory().getHelmet() == null ? "None" : player.getInventory().getHelmet().getType().name())+ ""));	
+			newString = newString.replaceAll("<helmet>", String.valueOf((player.getInventory().getHelmet() == null ? "None" : player.getInventory().getHelmet().getType().name()) + ""));
 		if (newString.contains("<chestplate>"))
-			newString = newString.replaceAll("<chestplate>", String.valueOf((player.getInventory().getChestplate() == null ? "None" : player.getInventory().getChestplate().getType().name())+ ""));	
+			newString = newString.replaceAll("<chestplate>", String.valueOf((player.getInventory().getChestplate() == null ? "None" : player.getInventory().getChestplate().getType().name()) + ""));
 		if (newString.contains("<leggings>"))
-			newString = newString.replaceAll("<leggings>", String.valueOf((player.getInventory().getLeggings() == null ? "None" : player.getInventory().getLeggings().getType().name())+ ""));	
+			newString = newString.replaceAll("<leggings>", String.valueOf((player.getInventory().getLeggings() == null ? "None" : player.getInventory().getLeggings().getType().name()) + ""));
 		if (newString.contains("<boots>"))
-			newString = newString.replaceAll("<boots>", String.valueOf((player.getInventory().getBoots() == null ? "None" : player.getInventory().getBoots().getType().name())+ ""));	
+			newString = newString.replaceAll("<boots>", String.valueOf((player.getInventory().getBoots() == null ? "None" : player.getInventory().getBoots().getType().name()) + ""));
 		if (newString.contains("<hand>"))
-			newString = newString.replaceAll("<hand>", String.valueOf((player.getInventory().getItemInHand() == null ? "None" : player.getInventory().getItemInHand().getType().name())+ ""));	
+			newString = newString.replaceAll("<hand>", String.valueOf((player.getInventory().getItemInHand() == null ? "None" : player.getInventory().getItemInHand().getType().name()) + ""));
 		if (newString.contains("<doihave"))
 		{
 			String perm = newString.split("<doihave")[1].split(">")[0];
@@ -72,5 +72,5 @@ public class PlayerVariables {
 		}
 		return newString;
 	}
-	
+
 }

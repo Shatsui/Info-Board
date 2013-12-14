@@ -21,14 +21,15 @@ public class ServerVariables {
 		if (newString.contains("<servername>"))
 			newString = newString.replaceAll("<servername>", String.valueOf(Bukkit.getServerName()));
 		if (newString.contains("<tps>"))
-			newString = newString.replaceAll("<tps>", String.valueOf(Math.round(tps *100.0D)/100.0D));
+			newString = newString.replaceAll("<tps>", String.valueOf(Math.round(tps * 100.0D) / 100.0D));
 		if (newString.contains("<peoplewith"))
 		{
 			String perm = newString.split("<peoplewith")[1].split(">")[0];
 
 			int i = 0;
-			for(Player ppl : Bukkit.getOnlinePlayers()){
-				if(ppl.hasPermission(perm))
+			for (Player ppl : Bukkit.getOnlinePlayers())
+			{
+				if (ppl.hasPermission(perm))
 					i++;
 			}
 			newString = newString.replaceAll("<peoplewith" + (perm) + ">", String.valueOf(i));

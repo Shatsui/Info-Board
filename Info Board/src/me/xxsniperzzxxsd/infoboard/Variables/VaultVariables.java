@@ -22,10 +22,11 @@ public class VaultVariables {
 				newString = newString.replaceAll("<vaultcurrencysingle>", String.valueOf(Main.economy.currencyNameSingular()));
 		}
 
-		if (Main.permission != null){
+		if (Main.permission != null)
+		{
 			if (newString.contains("<rank>"))
 				newString = newString.replaceAll("<rank>", String.valueOf(Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0]));
-			
+
 		}
 		return newString;
 	}

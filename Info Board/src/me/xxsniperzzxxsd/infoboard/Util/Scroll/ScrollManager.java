@@ -12,11 +12,11 @@ public class ScrollManager {
 
 	private HashMap<Player, ArrayList<Scroller>> scrollers = new HashMap<Player, ArrayList<Scroller>>();
 	private HashMap<Player, Scroller> title = new HashMap<Player, Scroller>();
-	
-	public Scroller createScroller(Player p, String message){
+
+	public Scroller createScroller(Player p, String message) {
 		Scroller sc = new Scroller(p, message);
 		ArrayList<Scroller> scs;
-		if(scrollers.containsKey(p))
+		if (scrollers.containsKey(p))
 			scs = scrollers.get(p);
 		else
 			scs = new ArrayList<Scroller>();
@@ -24,20 +24,24 @@ public class ScrollManager {
 		scrollers.put(p, scs);
 		return sc;
 	}
-	public Scroller createTitleScroller(Player p, String message){
-		
+
+	public Scroller createTitleScroller(Player p, String message) {
+
 		Scroller sc = new Scroller(p, message);
 		title.put(p, sc);
-		
+
 		return sc;
 	}
-	public ArrayList<Scroller> getScrollers(Player p){
+
+	public ArrayList<Scroller> getScrollers(Player p) {
 		return scrollers.get(p);
 	}
-	public Scroller getTitleScroller(Player p){
+
+	public Scroller getTitleScroller(Player p) {
 		return title.get(p);
 	}
-	public void reset(Player p){
+
+	public void reset(Player p) {
 		if (getScrollers(p) != null)
 			for (Scroller sc : getScrollers(p))
 			{

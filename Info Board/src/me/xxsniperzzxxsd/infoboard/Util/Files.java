@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -18,8 +19,6 @@ public class Files {
 	public static YamlConfiguration playerF = null;
 	public static File playerFile = null;
 
-
-	
 	// /////////////////////////////////////////////////////////////////////////////////////////////////
 	// Reload Players File
 	public static void reloadPlayers() {

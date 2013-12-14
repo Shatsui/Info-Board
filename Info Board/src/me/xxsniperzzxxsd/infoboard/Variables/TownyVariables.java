@@ -2,6 +2,7 @@
 package me.xxsniperzzxxsd.infoboard.Variables;
 
 import org.bukkit.entity.Player;
+
 import com.palmergames.bukkit.towny.exceptions.EconomyException;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
