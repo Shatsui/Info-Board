@@ -39,189 +39,212 @@ public class ScoreBoard {
 		// do anything to them
 		if (!plugin.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && !hidefrom.contains(player.getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
-			// If the player has been told to update the scoreboard when they
-			// don't even have one, we just tell it to create the scoreboard for
-			// the player first
-			if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null)
+			if (!player.hasPermission("InfoBoard.View"))
 			{
-				createScoreBoard(player);
+				player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 			} else
 			{
-				// We are checking to see if the players world is specified in
-				// the config, if so that means that world has special
-				// scoreboards
-				if (plugin.getConfig().contains("Info Board." + String.valueOf(rotation) + "." + player.getWorld().getName()))
-					world = player.getWorld().getName();
-
-				// If vault is on this server and permissions for vault were
-				// found, we'll try looking for their group
-				if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && Main.permission != null)
+				// If the player has been told to update the scoreboard when
+				// they
+				// don't even have one, we just tell it to create the scoreboard
+				// for
+				// the player first
+				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null)
 				{
-					try
+					createScoreBoard(player);
+				} else
+				{
+					// We are checking to see if the players world is specified
+					// in
+					// the config, if so that means that world has special
+					// scoreboards
+					if (plugin.getConfig().contains("Info Board." + String.valueOf(rotation) + "." + player.getWorld().getName()))
+						world = player.getWorld().getName();
+
+					// If vault is on this server and permissions for vault were
+					// found, we'll try looking for their group
+					if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && Main.permission != null)
 					{
-						// we'll get their group
-						rank = Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
-						// Then we'll see if the config contains a special
-						// scoreboard for their group, if not we'll reset the
-						// group to default
-						if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
+						try
+						{
+							// we'll get their group
+							rank = Main.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
+							// Then we'll see if the config contains a special
+							// scoreboard for their group, if not we'll reset
+							// the
+							// group to default
+							if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
+								rank = "default";
+						} catch (UnsupportedOperationException UOE)
+						{
 							rank = "default";
-					} catch (UnsupportedOperationException UOE)
-					{
-						rank = "default";
+						}
 					}
-				}
-				// If the title of this scoreboard is blank, don't do anything
-				if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
-					return true;
-				// Instead of creating a new scoreboard, we just want to update
-				// their current one with new values, so we'll just have to get
-				// their scoreboards and objectives
-				Scoreboard infoBoard = player.getScoreboard();
-				Objective infoObjective = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR);
+					// If the title of this scoreboard is blank, don't do
+					// anything
+					if (plugin.getConfig().getString("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Title") == null)
+						return true;
+					// Instead of creating a new scoreboard, we just want to
+					// update
+					// their current one with new values, so we'll just have to
+					// get
+					// their scoreboards and objectives
+					Scoreboard infoBoard = player.getScoreboard();
+					Objective infoObjective = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR);
 
-				int row = 0;
-				int spaces = 0;
-				// Next i get the list of rows so i can go through and make sure
-				// i only update what needs to be updated
-				List<String> list = plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows");
-				// We'll also create an array of rows to remove incase we find
-				// any
-				ArrayList<String> remove = new ArrayList<String>();
+					int row = 0;
+					int spaces = 0;
+					// Next i get the list of rows so i can go through and make
+					// sure
+					// i only update what needs to be updated
+					List<String> list = plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows");
+					// We'll also create an array of rows to remove incase we
+					// find
+					// any
+					ArrayList<String> remove = new ArrayList<String>();
 
-				// Loop through the scoreboards rows
-				for (OfflinePlayer op : infoBoard.getPlayers())
-				{
-					Iterator<String> iter = list.iterator();
-					boolean onlist = false;
-					// Now we loop through our list, the reason being is that we
-					// can't just see if the list contains as the list is the
-					// unachanged variables, so we'll never find the changed
-					// variables in there
-					while (iter.hasNext())
+					// Loop through the scoreboards rows
+					for (OfflinePlayer op : infoBoard.getPlayers())
 					{
-						// Lets make sure this line is already on the
-						// scoreboard, and/or is a empty line and/or is a
-						// message about enabling scroll first
-						String s = iter.next();
-						if (getLine(s, player).equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || op.getName().contains("Enable Scroll"))
-							onlist = true;
-
-						// If the line is a scroll message, we'll just leave it
-						// an let the scroll timer deal with it
-						else if (plugin.ScrollManager.getScrollers(player) != null)
-							for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
-							{
-								scroller.getLastMessage().equals(op.getName());
+						Iterator<String> iter = list.iterator();
+						boolean onlist = false;
+						// Now we loop through our list, the reason being is
+						// that we
+						// can't just see if the list contains as the list is
+						// the
+						// unachanged variables, so we'll never find the changed
+						// variables in there
+						while (iter.hasNext())
+						{
+							// Lets make sure this line is already on the
+							// scoreboard, and/or is a empty line and/or is a
+							// message about enabling scroll first
+							String s = iter.next();
+							if (getLine(s, player).equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || op.getName().contains("Enable Scroll"))
 								onlist = true;
-							}
 
+							// If the line is a scroll message, we'll just leave
+							// it
+							// an let the scroll timer deal with it
+							else if (plugin.ScrollManager.getScrollers(player) != null)
+								for (Scroller scroller : plugin.ScrollManager.getScrollers(player))
+								{
+									scroller.getLastMessage().equals(op.getName());
+									onlist = true;
+								}
+
+						}
+						// If the row wasn't found on the list we'll add it to
+						// the
+						// remove list, because we can't edit the list well
+						// we're
+						// looping through it
+						if (!onlist)
+							if (!remove.contains(op.getName()))
+								remove.add(op.getName());
 					}
-					// If the row wasn't found on the list we'll add it to the
-					// remove list, because we can't edit the list well we're
-					// looping through it
-					if (!onlist)
-						if (!remove.contains(op.getName()))
-							remove.add(op.getName());
-				}
-				// If the "To Remove" list isn't empty, loop through the list
-				// and remove and rows that we determined had to be updated
-				if (!remove.isEmpty())
-					for (String s : remove)
-						infoBoard.resetScores(Bukkit.getOfflinePlayer(s));
+					// If the "To Remove" list isn't empty, loop through the
+					// list
+					// and remove and rows that we determined had to be updated
+					if (!remove.isEmpty())
+						for (String s : remove)
+							infoBoard.resetScores(Bukkit.getOfflinePlayer(s));
 
-				// Now we reset the list just to be safe
-				list = plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows");
+					// Now we reset the list just to be safe
+					list = plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows");
 
-				// And we go through and see if the scoreboard doesn't contain
-				// the line with the changed variables, if it doesn't we through
-				// that line onto the scoreboard
-				for (String s : list)
-				{
-					String string = getLine(s, player);
-					if (!infoBoard.getPlayers().contains(Bukkit.getOfflinePlayer(string)))
+					// And we go through and see if the scoreboard doesn't
+					// contain
+					// the line with the changed variables, if it doesn't we
+					// through
+					// that line onto the scoreboard
+					for (String s : list)
 					{
-						// Refer to createScoreBoard(...) to see what all of
-						// this is doing
-						boolean set = true;
-						Score score = null;
-						String line = list.get(row);
-
-						if (getLine(line, player).equalsIgnoreCase(" "))
+						String string = getLine(s, player);
+						if (!infoBoard.getPlayers().contains(Bukkit.getOfflinePlayer(string)))
 						{
-							String space = "&" + spaces;
-							spaces++;
-							score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(space, player)));
-						} else
-						{
-							if (line.contains("~!"))
-							{
-								// If variable is unkown or 0, dont show
-								String l = (line.split("<")[1]).split(">")[0];
-								String l1 = getLine("<" + l + ">", player);
-								if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("0"))
-								{
-									set = false;
-								}
-								line = line.replaceAll("~!<" + l + ">", "");
-							}
-							if (line.contains("~@"))
-							{
-								// If variable is unkown or 0, do show
-								String l = (line.split("<")[1]).split(">")[0];
-								String l1 = getLine("<" + l + ">", player);
-								if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("0"))
-								{
-									set = true;
-								}
-								line = line.replaceAll("~!<" + l + ">", "");
-							}
-							if (line.contains("<split>"))
-							{
-								String a = line.split("<split>")[0];
-								String b = line.split("<split>")[1];
+							// Refer to createScoreBoard(...) to see what all of
+							// this is doing
+							boolean set = true;
+							Score score = null;
+							String line = list.get(row);
 
-								score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(a, player)));
-								try
-								{
-									numberScore = Integer.valueOf(getLine(b.replaceAll(" ", ""), player));
-								} catch (NumberFormatException ne)
-								{
-									numberScore = 0;
-								}
-							} else if (line.contains(";"))
+							if (getLine(line, player).equalsIgnoreCase(" "))
 							{
-								String a = line.split(";")[0];
-								String b = line.split(";")[1];
-
-								score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(a, player)));
-								try
-								{
-									numberScore = Integer.valueOf(getLine(b.replaceAll(" ", ""), player));
-								} catch (NumberFormatException ne)
-								{
-									numberScore = 0;
-								}
+								String space = "&" + spaces;
+								spaces++;
+								score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(space, player)));
 							} else
 							{
-								score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(line, player)));
+								if (line.contains("~!"))
+								{
+									// If variable is unkown or 0, dont show
+									String l = (line.split("<")[1]).split(">")[0];
+									String l1 = getLine("<" + l + ">", player);
+									if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
+									{
+										set = false;
+									}
+									line = line.replaceAll("~!<" + l + ">", "");
+								}
+								if (line.contains("~@"))
+								{
+									// If variable is unkown or 0, do show
+									String l = (line.split("<")[1]).split(">")[0];
+									String l1 = getLine("<" + l + ">", player);
+									if (l1.equalsIgnoreCase("Unkown")  || l1.equalsIgnoreCase("")|| l1.equalsIgnoreCase("0"))
+									{
+										set = true;
+									}
+									line = line.replaceAll("~!<" + l + ">", "");
+								}
+								if (line.contains("<split>"))
+								{
+									String a = line.split("<split>")[0];
+									String b = line.split("<split>")[1];
+
+									score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(a, player)));
+									try
+									{
+										numberScore = Integer.valueOf(getLine(b.replaceAll(" ", ""), player));
+									} catch (NumberFormatException ne)
+									{
+										numberScore = 0;
+									}
+								} else if (line.contains(";"))
+								{
+									String a = line.split(";")[0];
+									String b = line.split(";")[1];
+
+									score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(a, player)));
+									try
+									{
+										numberScore = Integer.valueOf(getLine(b.replaceAll(" ", ""), player));
+									} catch (NumberFormatException ne)
+									{
+										numberScore = 0;
+									}
+								} else
+								{
+									score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(line, player)));
+								}
 							}
-						}
-						if (set)
-						{
-							if (numberScore == -1)
-								numberScore = list.size() - 1 - row;
-							if (!score.getPlayer().getName().startsWith("<scroll>"))
+							if (set)
 							{
-								score.setScore(1);
-								score.setScore(numberScore);
+								if (numberScore == -1)
+									numberScore = list.size() - 1 - row;
+								if (!score.getPlayer().getName().startsWith("<scroll>"))
+								{
+									score.setScore(1);
+									score.setScore(numberScore);
+								}
+								numberScore = -1;
 							}
-							numberScore = -1;
 						}
+						row++;
 					}
-					row++;
+					rank = "default";
 				}
-				rank = "default";
 			}
 		}
 		return true;
@@ -230,8 +253,9 @@ public class ScoreBoard {
 	public boolean createScoreBoard(Player player) {
 		// Before we make the scoreboard lets make sure the player is okay to
 		// see it
-		if (!hidefrom.contains(player.getName()) && !plugin.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
+		if (player.hasPermission("InfoBoard.View") && !hidefrom.contains(player.getName()) && !plugin.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
+
 			// Does the config contain a scoreboard meant for the world the
 			// players in
 			if (plugin.getConfig().contains("Info Board." + String.valueOf(rotation) + "." + player.getWorld().getName()))
@@ -314,7 +338,7 @@ public class ScoreBoard {
 					{
 						String l = (line.split("<")[1]).split(">")[0];
 						String l1 = getLine("<" + l + ">", player);
-						if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("0"))
+						if (l1.equalsIgnoreCase("Unkown")  || l1.equalsIgnoreCase("")|| l1.equalsIgnoreCase("0"))
 							set = false;
 
 						line = line.replaceAll("~!<" + l + ">", "");
@@ -325,7 +349,7 @@ public class ScoreBoard {
 					{
 						String l = (line.split("<")[1]).split(">")[0];
 						String l1 = getLine("<" + l + ">", player);
-						if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("0"))
+						if (l1.equalsIgnoreCase("Unkown")  || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
 						{
 							set = true;
 						}

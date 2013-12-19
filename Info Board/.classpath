@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/WorldGuard.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/Minecraft Servers/Infected Test Server/plugins/Infected.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Stats.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/SimpleClans-Legacy.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

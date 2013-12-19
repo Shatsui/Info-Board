@@ -135,7 +135,8 @@ public class Main extends JavaPlugin {
 
 					// Set scoreboard of current rotation
 					for (Player p : Bukkit.getOnlinePlayers())
-						ScoreBoard.createScoreBoard(p);
+						if(p.hasPermission("InfoBoard.View"))
+							ScoreBoard.createScoreBoard(p);
 				}
 			}
 		}, 0, 20);
@@ -148,7 +149,7 @@ public class Main extends JavaPlugin {
 			public void run() {
 
 				for (Player p : Bukkit.getOnlinePlayers())
-					ScoreBoard.updateScoreBoard(p);
+						ScoreBoard.updateScoreBoard(p);
 			}
 		}, 0, (long) (getConfig().getDouble("Update Time") * 20));
 
@@ -159,10 +160,9 @@ public class Main extends JavaPlugin {
 
 				@Override
 				public void run() {
-					for (Player player : Bukkit.getOnlinePlayers())
-					{
-						ScrollText.slideScore(player);
-					}
+					for (Player p : Bukkit.getOnlinePlayers())
+						if(p.hasPermission("InfoBoard.View"))
+							ScrollText.slideScore(p);
 				}
 			}, 0, (long) (getConfig().getDouble("Scrolling Text.Shift Time") * 20));
 		}

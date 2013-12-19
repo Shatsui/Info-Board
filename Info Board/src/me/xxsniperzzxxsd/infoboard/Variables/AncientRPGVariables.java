@@ -29,41 +29,41 @@ public class AncientRPGVariables {
 			AncientRPGClass pc = api.getPlayerClass(pd);
 
 			if (newString.contains("<ancientrpgclass>"))
-				newString = newString.replaceAll("<ancientrpgclass>", String.valueOf(pc.name));
+				newString = newString.replaceAll("<ancientrpgclass>", String.valueOf(pc == null ? "Unkown" : pc.name));
 			if (newString.contains("<ancientrpgclasslevel>"))
-				newString = newString.replaceAll("<ancientrpgclasslevel>", String.valueOf(pc.level));
+				newString = newString.replaceAll("<ancientrpgclasslevel>", String.valueOf(pc == null ? 0 : pc.level));
 			if (newString.contains("<ancientrpgclassminlevel>"))
-				newString = newString.replaceAll("<ancientrpgclassminlevel>", String.valueOf(pc.minlevel));
+				newString = newString.replaceAll("<ancientrpgclassminlevel>", String.valueOf(pc == null ? 0 : pc.minlevel));
 			if (newString.contains("<ancientrpgclasshp>"))
-				newString = newString.replaceAll("<ancientrpgclasshp>", String.valueOf(pc.hp));
+				newString = newString.replaceAll("<ancientrpgclasshp>", String.valueOf(pc == null ? 0 : pc.hp));
 			if (newString.contains("<ancientrpghpreg>"))
-				newString = newString.replaceAll("<ancientrpghpreg>", String.valueOf(pc.hpreg));
+				newString = newString.replaceAll("<ancientrpghpreg>", String.valueOf(pc == null ? 0 : pc.hpreg));
 		}
 		if (newString.contains("ancientrpgguild"))
 		{
 			AncientRPGGuild pg = api.getPlayerGuild(player.getName());
 
 			if (newString.contains("<ancientrpgguild>"))
-				newString = newString.replaceAll("<ancientrpgguild>", String.valueOf(pg.gName));
+				newString = newString.replaceAll("<ancientrpgguild>", String.valueOf(pg == null ? "Unkown" : pg.gName));
 			if (newString.contains("<ancientrpgguildleader>"))
-				newString = newString.replaceAll("<ancientrpgguildleader>", String.valueOf(pg.gLeader));
+				newString = newString.replaceAll("<ancientrpgguildleader>", String.valueOf(pg == null ? "Unkown" : pg.gLeader));
 			if (newString.contains("<ancientrpgguildfriendlyfire>"))
-				newString = newString.replaceAll("<ancientrpgguildfriendlyfire>", String.valueOf(pg.friendlyFire));
+				newString = newString.replaceAll("<ancientrpgguildfriendlyfire>", String.valueOf(pg == null ? "false" : pg.friendlyFire));
 			if (newString.contains("<ancientrpgguildmaxmembers>"))
-				newString = newString.replaceAll("<ancientrpgguildmaxmembers>", String.valueOf(pg.maxPlayers));
+				newString = newString.replaceAll("<ancientrpgguildmaxmembers>", String.valueOf(pg == null ? 0 : pg.maxPlayers));
 			if (newString.contains("<ancientrpgguildmotd>"))
-				newString = newString.replaceAll("<ancientrpgguildmotd>", String.valueOf(pg.motd));
+				newString = newString.replaceAll("<ancientrpgguildmotd>", String.valueOf(pg == null ? "Unkown" : pg.motd));
 		}
 		if (newString.contains("ancientrpgparty"))
 		{
 			AncientRPGParty pp = api.getPlayerParty(player);
 
 			if (newString.contains("<ancientrpgpartyleader>"))
-				newString = newString.replaceAll("<ancientrpgpartyleader>", String.valueOf(pp.mLeader));
+				newString = newString.replaceAll("<ancientrpgpartyleader>", String.valueOf(pp == null ? "Unkown" : pp.mLeader));
 			if (newString.contains("<ancientrpgpartymaxmembers>"))
-				newString = newString.replaceAll("<ancientrpgpartymaxmembers>", String.valueOf(pp.maxPlayers));
+				newString = newString.replaceAll("<ancientrpgpartymaxmembers>", String.valueOf(pp == null ? 0 : pp.maxPlayers));
 			if (newString.contains("<ancientrpgpartyfriendlyfire>"))
-				newString = newString.replaceAll("<ancientrpgpartyfriendlyfire>", String.valueOf(pp.friendlyFire));
+				newString = newString.replaceAll("<ancientrpgpartyfriendlyfire>", String.valueOf(pp == null ? "false" : pp.friendlyFire));
 		}
 		return newString;
 	}

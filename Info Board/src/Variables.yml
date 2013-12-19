@@ -1,4 +1,4 @@
-# Info Board Config, Last Edited in v0.1.4
+# Info Board Config, Last Edited in v0.1.5
 # ################################################
 # #
 # __Legend__ #
@@ -97,6 +97,27 @@
 # #
 # ################################################
 # +--------------------------------------------+ #
+# |                AncientRPG                  | #
+# +--------------------------------------------+ #
+# ################################################
+# <ancientrpgrace>             | The Players race | S
+# <ancientrpgstance>           | The Players stance | S
+# <ancientrpgclass>            | The Players class | S
+# <ancientrpgclasslevel>       | The Players classe level | I
+# <ancientrpgclassminlevel>    | The Players class min level | I
+# <ancientrpgclasshp>          | The Players class hp | I
+# <ancientrpgclassreghp>       | The Players class hp regen| I
+# <ancientrpgguild>            | The Players guild | S
+# <ancientrpgguildleader>      | The Players guild's Leader | S
+# <ancientrpgguildleader>      | The Players guild's motd | S
+# <ancientrpgguildfriendlyfire>| Does the Players guild allow friendly fire| B
+# <ancientrpgguildmaxmembers>  | The max players allowed in a guild| I
+# <ancientrpgpartyleader>      | The Players party's Leader | S
+# <ancientrpgpartymaxmembers>  | The max players allowed in a party | I
+# <ancientrpgpartyfriendlyfire>| Does the Players party allow friendly fire| B
+# #
+# ################################################
+# +--------------------------------------------+ #
 # |              Essentials                    | #
 # +--------------------------------------------+ #
 # ################################################
@@ -108,80 +129,6 @@
 # <esstprequest>     | Do you have a tp request waiting | B
 # <essvanished>      | How many players are vanished | B
 # <essjails>         | How many jails are there | I
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |                  LWC                       | #
-# +--------------------------------------------+ #
-# ################################################
-# <lwclocks>         | The amount of chests the player has locked | I
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |                 Vault                      | #
-# +--------------------------------------------+ #
-# ################################################
-# <money>            | The players balance | I
-# <rank>             | The players rank | S
-# <vaultcurrencyplural>| The currency symbol(Plural) | S
-# <vaultcurrencysingle>| The currency symbol(Single) | S
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |               Infected                     | #
-# +--------------------------------------------+ #
-# ################################################
-# <infectedplaying>          | How many players are playing | I
-# <infectedpoints>           | The players points | I
-# <infectedscore>            | The players score | I
-# <infectedkills>            | The players kills | I
-# <infecteddeaths>           | The players deaths | I
-# <infectedhighestkillstreak>| The players highestkillstreak | I
-# <infectedgamestate>        | The gamestate | S
-# <infectedactivearena>      | The activearena | S
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |               McTowns                      | #
-# +--------------------------------------------+ #
-# ################################################
-# <mctownshastown>   | Does the player have a town | B
-# <mctownstowns>     | How many towns is the player in | I
-# <mctownsname#>     | Town #'s name (Replace # with a number [1 and up]) | S
-# <mctownssize#>     | Town #'s size (Replace # with a number [1 and up]) | I
-# <mctownsresidents#>| Town #'s residents(Replace # with a number [1 and up]) | I
-# <mctownsmayor#>    | Town #'s mayor (Replace # with a number [1 and up]) | S
-# <mctownsterritories#>| Town #'s territories(Replace # with a number [1 and up]) | I
-# <mctownsassistants#>| Town #'s assistants(Replace # with a number [1 and up]) | I
-# <mctownsfriendlyfire#>| Does Town # Allow friendly fire(Replace # with a number [1 and up]) | B
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |                Towny                       | #
-# +--------------------------------------------+ #
-# ################################################
-# <townyname>        | The towns name | S
-# <townytitle>       | The players title | S
-# <townynation>      | The towns nation | S
-# <townyresidents>   | The towns residents | I
-# <townyfriends>     | The players friends | I
-# <townybank>        | The players bank | I
-# <townytag>         | The towns tag | S
-# <townymayor>       | The towns mayor | S
-# <townysize>        | The towns size | I
-# <townypvp>         | Is the towns pvp allowed | B
-# <townyopen>        | Is the town open | B
-# <townypublic>      | Is the town public | B
-# <townyexplosion>   | Is the town explosion proof | B
-# <townyintown>      | The town the players in | S
-# <townyinmayor>     | The town the players in mayor | S
-# <townyinresidents> | The town the players in residents | I
-# <townyinsize>      | The town the players in size | I
-# <townyintag>       | The town the players in tag | S
-# <townyinpvp>       | The town the players in pvp allowed | B
-# <townyinopen>      | The town the players in open | B
-# <townyinpublic>    | The town the players in public | B
-# <townyinexplosions>| The town the players in explosions allowed | B 
 # #
 # ################################################
 # +--------------------------------------------+ #
@@ -206,102 +153,6 @@
 # <factionspower>    | The players power | I
 # <factionsmaxpower> | Players max power | I
 # <factionsrole>     | The players role in their faction | S
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |                mcMMO                       | #
-# +--------------------------------------------+ #
-# ################################################
-# <mcmmopowerlevel>  | Players power level | I
-# <mcmmoacrobatics>  | Players acrobatics level | I 
-# <mcmmoarchery>     | Players archery level | I
-# <mcmmoaxes>        | Players axes level | I
-# <mcmmoexcavation>  | Players excavation level | I
-# <mcmmofishing>     | Players fishing level | I
-# <mcmmoherbalism>   | Players herbalism level | I
-# <mcmmomining>      | Players mining level | I
-# <mcmmorepair>      | Players repair level | I
-# <mcmmosmelting>    | Players smelting level | I
-# <mcmmoswords>      | Players swords level | I
-# <mcmmotaming>      | Players taming level | I
-# <mcmmounarmed>     | Players unarmed level | I
-# <mcmmowoodcutting> | Players wood cutting level | I
-# <mcmmomaxpowerlevel>| Max Powerlevel | I
-# <mcmmomaxmaxacrobatics>| Max acrobatics level | I
-# <mcmmomaxmaxarchery>| Max archery level | I
-# <mcmmomaxaxes>     |Max axes level | I
-# <mcmmomaxexcavation>| Max excavation level | I
-# <mcmmomaxfishing>  | Max fishing level | I
-# <mcmmomaxherbalism>| Max herbalism level | I
-# <mcmmomaxmining>   | Max mining level | I
-# <mcmmomaxrepair>   | Max repair level | I
-# <mcmmomaxsmelting> | Max smelting level | I
-# <mcmmomaxswords>   | Max swords level | I
-# <mcmmomaxtaming>   | Max taming level | I
-# <mcmmomaxunarmed>  | Max unarmed level | I
-# <mcmmomaxwoodcutting>| Max wood cutting level | I
-# <mcmmonextpowerlevel>| Exp to next power level | I
-# <mcmmonextacrobatics>| Exp to next acrobatics level | I
-# <mcmmonextarchery> | Exp to next archery level | I
-# <mcmmonextaxes>    | Exp to next axes level | I
-# <mcmmonextexcavation>| Exp to next excavation level | I
-# <mcmmonextfishing> | Exp to next fishing level | I
-# <mcmmonextherbalism>| Exp to next herbalism level | I
-# <mcmmonextmining>  | Exp to next mining level | I
-# <mcmmonextrepair>  | Exp to next repair level | I
-# <mcmmonextsmelting>| Exp to next smelting level | I
-# <mcmmonextswords>  | Exp to next swords level | I
-# <mcmmonexttaming>  | Exp to next taming level | I
-# <mcmmonextunarmed> | Exp to next unarmed level | I
-# <mcmmonextwoodcutting>| Exp to next wood cutting level | I
-# <mcmmoparty>       | The player's party | S
-# <mcmmopartyleader> | The player's party Leader | S
-# <mcmmopartyexpshare>| Does the player's party have exp share enabled | B
-# <mcmmopartymembers>| The player's party members total | I
-# <mcmmopartymemberson>| The player's party online members total | I
-# <mcmmogodmode>     | Does the player have godmode on | B
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |                 Jobs                       | #
-# +--------------------------------------------+ #
-# ################################################
-# <jobsin>           | How many jobs you have | I
-# <jobstitle#>       | The jobs title(Replace # with a number [1 and up]) | S
-# <jobslevel#>       | The jobs level(Replace # with a number [1 and up]) | I
-# <jobsexp#>       | The jobs exp(Replace # with a number [1 and up]) | I
-# <jobsmaxlevel#>    | The jobs max level(Replace # with a number [1 and up]) | I
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |             World Guard                    | #
-# +--------------------------------------------+ #
-# ################################################
-# <worldguardinid>      | The Region your in's name | S
-# <worldguardinowner>   | The Region your in's owner | S
-# <worldguardinvolume>  | The Region your in's volume | I
-# <worldguardinmembers> | The Region your in's members list size | I
-# <worldguardinflag%> | The Region your in's flag value(Replace % with a flag) | B
-# #
-# ################################################
-# +--------------------------------------------+ #
-# |                PlotMe                      | #
-# +--------------------------------------------+ #
-# ################################################
-# <plotmeplots>      | How many plots you have | I
-# <plotmeinid>       | The plot the players in ID | I
-# <plotmeinowner>    | The plot the players in owner | S
-# <plotmeincomments> | The plot the players in comments total | I
-# <plotmeinbid>      | The plot the players in bid | I
-# <plotmeinbidder>   | The plot the players in bidder | S
-# <plotmeinfinished> | Is the plot the players in finished | B
-# <plotmeinforsale>  | Is the plot the players in for sale | B
-# <plotmeid#>        | The plot id (Replace # with a number [1 and up]) | I
-# <plotmebid#>       | The plots bid (Replace # with a number [1 and up]) | I
-# <plotmecommnets#>  | The plots comments total (Replace # with a number [1 and up]) | I
-# <plotmebidder#>    | The plots bidder (Replace # with a number [1 and up]) | S
-# <plotmefinished#>  | Is the plots finished (Replace # with a number [1 and up]) | B
-# <plotmeforsale#>   | Is the plot for sale (Replace # with a number [1 and up]) | B
 # #
 # ################################################
 # +--------------------------------------------+ #
@@ -335,21 +186,209 @@
 # #
 # ################################################
 # +--------------------------------------------+ #
-# |                AncientRPG                  | #
+# |               Infected                     | #
 # +--------------------------------------------+ #
 # ################################################
-# <ancientrpgrace>             | The Players race | S
-# <ancientrpgstance>           | The Players stance | S
-# <ancientrpgclass>            | The Players class | S
-# <ancientrpgclasslevel>       | The Players classe level | I
-# <ancientrpgclassminlevel>    | The Players class min level | I
-# <ancientrpgclasshp>          | The Players class hp | I
-# <ancientrpgclassreghp>       | The Players class hp regen| I
-# <ancientrpgguild>            | The Players guild | S
-# <ancientrpgguildleader>      | The Players guild's Leader | S
-# <ancientrpgguildleader>      | The Players guild's motd | S
-# <ancientrpgguildfriendlyfire>| Does the Players guild allow friendly fire| B
-# <ancientrpgguildmaxmembers>  | The max players allowed in a guild| I
-# <ancientrpgpartyleader>      | The Players party's Leader | S
-# <ancientrpgpartymaxmembers>  | The max players allowed in a party | I
-# <ancientrpgpartyfriendlyfire>| Does the Players party allow friendly fire| B
+# <infectedplaying>          | How many players are playing | I
+# <infectedpoints>           | The players points | I
+# <infectedscore>            | The players score | I
+# <infectedkills>            | The players kills | I
+# <infecteddeaths>           | The players deaths | I
+# <infectedhighestkillstreak>| The players highestkillstreak | I
+# <infectedgamestate>        | The gamestate | S
+# <infectedactivearena>      | The activearena | S
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                 Jobs                       | #
+# +--------------------------------------------+ #
+# ################################################
+# <jobsin>           | How many jobs you have | I
+# <jobstitle#>       | The jobs title(Replace # with a number [1 and up]) | S
+# <jobslevel#>       | The jobs level(Replace # with a number [1 and up]) | I
+# <jobsexp#>       | The jobs exp(Replace # with a number [1 and up]) | I
+# <jobsmaxlevel#>    | The jobs max level(Replace # with a number [1 and up]) | I
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                  LWC                       | #
+# +--------------------------------------------+ #
+# ################################################
+# <lwclocks>         | The amount of chests the player has locked | I
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                mcMMO                       | #
+# +--------------------------------------------+ #
+# ################################################
+# <mcmmopowerlevel>  | Players power level | I
+# <mcmmoacrobatics>  | Players acrobatics level | I 
+# <mcmmoarchery>     | Players archery level | I
+# <mcmmoaxes>        | Players axes level | I
+# <mcmmoexcavation>  | Players excavation level | I
+# <mcmmofishing>     | Players fishing level | I
+# <mcmmoherbalism>   | Players herbalism level | I
+# <mcmmomining>      | Players mining level | I
+# <mcmmorepair>      | Players repair level | I
+# <mcmmosmelting>    | Players smelting level | I
+# <mcmmoswords>      | Players swords level | I
+# <mcmmotaming>      | Players taming level | I
+# <mcmmounarmed>     | Players unarmed level | I
+# <mcmmowoodcutting> | Players wood cutting level | I
+# <mcmmomaxpowerlevel>   | Max Powerlevel | I
+# <mcmmomaxmaxacrobatics>| Max acrobatics level | I
+# <mcmmomaxmaxarchery>   | Max archery level | I
+# <mcmmomaxaxes>         |Max axes level | I
+# <mcmmomaxexcavation>   | Max excavation level | I
+# <mcmmomaxfishing>  | Max fishing level | I
+# <mcmmomaxherbalism>| Max herbalism level | I
+# <mcmmomaxmining>   | Max mining level | I
+# <mcmmomaxrepair>   | Max repair level | I
+# <mcmmomaxsmelting> | Max smelting level | I
+# <mcmmomaxswords>   | Max swords level | I
+# <mcmmomaxtaming>   | Max taming level | I
+# <mcmmomaxunarmed>  | Max unarmed level | I
+# <mcmmomaxwoodcutting>| Max wood cutting level | I
+# <mcmmonextpowerlevel>| Exp to next power level | I
+# <mcmmonextacrobatics>| Exp to next acrobatics level | I
+# <mcmmonextarchery> | Exp to next archery level | I
+# <mcmmonextaxes>    | Exp to next axes level | I
+# <mcmmonextexcavation>| Exp to next excavation level | I
+# <mcmmonextfishing>   | Exp to next fishing level | I
+# <mcmmonextherbalism> | Exp to next herbalism level | I
+# <mcmmonextmining>  | Exp to next mining level | I
+# <mcmmonextrepair>  | Exp to next repair level | I
+# <mcmmonextsmelting>| Exp to next smelting level | I
+# <mcmmonextswords>  | Exp to next swords level | I
+# <mcmmonexttaming>  | Exp to next taming level | I
+# <mcmmonextunarmed> | Exp to next unarmed level | I
+# <mcmmonextwoodcutting>| Exp to next wood cutting level | I
+# <mcmmoparty>       | The player's party | S
+# <mcmmopartyleader> | The player's party Leader | S
+# <mcmmopartyexpshare> | Does the player's party have exp share enabled | B
+# <mcmmopartymembers>  | The player's party members total | I
+# <mcmmopartymemberson>| The player's party online members total | I
+# <mcmmogodmode>     | Does the player have godmode on | B
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                 McTowns                    | #
+# +--------------------------------------------+ #
+# ################################################
+# <mctownshastown>   | Does the player have a town | B
+# <mctownstowns>     | How many towns is the player in | I
+# <mctownsname#>     | Town #'s name (Replace # with a number [1 and up]) | S
+# <mctownssize#>     | Town #'s size (Replace # with a number [1 and up]) | I
+# <mctownsresidents#>| Town #'s residents(Replace # with a number [1 and up]) | I
+# <mctownsmayor#>    | Town #'s mayor (Replace # with a number [1 and up]) | S
+# <mctownsterritories#>| Town #'s territories(Replace # with a number [1 and up]) | I
+# <mctownsassistants#>| Town #'s assistants(Replace # with a number [1 and up]) | I
+# <mctownsfriendlyfire#>| Does Town # Allow friendly fire(Replace # with a number [1 and up]) | B
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                MiniGames                   | #
+# +--------------------------------------------+ #
+# ################################################
+# <minigamesdeaths> | Your deaths | I
+# <minigameskills>  | Your kills | I
+# <minigamesscore>  | Your score | I
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                PlotMe                      | #
+# +--------------------------------------------+ #
+# ################################################
+# <plotmeplots>      | How many plots you have | I
+# <plotmeinid>       | The plot the players in ID | I
+# <plotmeinowner>    | The plot the players in owner | S
+# <plotmeincomments> | The plot the players in comments total | I
+# <plotmeinbid>      | The plot the players in bid | I
+# <plotmeinbidder>   | The plot the players in bidder | S
+# <plotmeinfinished> | Is the plot the players in finished | B
+# <plotmeinforsale>  | Is the plot the players in for sale | B
+# <plotmeid#>        | The plot id (Replace # with a number [1 and up]) | I
+# <plotmebid#>       | The plots bid (Replace # with a number [1 and up]) | I
+# <plotmecommnets#>  | The plots comments total (Replace # with a number [1 and up]) | I
+# <plotmebidder#>    | The plots bidder (Replace # with a number [1 and up]) | S
+# <plotmefinished#>  | Is the plots finished (Replace # with a number [1 and up]) | B
+# <plotmeforsale#>   | Is the plot for sale (Replace # with a number [1 and up]) | B
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |              Simple Clans                  | #
+# +--------------------------------------------+ #
+# ################################################
+# <simpleclanskills>        | Your kills (civilian + neutral + rival)| I
+# <simpleclansciviliankills>| Your civilian kills | I
+# <simpleclansneutralkills> | Your neutral kills | I
+# <simpleclansrivalkills>   | Your rival kills | I
+# <simpleclansrank>         | Your rank | S
+# <simpleclansweightedkills>| Your kills in sucession(I think... Tell me if i'm wrong...) | I
+# <simpleclanskdr>          | Your kill/death ratio | I
+# <simpleclanstag>          | Your tag | S
+# <simpleclansclanaveragewk>| Your clans average WK(No clue what that is...) | I
+# <simpleclansclanbalance>  | Your clans balance | I
+# <simpleclansclanfounded>  | How long ago your clan was founded (Seconds)| I
+# <simpleclansclansize>     | How big your clan is| I
+# <simpleclansclandeaths>   | How many deaths your clan has| I
+# <simpleclansclankdr>      | Your clans' Kill/Death ratio| I
+# <simpleclansclankills>    | How many kills your clan has| I
+# <simpleclansclantag>      | Your clans' tag| S
+# <simpleclansclancivilians>| How many civilians your clan has| I
+# <simpleclansclanneutrals> | How many neutrals your clan has| I
+# <simpleclansclanrivals>   | How many rivals your clan has| I
+# <simpleclansclanmembers>  | How many members your clan has| I
+# <simpleclansclanallies>   | How many allies your clan has| I
+# <simpleclansclanmembers>  | How many members your clan has| I
+# <simpleclansclanonline>   | How many online clan members your clan has| I
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                Towny                       | #
+# +--------------------------------------------+ #
+# ################################################
+# <townyname>        | The towns name | S
+# <townytitle>       | The players title | S
+# <townynation>      | The towns nation | S
+# <townyresidents>   | The towns residents | I
+# <townyfriends>     | The players friends | I
+# <townybank>        | The players bank | I
+# <townytag>         | The towns tag | S
+# <townymayor>       | The towns mayor | S
+# <townysize>        | The towns size | I
+# <townypvp>         | Is the towns pvp allowed | B
+# <townyopen>        | Is the town open | B
+# <townypublic>      | Is the town public | B
+# <townyexplosion>   | Is the town explosion proof | B
+# <townyintown>      | The town the players in | S
+# <townyinmayor>     | The town the players in mayor | S
+# <townyinresidents> | The town the players in residents | I
+# <townyinsize>      | The town the players in size | I
+# <townyintag>       | The town the players in tag | S
+# <townyinpvp>       | The town the players in pvp allowed | B
+# <townyinopen>      | The town the players in open | B
+# <townyinpublic>    | The town the players in public | B
+# <townyinexplosions>| The town the players in explosions allowed | B 
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |                 Vault                      | #
+# +--------------------------------------------+ #
+# ################################################
+# <money>            | The players balance | I
+# <rank>             | The players rank | S
+# <vaultcurrencyplural>| The currency symbol(Plural) | S
+# <vaultcurrencysingle>| The currency symbol(Single) | S
+# #
+# ################################################
+# +--------------------------------------------+ #
+# |             World Guard                    | #
+# +--------------------------------------------+ #
+# ################################################
+# <worldguardinid>      | The Region your in's name | S
+# <worldguardinowner>   | The Region your in's owner | S
+# <worldguardinvolume>  | The Region your in's volume | I
+# <worldguardinmembers> | The Region your in's members list size | I
+# <worldguardinflag%> | The Region your in's flag value(Replace % with a flag) | B
+# #

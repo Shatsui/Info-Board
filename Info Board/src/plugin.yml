@@ -1,9 +1,9 @@
 name: Info Board
 main: me.xxsniperzzxxsd.infoboard.Main
-version: 0.1.4
+version: 0.1.5
 author: SniperzCiinema
 description: Show an info board
-softdepend: [Cranked, Essentials, Factions, Heroes, Infected, Jobs, LWC, mcMMO, McTowns, MiniGames, PlotMe, Stats, Towny, WorldGuard, AncientRPG]
+softdepend: [Cranked, Essentials, Factions, Heroes, Infected, Jobs, LWC, mcMMO, McTowns, MiniGames, PlotMe, SimpleClans, Stats, Towny, WorldGuard, AncientRPG]
 
 commands:
     InfoBoard:
@@ -18,5 +18,6 @@ permissions:
             InfoBoard.Set: true
             InfoBoard.Toggle: true
             InfoBoard.Reload: true
+            InfoBoard.View: true
     InfoBoard.View:
         default: true
