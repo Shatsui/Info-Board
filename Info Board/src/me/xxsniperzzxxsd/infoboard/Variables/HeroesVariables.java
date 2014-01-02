@@ -38,7 +38,7 @@ public class HeroesVariables {
 				if (hp != null)
 					newString = newString.replaceAll("<heroespartyleader>", String.valueOf(hp.getLeader()));
 				else
-					newString = newString.replaceAll("<heroespartyleader>", "Unkown");
+					newString = newString.replaceAll("<heroespartyleader>", "Unknown");
 
 			if (newString.contains("<heroespartysize>"))
 				if (hp != null)
@@ -82,7 +82,7 @@ public class HeroesVariables {
 				if (hc2 != null)
 					newString = newString.replaceAll("<heroesclass2>", String.valueOf(hc2.getName()));
 				else
-					newString = newString.replaceAll("<heroesclass2>", "Unkown");
+					newString = newString.replaceAll("<heroesclass2>", "Unknown");
 
 			if (newString.contains("<heroesclass2tier>"))
 				if (hc2 != null)

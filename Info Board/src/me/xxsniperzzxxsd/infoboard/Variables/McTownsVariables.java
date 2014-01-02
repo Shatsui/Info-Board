@@ -39,7 +39,7 @@ public class McTownsVariables {
 			if (towns.size() >= i + 1)
 				newString = newString.replaceAll("<mctownsmayor" + (i + 1) + ">", String.valueOf(towns.get(i).getMayor()));
 			else
-				newString = newString.replaceAll("<mctownsmayor" + (i + 1) + ">", "Unkown");
+				newString = newString.replaceAll("<mctownsmayor" + (i + 1) + ">", "Unknown");
 		}
 
 		if (newString.contains("<mctownssize"))
@@ -79,7 +79,7 @@ public class McTownsVariables {
 			if (towns.size() >= i + 1)
 				newString = newString.replaceAll("<mctownsfriendlyfire" + (i + 1) + ">", String.valueOf(towns.get(i).allowsFriendlyFire()));
 			else
-				newString = newString.replaceAll("<mctownsfriendlyfire" + (i + 1) + ">", "Unkown");
+				newString = newString.replaceAll("<mctownsfriendlyfire" + (i + 1) + ">", "Unknown");
 		}
 
 		if (newString.contains("<mctownsassistants"))

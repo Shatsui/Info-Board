@@ -69,7 +69,7 @@ public class SimpleClansVariables {
 			if (newString.contains("<simpleclansclanonline>"))
 				newString = newString.replaceAll("<simpleclansclanonline>", String.valueOf(c == null ? 0 : c.getOnlineMembers()));
 			if (newString.contains("<simpleclansclantag>"))
-				newString = newString.replaceAll("<simpleclansclantag>", String.valueOf(c == null ? "Unkown" : c.getTag()));
+				newString = newString.replaceAll("<simpleclansclantag>", String.valueOf(c == null ? "Unknown" : c.getTag()));
 		}
 		return newString;
 	}

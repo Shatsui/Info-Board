@@ -101,11 +101,11 @@ public class mcMMOVariables {
 			newString = newString.replaceAll("<mcmmonextwoodcutting>", String.valueOf(ExperienceAPI.getXPToNextLevel(player, "WOODCUTTING")));
 
 		if (newString.contains("<mcmmoparty>"))
-			newString = newString.replaceAll("<mcmmoparty>", String.valueOf("" + (PartyManager.getParty(player.getName()) != null ? PartyManager.getParty(player.getName()).getName() : "Unkown")));
+			newString = newString.replaceAll("<mcmmoparty>", String.valueOf("" + (PartyManager.getParty(player.getName()) != null ? PartyManager.getParty(player.getName()).getName() : "Unknown")));
 		if (newString.contains("<mcmmopartyleader>"))
-			newString = newString.replaceAll("<mcmmopartyleader>", String.valueOf("" + (PartyManager.getParty(player.getName()).getLeader() != null ? PartyManager.getParty(player.getName()).getLeader() : "Unkown")));
+			newString = newString.replaceAll("<mcmmopartyleader>", String.valueOf("" + (PartyManager.getParty(player.getName()).getLeader() != null ? PartyManager.getParty(player.getName()).getLeader() : "Unknown")));
 		if (newString.contains("<mcmmopartyexpshare>"))
-			newString = newString.replaceAll("<mcmmopartyexpshare>", String.valueOf("" + (PartyManager.getParty(player.getName()) != null ? PartyManager.getParty(player.getName()).getXpShareMode().toString() : "Unkown")));
+			newString = newString.replaceAll("<mcmmopartyexpshare>", String.valueOf("" + (PartyManager.getParty(player.getName()) != null ? PartyManager.getParty(player.getName()).getXpShareMode().toString() : "Unknown")));
 		if (newString.contains("<mcmmopartymembers>"))
 			newString = newString.replaceAll("<mcmmopartymembers>", String.valueOf("" + (PartyManager.getParty(player.getName()) != null ? PartyManager.getParty(player.getName()).getMembers().size() : "0")));
 		if (newString.contains("<mcmmopartymemberson>"))

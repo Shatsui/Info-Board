@@ -1,4 +1,4 @@
-# Info Board Config, Last Edited in v0.1.5
+# Info Board Config, Last Edited in v0.1.6
 # ################################################
 # #
 # __Legend__ #
@@ -15,12 +15,11 @@
 #   ;               | split the line to set the score of that line to what ever follows(ONLY WORKS WITH NUMBERS)
 #   &#              | color codes ( Replace # with 1-0, a-f, x-y(x is random color, y is random format)
 #   ' '             | This by it's self on a line will represet a blank line
-# ~!<variable><variable> | will only display the variable if <variable> isn't "0" or "Unkown"(Best used if you only want to show a variable if that value isn't "0")
-# ~@<variable><variable> | will only display the variable if <variable> is "0" or "Unkown"(Best used if you only want to show a variable if another value is 0")
-# <scroll>   | *Has to be first thing on the line to work, color codes can follow though (<scroll>&4&lHi <player>)* 
-#            |  Will scroll the variable across the screen, if Scroll is enabled in the config
-#            |  also it remove the limit of characters in a row as it scrolls through.
-# 
+# ~!<variable><variable>| Will only display the variable if <variable> isn't "0" or "Unknown"(Best used if you only want to show a variable if that value isn't "0")
+# ~@<variable><variable>| Will only display the variable if <variable> is "0" or "Unknown"(Best used if you only want to show a variable if another value is 0")
+# <scroll>          | *Has to be first thing on the line to work, color codes can follow though (<scroll>&4&lHi <player>)* 
+#                   |  Will scroll the variable across the screen, if Scroll is enabled in the config
+#                   |  also it remove the limit of characters in a row as it scrolls through.
 # #
 # # Example:
 # # In the config: Online Players: <split> <onlineplayers>
@@ -32,7 +31,6 @@
 # |            UTF-8 Variables                 | #
 # +--------------------------------------------+ #
 # ################################################
-# For more info/codes i support check bukkit page
 # <1>                | Face 1
 # <2>                | Face 2
 # <3>                | A Heart
@@ -81,7 +79,12 @@
 # <maxhealth>        | The players max health | I
 # <kills>            | The players kills  | I
 # <deaths>           | The players deaths | I
-# <world>            | The players world  | S
+# <worldname>        | The players world's name  | S
+# <worlddifficulty>  | The players world's difficulty | I
+# <worldanimals>     | Does the player's world allow animals | B
+# <worldmonsters>    | Does the player's world allow monsters | B
+# <worldpvp>         | Does the player's world allow PVP | B
+# <worldplayers>     | The player's world's total players | I
 # <time>             | The players worlds time | I
 # <x>                | The players x position | I
 # <y>                | The players y position | I
@@ -89,17 +92,24 @@
 # <pitch>            | The players pitch| I
 # <yaw>              | The players yaw| I
 # <direction>        | The players direction| S
-# <helmet>           | The players helemet | S
+# <helmet>           | The players helmet | S
 # <chestplate>       | The players chestplate | S
 # <leggings>         | The players leggings | S
 # <boots>            | The players boots | S
 # <hand>             | The players item in hand | S
+# <helmetdurability>    | The players helmet's durability | I
+# <chestplatedurability>| The players chestplate's durability | I
+# <leggingsdurability>  | The players legging's durability | I
+# <bootsdurability>     | The players boot's durability | I
+# <handdurability>      | The players item in hand's durability | I
+# <doihave&>         | Does the player have % as a permission node | B
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                AncientRPG                  | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                 Ancient RPG                      | #
+# | http://dev.bukkit.org/bukkit-plugins/ancient-rpg/| #
+# +--------------------------------------------------+ #
+# ######################################################
 # <ancientrpgrace>             | The Players race | S
 # <ancientrpgstance>           | The Players stance | S
 # <ancientrpgclass>            | The Players class | S
@@ -116,11 +126,12 @@
 # <ancientrpgpartymaxmembers>  | The max players allowed in a party | I
 # <ancientrpgpartyfriendlyfire>| Does the Players party allow friendly fire| B
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |              Essentials                    | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                  Essentials                      | #
+# | http://dev.bukkit.org/bukkit-plugins/essentials/ | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <esshomes>         | How many homes | I
 # <essmuted>         | Is the player muted | B
 # <esshidden>        | Is the player invisible | B
@@ -130,11 +141,12 @@
 # <essvanished>      | How many players are vanished | B
 # <essjails>         | How many jails are there | I
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |               Factions                     | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                    Factions                      | #
+# |  http://dev.bukkit.org/bukkit-plugins/factions/  | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <factionsfname>    | The factions name | S
 # <factionsfland>    | The factions total land claims | I
 # <factionsfpower>   | The factions power | I
@@ -154,11 +166,12 @@
 # <factionsmaxpower> | Players max power | I
 # <factionsrole>     | The players role in their faction | S
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                  Heroes                    | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                      Heroes                      | #
+# |   http://dev.bukkit.org/bukkit-plugins/heroes/   | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <heroesmana>            | The Heroes' mana | I
 # <heroesmaxmana>         | The Heroes' max mana | I
 # <heroeslevel>           | The Heroes' level | I
@@ -184,11 +197,12 @@
 # <heroesclass2maxlevel>  | The Heroes' classes' max level | I
 # <heroesclass2ismaster>  | Is the Player is a master in their class2| B
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |               Infected                     | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                     Infected                     | #
+# |   dev.bukkit.org/bukkit-plugins/infected-core/   | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <infectedplaying>          | How many players are playing | I
 # <infectedpoints>           | The players points | I
 # <infectedscore>            | The players score | I
@@ -198,29 +212,32 @@
 # <infectedgamestate>        | The gamestate | S
 # <infectedactivearena>      | The activearena | S
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                 Jobs                       | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                        Jobs                      | #
+# |    http://dev.bukkit.org/bukkit-plugins/jobs/    | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <jobsin>           | How many jobs you have | I
 # <jobstitle#>       | The jobs title(Replace # with a number [1 and up]) | S
 # <jobslevel#>       | The jobs level(Replace # with a number [1 and up]) | I
-# <jobsexp#>       | The jobs exp(Replace # with a number [1 and up]) | I
+# <jobsexp#>         | The jobs exp(Replace # with a number [1 and up]) | I
 # <jobsmaxlevel#>    | The jobs max level(Replace # with a number [1 and up]) | I
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                  LWC                       | #
-# +--------------------------------------------+ #
-# ################################################
-# <lwclocks>         | The amount of chests the player has locked | I
+# ######################################################
+# +--------------------------------------------------+ #
+# |                        LWC                       | #
+# |     http://dev.bukkit.org/bukkit-plugins/lwc/    | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <lwclocks>       | The amount of chests the player has locked | I
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                mcMMO                       | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                      mcMMO                       | #
+# |   http://dev.bukkit.org/bukkit-plugins/mcmmo/    | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <mcmmopowerlevel>  | Players power level | I
 # <mcmmoacrobatics>  | Players acrobatics level | I 
 # <mcmmoarchery>     | Players archery level | I
@@ -270,11 +287,12 @@
 # <mcmmopartymemberson>| The player's party online members total | I
 # <mcmmogodmode>     | Does the player have godmode on | B
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                 McTowns                    | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                     McTowns                      | #
+# |  http://dev.bukkit.org/bukkit-plugins/mctowns/   | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <mctownshastown>   | Does the player have a town | B
 # <mctownstowns>     | How many towns is the player in | I
 # <mctownsname#>     | Town #'s name (Replace # with a number [1 and up]) | S
@@ -285,20 +303,41 @@
 # <mctownsassistants#>| Town #'s assistants(Replace # with a number [1 and up]) | I
 # <mctownsfriendlyfire#>| Does Town # Allow friendly fire(Replace # with a number [1 and up]) | B
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                MiniGames                   | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                   Minigames                      | #
+# |  http://dev.bukkit.org/bukkit-plugins/minigames/ | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <minigamesdeaths> | Your deaths | I
 # <minigameskills>  | Your kills | I
 # <minigamesscore>  | Your score | I
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                PlotMe                      | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                   Multiverse                     | #
+# |  dev.bukkit.org/bukkit-plugins/multiverse-core/  | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <multiversealias>    | The player's world's alias | S
+# <multiverseprice>    | The player's world's price | I
+# <multiverseautoheal> | Does the player's world auto heal | B
+# <multiversehunger>   | Does the player's world loose hunger | B
+# #
+# ######################################################
+# +--------------------------------------------------+ #
+# |                    PlayerPoints                  | #
+# |http://dev.bukkit.org/bukkit-plugins/playerpoints/| #
+# +--------------------------------------------------+ #
+# ######################################################
+# <playerpoints>    | Your Points | I
+# #
+# ######################################################
+# +--------------------------------------------------+ #
+# |                      PlotMe                      | #
+# |   http://dev.bukkit.org/bukkit-plugins/plotme/   | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <plotmeplots>      | How many plots you have | I
 # <plotmeinid>       | The plot the players in ID | I
 # <plotmeinowner>    | The plot the players in owner | S
@@ -314,11 +353,32 @@
 # <plotmefinished#>  | Is the plots finished (Replace # with a number [1 and up]) | B
 # <plotmeforsale#>   | Is the plot for sale (Replace # with a number [1 and up]) | B
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |              Simple Clans                  | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                      PvpArena                    | #
+# |  http://dev.bukkit.org/bukkit-plugins/pvpvarena/ | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <pvparenaarenaname>    | The players current Arena's name | S
+# <pvparenaarenaowner>   | The players current Arena's owner | S
+# <pvparenaarenaprefix>  | The players current Arena's prefix | S
+# <pvparenaarenaround>   | The players current Arena's round | I
+# <pvparenaarenateams>   | The players current Arena's teams | I
+# <pvparenastatskills>   | The players kills | I
+# <pvparenastatsdeaths>  | The players deaths | I
+# <pvparenastatsdamage>  | The players damage done | I
+# <pvparenastatsdamagetaken>| The players damage taken | I
+# <pvparenastatslosses>     | The players losses | I
+# <pvparenastatswins>       | The players wins | I
+# <pvparenastatsmaxdamage>     | The players max damage done | I
+# <pvparenastatsmaxdamagetaken>| The players max damage taken | I
+# #
+# ######################################################
+# +--------------------------------------------------+ #
+# |                    Simple Clans                  | #
+# |http://dev.bukkit.org/bukkit-plugins/simpleclans/ | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <simpleclanskills>        | Your kills (civilian + neutral + rival)| I
 # <simpleclansciviliankills>| Your civilian kills | I
 # <simpleclansneutralkills> | Your neutral kills | I
@@ -343,11 +403,47 @@
 # <simpleclansclanmembers>  | How many members your clan has| I
 # <simpleclansclanonline>   | How many online clan members your clan has| I
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                Towny                       | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                       Stats                      | #
+# |http://dev.bukkit.org/bukkit-plugins/lolmewnstats/| #
+# +--------------------------------------------------+ #
+# ######################################################
+# <statskills%>     | The player's total kills on %(Replace % With either an entity name or "all") | I
+# <statsdeaths%>    | The player's total deaths by %(Replace % With either a cause or "all") | I
+# <statsplaced%>    | The player's total block places of a block with the id of %(Replace % With either a block id or "all") | I
+# <statsbroken%>    | The player's total block broken of a block with the id of %(Replace % With either a block id or "all") | I
+# <statstime>       | The player's total playtime | I
+# <statsmove>       | The player's total movements | I
+# <statsarrows>     | The player's total shot arrows | I
+# <statsjoins>      | The player's total joins | I
+# <statsfish>       | The player's total fish caught | I
+# <statsdamagetaken>| The player's total damage taken | I
+# <statskicked>     | The player's total times kicked | I
+# <statstoolsbroken>| The player's total tools broken | I
+# <statseggs>       | The player's total eggs thrown | I
+# <statsitemscrafted>| The player's total items crafted | I
+# <statsate>       | The player's total times eating | I
+# <statsonfire>    | The player's total time on fire | I
+# <statswords>     | The player's total words said | I
+# <statscommands>  | The player's total commands done | I
+# <statsvotes>     | The player's total time voted(Uses Votifier) | I
+# <statsworldchanged>| The player's total times changing worlds | I
+# <statsbucketfill>  | The player's total buckets filled | I
+# <statsbucketsempty>| The player's total buckets emptied | I
+# <statsbedenter>   | The player's total times entering a bed | I
+# <statsitemdrops>  | The player's total items droped | I
+# <statsitempickups>| The player's total items picked up | I
+# <statsteleports> | The player's total times teleported | I
+# <statsshear>     | The player's total times shearing something | I
+# <statsxpgained>  | The player's total xp gained | I
+# #
+# ######################################################
+# +--------------------------------------------------+ #
+# |                       Towny                      | #
+# |           http://palmergames.com/towny/          | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <townyname>        | The towns name | S
 # <townytitle>       | The players title | S
 # <townynation>      | The towns nation | S
@@ -371,24 +467,26 @@
 # <townyinpublic>    | The town the players in public | B
 # <townyinexplosions>| The town the players in explosions allowed | B 
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |                 Vault                      | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                       Vault                      | #
+# |   http://dev.bukkit.org/bukkit-plugins/vault/    | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <money>            | The players balance | I
 # <rank>             | The players rank | S
 # <vaultcurrencyplural>| The currency symbol(Plural) | S
 # <vaultcurrencysingle>| The currency symbol(Single) | S
 # #
-# ################################################
-# +--------------------------------------------+ #
-# |             World Guard                    | #
-# +--------------------------------------------+ #
-# ################################################
+# ######################################################
+# +--------------------------------------------------+ #
+# |                   World Guard                    | #
+# | http://dev.bukkit.org/bukkit-plugins/worldguard/ | #
+# +--------------------------------------------------+ #
+# ######################################################
 # <worldguardinid>      | The Region your in's name | S
 # <worldguardinowner>   | The Region your in's owner | S
 # <worldguardinvolume>  | The Region your in's volume | I
 # <worldguardinmembers> | The Region your in's members list size | I
-# <worldguardinflag%> | The Region your in's flag value(Replace % with a flag) | B
+# <worldguardinflag%>   | The Region your in's flag value(Replace % with a flag) | B
 # #

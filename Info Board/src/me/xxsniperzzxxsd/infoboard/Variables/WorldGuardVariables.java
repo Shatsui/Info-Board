@@ -43,13 +43,13 @@ public class WorldGuardVariables {
 			if (!(inRegions.isEmpty() || inRegions.get(0) == null))
 				newString = newString.replaceAll("<worldguardinid>", String.valueOf(inRegions.get(0).getId()));
 			else
-				newString = newString.replaceAll("<worldguardinid>", "Unkown");
+				newString = newString.replaceAll("<worldguardinid>", "Unknown");
 
 		if (newString.contains("<worldguardinowner>"))
 			if (!(inRegions.isEmpty() || inRegions.get(0) == null))
 				newString = newString.replaceAll("<worldguardinowner>", String.valueOf(inRegions.get(0).getOwners().getPlayers().iterator().next()));
 			else
-				newString = newString.replaceAll("<worldguardinowner>", "Unkown");
+				newString = newString.replaceAll("<worldguardinowner>", "Unknown");
 
 		if (newString.contains("<worldguardinvolume>"))
 			if (!(inRegions.isEmpty() || inRegions.get(0) == null))
@@ -72,7 +72,7 @@ public class WorldGuardVariables {
 				newString = newString.replaceAll("<worldguardinflag" + (flag) + ">", String.valueOf(inRegions.get(0).getFlag(DefaultFlag.fuzzyMatchFlag(flag))));
 			else
 			{
-				newString = newString.replaceAll("<worldguardinflag" + (flag) + ">", "Unkown");
+				newString = newString.replaceAll("<worldguardinflag" + (flag) + ">", "Unknown");
 			}
 		}
 		return newString;

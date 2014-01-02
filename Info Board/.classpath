@@ -27,5 +27,7 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/Minecraft Servers/Infected Test Server/plugins/Infected.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Stats.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/SimpleClans-Legacy.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Multiverse-Core-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/pvparena.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

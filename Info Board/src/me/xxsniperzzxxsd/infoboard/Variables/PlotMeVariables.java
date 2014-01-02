@@ -36,7 +36,7 @@ public class PlotMeVariables {
 			if (PlotManager.getPlotById(player.getLocation()) != null)
 				newString = newString.replaceAll("<plotmeinowner>", String.valueOf(PlotManager.getPlotById(player.getLocation()).getOwner()));
 			else
-				newString = newString.replaceAll("<plotmeinowner>", "Unkown");
+				newString = newString.replaceAll("<plotmeinowner>", "Unknown");
 
 		if (newString.contains("<plotmeincomments>"))
 			if (PlotManager.getPlotById(player.getLocation()) != null)
@@ -54,7 +54,7 @@ public class PlotMeVariables {
 			if (PlotManager.getPlotById(player.getLocation()) != null && PlotManager.getPlotById(player.getLocation()).currentbidder != "")
 				newString = newString.replaceAll("<plotmeinbidder>", String.valueOf(PlotManager.getPlotById(player.getLocation()).currentbidder));
 			else
-				newString = newString.replaceAll("<plotmeinbidder>", "Unkown");
+				newString = newString.replaceAll("<plotmeinbidder>", "Unknown");
 
 		if (newString.contains("<plotmeinfinished>"))
 			if (PlotManager.getPlotById(player.getLocation()) != null)
@@ -93,7 +93,7 @@ public class PlotMeVariables {
 			if (plots.size() >= i + 1 && String.valueOf(plots.get(i).currentbidder) != "")
 				newString = newString.replaceAll("<plotmebidder" + (i + 1) + ">", String.valueOf(plots.get(i).currentbidder));
 			else
-				newString = newString.replaceAll("<plotmebidder" + (i + 1) + ">", "Unkown");
+				newString = newString.replaceAll("<plotmebidder" + (i + 1) + ">", "Unknown");
 		}
 		if (newString.contains("<plotmecomments"))
 		{
@@ -112,7 +112,7 @@ public class PlotMeVariables {
 			if (plots.size() >= i + 1)
 				newString = newString.replaceAll("<plotmefinished" + (i + 1) + ">", String.valueOf(plots.get(i).finished));
 			else
-				newString = newString.replaceAll("<plotmefinished" + (i + 1) + ">", "Unkown");
+				newString = newString.replaceAll("<plotmefinished" + (i + 1) + ">", "Unknown");
 		}
 		if (newString.contains("<plotmeforsale"))
 		{

@@ -33,7 +33,7 @@ public class Commands implements CommandExecutor {
 						sender.sendMessage(plugin.ib + "Invalid Permissions.");
 						return true;
 					}
-					plugin.ScoreBoard.hidefrom.add(sender.getName());
+					ScoreBoard.hidefrom.add(sender.getName());
 					sender.sendMessage("");
 					sender.sendMessage(plugin.ib + "Hiding Info Board.");
 					((Player) sender).getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
@@ -45,7 +45,7 @@ public class Commands implements CommandExecutor {
 						sender.sendMessage(plugin.ib + "Invalid Permissions.");
 						return true;
 					}
-					plugin.ScoreBoard.hidefrom.remove(sender.getName());
+					ScoreBoard.hidefrom.remove(sender.getName());
 					sender.sendMessage("");
 					sender.sendMessage(plugin.ib + "Showing Info Board.");
 				} else if (args[0].equalsIgnoreCase("Set"))

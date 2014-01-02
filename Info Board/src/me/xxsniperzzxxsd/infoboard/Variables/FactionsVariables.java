@@ -32,7 +32,7 @@ public class FactionsVariables {
 			if (newString.contains("<factionsfonline>"))
 				newString = newString.replaceAll("<factionsfonline>", String.valueOf(faction.getOnlinePlayers().size()));
 			if (newString.contains("<factionsfleader>"))
-				newString = newString.replaceAll("<factionsfleader>", String.valueOf(faction.getLeader() != null ? faction.getLeader().getName() : "Unkown"));
+				newString = newString.replaceAll("<factionsfleader>", String.valueOf(faction.getLeader() != null ? faction.getLeader().getName() : "Unknown"));
 			if (newString.contains("<factionsfofficers>"))
 				newString = newString.replaceAll("<factionsfofficers>", String.valueOf(faction.getUPlayersWhereRole(Rel.OFFICER).size()));
 		}
@@ -58,7 +58,7 @@ public class FactionsVariables {
 			if (newString.contains("<factionsfinonline>"))
 				newString = newString.replaceAll("<factionsfinonline>", String.valueOf(inFaction.getOnlinePlayers().size()));
 			if (newString.contains("<factionsfinleader>"))
-				newString = newString.replaceAll("<factionsfinleader>", String.valueOf(inFaction.getLeader() != null ? inFaction.getLeader().getName() : "Unkown"));
+				newString = newString.replaceAll("<factionsfinleader>", String.valueOf(inFaction.getLeader() != null ? inFaction.getLeader().getName() : "Unknown"));
 			if (newString.contains("<factionsfinland>"))
 				newString = newString.replaceAll("<factionsfinland>", String.valueOf(inFaction.getLandCount()));
 			if (newString.contains("<factionsfinofficer>"))

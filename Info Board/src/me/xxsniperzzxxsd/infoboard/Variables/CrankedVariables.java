@@ -40,7 +40,7 @@ public class CrankedVariables {
 			if (ArenaManager.getArena(arenaName) != null)
 				newString = newString.replaceAll("<crankedcreator" + arenaName + ">", String.valueOf(ArenaManager.getArena(arenaName).getCreator()));
 			else
-				newString = newString.replaceAll("<crankedcreator" + arenaName + ">", "Unkown");
+				newString = newString.replaceAll("<crankedcreator" + arenaName + ">", "Unknown");
 		}
 		return newString;
 	}

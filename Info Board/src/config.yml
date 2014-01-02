@@ -44,7 +44,7 @@
 #         Title: '&a&lNether'
 #          Rows:
 # #         - 'Your Level: <split> <level>'
-# # Will only display if <exp> isn't "0" or "Unkown"
+# # Will only display if <exp> isn't "0" or "Unknown"
 # #         - '~!<exp>Your Exp:'
 # #         - '~!<exp><exp>'
 # #
@@ -74,7 +74,7 @@
 # ==================================================================
 Check for Updates: true
 Custom Variables:
-  website: Dusk-Haven.com
+  website: www.youtube.com/user/sniperzciinema
   plugindev: SniperzCiinema
 
 Disabled Worlds:

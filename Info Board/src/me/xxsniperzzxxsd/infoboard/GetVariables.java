@@ -12,6 +12,8 @@ import me.xxsniperzzxxsd.infoboard.Variables.JobsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.LWCVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.McTownsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.MiniGamesVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.MultiverseVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.PVPArenaVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
@@ -40,99 +42,135 @@ public class GetVariables {
 
 		// Infected Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Infected") != null)
+		{
 			if (newString.contains("<infected"))
 				newString = InfectedVariables.replaceVariables(newString, player);
+		}
 
 		// Essentials Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Essentials") != null)
+		{
 			if (newString.contains("<ess"))
 				newString = EssentialsVariables.replaceVariables(newString, player);
+		}
 
 		// AncientRPG Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("AncientRPG") != null)
+		{
 			if (newString.contains("<ancientrpg"))
 				newString = EssentialsVariables.replaceVariables(newString, player);
+		}
 
 		// LWC Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("LWC") != null)
+		{
 			if (newString.contains("<lwc"))
 				newString = LWCVariables.replaceVariables(newString, player);
+		}
 
 		// Cranked Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Cranked") != null)
+		{
 			if (newString.contains("<cranked"))
 				newString = CrankedVariables.replaceVariables(newString, player);
-
+		}
 		// Cranked Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("CommandPoints") != null)
+		{
 			if (newString.contains("<commandpoints"))
 				newString = CommandPointsVariables.replaceVariables(newString, player);
-
+		}
 		// McTowns Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("MCTowns") != null)
+		{
 			if (newString.contains("<mctowns"))
 				newString = McTownsVariables.replaceVariables(newString, player);
-
+		}
 		// Towny Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Towny") != null)
+		{
 			if (newString.contains("<towny"))
 				newString = TownyVariables.replaceVariables(newString, player);
-
+		}
 		// Factions Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Factions") != null)
+		{
 			if (newString.contains("<factions"))
 				newString = FactionsVariables.replaceVariables(newString, player);
-
+		}
 		// Heroes Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Heroes") != null)
+		{
 			if (newString.contains("<heroes"))
 				newString = HeroesVariables.replaceVariables(newString, player);
-
+		}
 		// mcMMO Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("mcMMO") != null)
+		{
 			if (newString.contains("<mcmmo"))
 				newString = mcMMOVariables.replaceVariables(newString, player);
-
+		}
 		// Vault Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null)
+		{
 			if (newString.contains("<vault") || newString.contains("<rank") || newString.contains("<money"))
 				newString = VaultVariables.replaceVariables(newString, player);
-
+		}
 		// Jobs Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Jobs") != null)
+		{
 			if (newString.contains("<jobs"))
 				newString = JobsVariables.replaceVariables(newString, player);
-
-		// PlotMe Support
-		if (Bukkit.getServer().getPluginManager().getPlugin("PlotMe") != null)
-			if (newString.contains("<plotme"))
-				newString = PlotMeVariables.replaceVariables(newString, player);
-
+		}
 		// PlayerPoints Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PlayerPoints") != null)
+		{
 			if (newString.contains("<playerpoints"))
 				newString = PlayerPointsVariables.replaceVariables(newString, player);
-
+		}
+		// PlotMe Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("PlotMe") != null)
+		{
+			if (newString.contains("<plotme"))
+				newString = PlotMeVariables.replaceVariables(newString, player);
+		}
+		// PVPArena Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("pvparena") != null)
+		{
+			if (newString.contains("<pvparena"))
+				newString = PVPArenaVariables.replaceVariables(newString, player);
+		}
 		// Stats Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Stats") != null)
-			if (newString.contains("<stats"))
+		{
+			if (newString.contains("<stats")){
 				newString = StatsVariables.replaceVariables(newString, player);
-
+			}
+		}
 		// SimpleClans Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("SimpleClans") != null)
+		{
 			if (newString.contains("<simpleclans"))
 				newString = SimpleClansVariables.replaceVariables(newString, player);
-
+		}
 		// WorldGuard Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard") != null)
+		{
 			if (newString.contains("<worldguard"))
 				newString = WorldGuardVariables.replaceVariables(newString, player);
-
+		}
 		// MiniGames Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("MiniGames") != null)
+		{
 			if (newString.contains("<minigames"))
 				newString = MiniGamesVariables.replaceVariables(newString, player);
-
+		}
+		// Multiverse Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core") != null)
+		{
+			if (newString.contains("<multiverse"))
+				newString = MultiverseVariables.replaceVariables(newString, player);
+		}
 		// UTF-8
 		newString = ALTVariables.replaceVariables(newString);
 

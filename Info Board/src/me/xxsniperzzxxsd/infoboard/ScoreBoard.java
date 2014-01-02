@@ -29,7 +29,7 @@ public class ScoreBoard {
 	}
 
 	int rotation = 1;
-	public ArrayList<String> hidefrom = new ArrayList<String>();
+	public static ArrayList<String> hidefrom = new ArrayList<String>();
 	public String rank = "default";
 	public String world = "global";
 	private static int numberScore = -1;
@@ -45,10 +45,8 @@ public class ScoreBoard {
 			} else
 			{
 				// If the player has been told to update the scoreboard when
-				// they
-				// don't even have one, we just tell it to create the scoreboard
-				// for
-				// the player first
+				// they don't even have one, we just tell it to create the
+				// scoreboard for the player first
 				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null)
 				{
 					createScoreBoard(player);
@@ -95,18 +93,22 @@ public class ScoreBoard {
 					int row = 0;
 					int spaces = 0;
 					// Next i get the list of rows so i can go through and make
-					// sure
-					// i only update what needs to be updated
+					// sure i only update what needs to be updated
 					List<String> list = plugin.getConfig().getStringList("Info Board." + String.valueOf(rotation) + "." + world + "." + rank + ".Rows");
 					// We'll also create an array of rows to remove incase we
-					// find
-					// any
+					// find any
 					ArrayList<String> remove = new ArrayList<String>();
+					ArrayList<String> newLines = new ArrayList<String>();
 
+					Iterator<String> iter = list.iterator();
+					while (iter.hasNext())
+					{
+						String s = iter.next();
+						newLines.add(getLine(s, player));
+					}
 					// Loop through the scoreboards rows
 					for (OfflinePlayer op : infoBoard.getPlayers())
 					{
-						Iterator<String> iter = list.iterator();
 						boolean onlist = false;
 						// Now we loop through our list, the reason being is
 						// that we
@@ -114,13 +116,12 @@ public class ScoreBoard {
 						// the
 						// unachanged variables, so we'll never find the changed
 						// variables in there
-						while (iter.hasNext())
+						for (String s : newLines)
 						{
 							// Lets make sure this line is already on the
 							// scoreboard, and/or is a empty line and/or is a
 							// message about enabling scroll first
-							String s = iter.next();
-							if (getLine(s, player).equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || op.getName().contains("Enable Scroll"))
+							if (s.equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || op.getName().contains("Enable Scroll"))
 								onlist = true;
 
 							// If the line is a scroll message, we'll just leave
@@ -160,8 +161,8 @@ public class ScoreBoard {
 					// that line onto the scoreboard
 					for (String s : list)
 					{
-						String string = getLine(s, player);
-						if (!infoBoard.getPlayers().contains(Bukkit.getOfflinePlayer(string)))
+						String newLine = getLine(s, player);
+						if (!infoBoard.getPlayers().contains(Bukkit.getOfflinePlayer(newLine)))
 						{
 							// Refer to createScoreBoard(...) to see what all of
 							// this is doing
@@ -169,7 +170,7 @@ public class ScoreBoard {
 							Score score = null;
 							String line = list.get(row);
 
-							if (getLine(line, player).equalsIgnoreCase(" "))
+							if (newLine.equalsIgnoreCase(" "))
 							{
 								String space = "&" + spaces;
 								spaces++;
@@ -178,21 +179,20 @@ public class ScoreBoard {
 							{
 								if (line.contains("~!"))
 								{
-									// If variable is unkown or 0, dont show
+									// If variable is Unknown or 0, dont show
 									String l = (line.split("<")[1]).split(">")[0];
 									String l1 = getLine("<" + l + ">", player);
-									if (l1.equalsIgnoreCase("Unkown") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
+									if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
 									{
 										set = false;
 									}
 									line = line.replaceAll("~!<" + l + ">", "");
-								}
-								if (line.contains("~@"))
+								} else if (line.contains("~@"))
 								{
-									// If variable is unkown or 0, do show
+									// If variable is Unknown or 0, do show
 									String l = (line.split("<")[1]).split(">")[0];
 									String l1 = getLine("<" + l + ">", player);
-									if (l1.equalsIgnoreCase("Unkown")  || l1.equalsIgnoreCase("")|| l1.equalsIgnoreCase("0"))
+									if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("None") ||l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
 									{
 										set = true;
 									}
@@ -226,7 +226,7 @@ public class ScoreBoard {
 									}
 								} else
 								{
-									score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(line, player)));
+									score = infoObjective.getScore(Bukkit.getOfflinePlayer(newLine));
 								}
 							}
 							if (set)
@@ -321,9 +321,10 @@ public class ScoreBoard {
 				Score score = null;
 				// Get the line from the list using the row
 				String line = list.get(row);
+				String newLine = getLine(line, player);
 				// If the line is just a space, it means empty line, so we'll
 				// just set it as only a color code
-				if (getLine(line, player).equalsIgnoreCase(" "))
+				if (newLine.equalsIgnoreCase(" "))
 				{
 					String space = "&" + spaces;
 					spaces++;
@@ -333,23 +334,23 @@ public class ScoreBoard {
 					// If the line is more then just a space, we'll check the
 					// other variables
 					// ~! in front of a variable means it'll only show the line
-					// if the variable isn't "0" or "Unkown"
+					// if the variable isn't "0" or "Unknown"
 					if (line.contains("~!"))
 					{
 						String l = (line.split("<")[1]).split(">")[0];
 						String l1 = getLine("<" + l + ">", player);
-						if (l1.equalsIgnoreCase("Unkown")  || l1.equalsIgnoreCase("")|| l1.equalsIgnoreCase("0"))
+						if (l1.equalsIgnoreCase("Unknown") ||l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
 							set = false;
 
 						line = line.replaceAll("~!<" + l + ">", "");
 					}
 					// ~@ in front of a variable means it'll only show the line
-					// if the variable is "0" or "Unkown"
-					if (line.contains("~@"))
+					// if the variable is "0" or "Unknown"
+					else if (line.contains("~@"))
 					{
 						String l = (line.split("<")[1]).split(">")[0];
 						String l1 = getLine("<" + l + ">", player);
-						if (l1.equalsIgnoreCase("Unkown")  || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
+						if (l1.equalsIgnoreCase("Unknown") ||l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
 						{
 							set = true;
 						}
@@ -408,7 +409,7 @@ public class ScoreBoard {
 						// the line to the line
 
 					else
-						score = infoObjective.getScore(Bukkit.getOfflinePlayer(getLine(line, player)));
+						score = infoObjective.getScore(Bukkit.getOfflinePlayer(newLine));
 
 				}
 				// If it was determined that we are in fact showing this line,
@@ -463,8 +464,11 @@ public class ScoreBoard {
 
 	public static String getLine(String string, Player user) {
 
-		// Replace all the variables
-		String newString = GetVariables.replaceVariables(string, user);
+		String newString = string;
+
+		// Replace all the variable
+		if (newString.contains("<") && newString.contains(">"))
+			newString = GetVariables.replaceVariables(string, user);
 
 		// Replace color codes
 		newString = ChatColor.translateAlternateColorCodes('&', newString);
