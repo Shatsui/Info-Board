@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/bukkit-1.7.2-R0.1-20131209.222727-6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/craftbukkit-1.7.2-R0.1-20131208.043839-24.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/bukkit-1.7.2-R0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/craftbukkit-1.7.2-R0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/AncientRPG.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/CommandPoints.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/CrackShot.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/AncientRPG.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Cranked.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Essentials.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Factions.jar"/>
@@ -17,17 +17,16 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/mcore.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/MCTowns.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Minigames.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Multiverse-Core-2.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/PlayerPoints.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/PlotMe.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/TagAPI.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/pvparena.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/SimpleClans-Legacy.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Stats.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Towny.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Vault.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/WorldEdit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/WorldGuard.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Desktop/Minecraft Servers/Infected Test Server/plugins/Infected.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Stats.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/SimpleClans-Legacy.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Multiverse-Core-2.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/pvparena.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
