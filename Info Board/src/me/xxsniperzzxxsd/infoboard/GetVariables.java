@@ -1,6 +1,8 @@
 
 package me.xxsniperzzxxsd.infoboard;
 
+import me.xxsniperzzxxsd.infoboard.Util.Files;
+import me.xxsniperzzxxsd.infoboard.Util.Messages;
 import me.xxsniperzzxxsd.infoboard.Variables.ALTVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.CommandPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.CrankedVariables;
@@ -143,9 +145,8 @@ public class GetVariables {
 		// Stats Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Stats") != null)
 		{
-			if (newString.contains("<stats")){
+			if (newString.contains("<stats"))
 				newString = StatsVariables.replaceVariables(newString, player);
-			}
 		}
 		// SimpleClans Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("SimpleClans") != null)
@@ -175,10 +176,10 @@ public class GetVariables {
 		newString = ALTVariables.replaceVariables(newString);
 
 		// Custom Variables
-		for (String custom : Main.config.getConfigurationSection("Custom Variables").getKeys(true))
+		for (String custom : Files.getConfig().getConfigurationSection("Custom Variables").getKeys(true))
 		{
-			if (newString.contains("<" + custom + ">"))
-				newString = newString.replaceAll("<" + custom + ">", ScoreBoard.getLine(Main.config.getString("Custom Variables." + custom), player));
+			if (newString.contains(custom))
+				newString = newString.replaceAll(custom, Messages.getLine(Files.getConfig().getString("Custom Variables." + custom), player));
 		}
 
 		return newString;

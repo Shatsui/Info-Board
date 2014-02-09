@@ -1,7 +1,6 @@
 
 package me.xxsniperzzxxsd.infoboard.Variables;
 
-import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.Direction;
 import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.Ping;
 
@@ -32,10 +31,6 @@ public class PlayerVariables {
 			newString = newString.replaceAll("<health>", String.valueOf((int) ((double) Math.round(player.getHealth() * 100.0D))));
 		if (newString.contains("<maxhealth>"))
 			newString = newString.replaceAll("<maxhealth>", String.valueOf(player.getMaxHealth()));
-		if (newString.contains("<kills>"))
-			newString = newString.replaceAll("<kills>", String.valueOf(Files.getPlayers().getInt(player.getName() + ".Kills")));
-		if (newString.contains("<deaths>"))
-			newString = newString.replaceAll("<deaths>", String.valueOf(Files.getPlayers().getInt(player.getName() + ".Deaths")));
 		if (newString.contains("<worldname>"))
 			newString = newString.replaceAll("<worldname>", player.getWorld().getName());
 		if (newString.contains("<worlddifficulty>"))

@@ -1,4 +1,4 @@
-# Info Board Config, Last Edited in v0.1.1
+# Info Board Config, Last Edited in v0.1.7
 # Max rows is 15, and most characters in a row is 16(Unless you enable scroll) (This includes color/formating codes)
 # The group setting will always go to default if the players group isn't found.(Scoreboards per group requires vault to be on the server)
 # The world setting will always go to global if the players world isn't found.
@@ -52,8 +52,8 @@
 # ==================================================================
 # Custom Variables are pretty simple, just follow this setup:
 # Custom Variables: 
-#  Variable: What it gets replaced to
-# but when you go to use them put <Variable>
+#  <Variable>: What it gets replaced to
+# (Also can be used to change "false" to "No")
 # ==================================================================
 # ==================================================================
 # For Disabled Worlds, Any worlds you want disabled put them here!  
@@ -74,8 +74,8 @@
 # ==================================================================
 Check for Updates: true
 Custom Variables:
-  website: www.youtube.com/user/sniperzciinema
-  plugindev: SniperzCiinema
+  <website>: www.youtube.com/user/sniperzciinema
+  <plugindev>: SniperzCiinema
 
 Disabled Worlds:
 - DisabledWorld1

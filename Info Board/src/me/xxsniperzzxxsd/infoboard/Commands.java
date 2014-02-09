@@ -1,6 +1,8 @@
 
 package me.xxsniperzzxxsd.infoboard;
 
+import me.xxsniperzzxxsd.infoboard.Scoreboard.Create;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -12,9 +14,9 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 public class Commands implements CommandExecutor {
 
-	Main plugin;
+	InfoBoard plugin;
 
-	public Commands(Main plugin)
+	public Commands(InfoBoard plugin)
 	{
 		this.plugin = plugin;
 	}
@@ -33,7 +35,7 @@ public class Commands implements CommandExecutor {
 						sender.sendMessage(plugin.ib + "Invalid Permissions.");
 						return true;
 					}
-					ScoreBoard.hidefrom.add(sender.getName());
+					InfoBoard.hidefrom.add(sender.getName());
 					sender.sendMessage("");
 					sender.sendMessage(plugin.ib + "Hiding Info Board.");
 					((Player) sender).getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
@@ -45,7 +47,7 @@ public class Commands implements CommandExecutor {
 						sender.sendMessage(plugin.ib + "Invalid Permissions.");
 						return true;
 					}
-					ScoreBoard.hidefrom.remove(sender.getName());
+					InfoBoard.hidefrom.remove(sender.getName());
 					sender.sendMessage("");
 					sender.sendMessage(plugin.ib + "Showing Info Board.");
 				} else if (args[0].equalsIgnoreCase("Set"))
@@ -62,13 +64,14 @@ public class Commands implements CommandExecutor {
 						if (plugin.getConfig().getString("Info Board." + rotate + ".global.default.Title") != null)
 						{
 
-							plugin.ScoreBoard.rotation = Integer.valueOf(rotate);
+							InfoBoard.rotation = Integer.valueOf(rotate);
 							sender.sendMessage("");
 							sender.sendMessage(plugin.ib + "Rotation set to: " + args[1]);
 							plugin.timer = 0;
 							plugin.total = plugin.getConfig().getInt("Info Board." + args[1] + ".Show Time");
 							for (Player p : Bukkit.getOnlinePlayers())
-								plugin.ScoreBoard.createScoreBoard(p);
+								if (p.hasPermission("InfoBoard.View"))
+									Create.createScoreBoard(p);
 						} else
 						{
 							sender.sendMessage("");
@@ -89,8 +92,12 @@ public class Commands implements CommandExecutor {
 						plugin.reloadConfig();
 						for (Player player : Bukkit.getOnlinePlayers())
 						{
-							player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-							plugin.ScoreBoard.createScoreBoard(player);
+
+							if (player.hasPermission("InfoBoard.View"))
+							{
+								player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+								Create.createScoreBoard(player);
+							}
 						}
 					}
 				}

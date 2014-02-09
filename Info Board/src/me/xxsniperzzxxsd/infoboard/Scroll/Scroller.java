@@ -1,5 +1,5 @@
 
-package me.xxsniperzzxxsd.infoboard.Util.Scroll;
+package me.xxsniperzzxxsd.infoboard.Scroll;
 
 import me.xxsniperzzxxsd.infoboard.GetVariables;
 import me.xxsniperzzxxsd.infoboard.Util.RandomChatColor;

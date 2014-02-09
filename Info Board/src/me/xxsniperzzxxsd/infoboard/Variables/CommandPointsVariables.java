@@ -1,7 +1,7 @@
 
 package me.xxsniperzzxxsd.infoboard.Variables;
 
-import me.xxsniperzzxxsd.infoboard.Main;
+import me.xxsniperzzxxsd.infoboard.InfoBoard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ public class CommandPointsVariables {
 		if (newString.contains("<commandpoints>"))
 			try
 			{
-				newString = newString.replaceAll("<commandpoints>", String.valueOf(cp.getPoints(player.getName(), Main.me)));
+				newString = newString.replaceAll("<commandpoints>", String.valueOf(cp.getPoints(player.getName(), InfoBoard.me)));
 			} catch (Exception e)
 			{
 				newString = newString.replaceAll("<commandpoints>", "0");

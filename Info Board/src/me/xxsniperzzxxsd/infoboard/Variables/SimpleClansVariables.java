@@ -16,10 +16,10 @@ public class SimpleClansVariables {
 		String newString = string;
 
 		ClanManager cm = ((SimpleClans) Bukkit.getPluginManager().getPlugin("SimpleClans")).getClanManager();
-		
+
 		ClanPlayer cp = cm.getClanPlayer(player);
-		
-		if(cp == null)
+
+		if (cp == null)
 			cp = cm.getCreateClanPlayer(player.getName());
 
 		if (newString.contains("<simpleclanskills>"))
@@ -49,7 +49,7 @@ public class SimpleClansVariables {
 			if (newString.contains("<simpleclansclanbalance>"))
 				newString = newString.replaceAll("<simpleclansclanbalance>", String.valueOf(c == null ? 0 : c.getBalance()));
 			if (newString.contains("<simpleclansclanfounded>"))
-				newString = newString.replaceAll("<simpleclansclanfounded>", String.valueOf(c == null ? 0 :c.getFounded()));
+				newString = newString.replaceAll("<simpleclansclanfounded>", String.valueOf(c == null ? 0 : c.getFounded()));
 			if (newString.contains("<simpleclansclansize>"))
 				newString = newString.replaceAll("<simpleclansclansize>", String.valueOf(c == null ? 0 : c.getSize()));
 			if (newString.contains("<simpleclansclankdr>"))

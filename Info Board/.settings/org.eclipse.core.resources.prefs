@@ -1,8 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/me/xxsniperzzxxsd/infoboard/Commands.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/GetVariables.java=UTF-8
-encoding//src/me/xxsniperzzxxsd/infoboard/Main.java=UTF-8
-encoding//src/me/xxsniperzzxxsd/infoboard/ScoreBoard.java=UTF-8
+encoding//src/me/xxsniperzzxxsd/infoboard/InfoBoard.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/ALTVariables.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/AncientRPGVariables.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/CommandPointsVariables.java=UTF-8
@@ -17,6 +16,7 @@ encoding//src/me/xxsniperzzxxsd/infoboard/Variables/McTownsVariables.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/MiniGamesVariables.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/MultiverseVariables.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/PVPArenaVariables.java=UTF-8
+encoding//src/me/xxsniperzzxxsd/infoboard/Variables/PVPStatsVariables.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/PlayerPointsVariables.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/PlayerVariables.java=UTF-8
 encoding//src/me/xxsniperzzxxsd/infoboard/Variables/PlotMeVariables.java=UTF-8
