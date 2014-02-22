@@ -21,6 +21,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ServerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.SimpleClansVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.SkillzVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.StatsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.TownyVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.VaultVariables;
@@ -153,6 +154,11 @@ public class GetVariables {
 		{
 			if (newString.contains("<simpleclans"))
 				newString = SimpleClansVariables.replaceVariables(newString, player);
+		}
+		if(Bukkit.getServer().getPluginManager().getPlugin("Skillz") != null){
+			if (newString.contains("<skillz"))
+				newString = SkillzVariables.replaceVariables(newString, player);
+			
 		}
 		// WorldGuard Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard") != null)

@@ -45,6 +45,7 @@ public class InfoBoard extends JavaPlugin {
 
 	public void onEnable() {
 		me = this;
+		ScrollText = new ScrollText();
 		try
 		{
 			Metrics metrics = new Metrics(this);

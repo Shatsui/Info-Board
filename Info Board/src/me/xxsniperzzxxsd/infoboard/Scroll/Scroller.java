@@ -21,7 +21,7 @@ public class Scroller {
 	public Scroller(Player player, String message)
 	{
 		this.player = player;
-		String string = message;
+		String string = message + "       " + message + "       " + message;
 		lastMessage = null;
 		string = string.replaceAll("&x", RandomChatColor.getColor().toString());
 		string = string.replaceAll("&y", RandomChatColor.getFormat().toString());
@@ -62,6 +62,13 @@ public class Scroller {
 		try
 		{
 			newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
+
+			if (position != 0 && newLine.equals(color + origional.substring(0 + color.length(), Math.min(origional.length(), 16))))
+			{
+				position = 0;
+				holded = 0;
+				newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
+			}
 
 			@SuppressWarnings("unused")
 			char t = newLine.charAt(0);

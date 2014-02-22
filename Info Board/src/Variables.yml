@@ -166,6 +166,18 @@
 # #
 # ######################################################
 # +--------------------------------------------------+ #
+# |               GriefPrevention                    | #
+# |  dev.bukkit.org/bukkit-plugins/grief-prevention/ | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <griefpreventionclaims>         | The player's claims| I
+# <griefpreventionbonusclaims>    | The player's bonus claims| I
+# <griefpreventionaccruedclaims>  | The player's accrued claims| I
+# <griefpreventionremainingclaims>| The player's remaining claims| I
+# <griefpreventionspamcount>      | The player's spam count| I
+# #
+# ######################################################
+# +--------------------------------------------------+ #
 # |                      Heroes                      | #
 # |   http://dev.bukkit.org/bukkit-plugins/heroes/   | #
 # +--------------------------------------------------+ #
@@ -414,6 +426,23 @@
 # #
 # ######################################################
 # +--------------------------------------------------+ #
+# |                      Skillz                      | #
+# |   http://dev.bukkit.org/bukkit-plugins/skillz/   | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <skillzacrobatics>     | The player's Acrobatics level | I
+# <skillzarchery>        | The player's Archery level | I
+# <skillzaxescombat>     | The player's Axes level | I
+# <skillzdigging>        | The player's Digging level | I
+# <skillzfarming>        | The player's Farming level | I
+# <skillzmining>         | The player's Mining level | I
+# <skillzswimming>       | The player's Swimming level | I
+# <skillzswordscombat>   | The player's Swords Combat level | I
+# <skillzunarmedcombat>  | The player's Unarmed Combat level | I
+# <skillzwoodcutting>    | The player's Woodcutting level | I
+# #
+# ######################################################
+# +--------------------------------------------------+ #
 # |                       Stats                      | #
 # |http://dev.bukkit.org/bukkit-plugins/lolmewnstats/| #
 # +--------------------------------------------------+ #
@@ -432,20 +461,20 @@
 # <statstoolsbroken>| The player's total tools broken | I
 # <statseggs>       | The player's total eggs thrown | I
 # <statsitemscrafted>| The player's total items crafted | I
-# <statsate>       | The player's total times eating | I
-# <statsonfire>    | The player's total time on fire | I
-# <statswords>     | The player's total words said | I
-# <statscommands>  | The player's total commands done | I
-# <statsvotes>     | The player's total time voted(Uses Votifier) | I
+# <statsate>         | The player's total times eating | I
+# <statsonfire>      | The player's total time on fire | I
+# <statswords>       | The player's total words said | I
+# <statscommands>    | The player's total commands done | I
+# <statsvotes>       | The player's total time voted(Uses Votifier) | I
 # <statsworldchanged>| The player's total times changing worlds | I
 # <statsbucketfill>  | The player's total buckets filled | I
 # <statsbucketsempty>| The player's total buckets emptied | I
 # <statsbedenter>   | The player's total times entering a bed | I
 # <statsitemdrops>  | The player's total items droped | I
 # <statsitempickups>| The player's total items picked up | I
-# <statsteleports> | The player's total times teleported | I
-# <statsshear>     | The player's total times shearing something | I
-# <statsxpgained>  | The player's total xp gained | I
+# <statsteleports>  | The player's total times teleported | I
+# <statsshear>      | The player's total times shearing something | I
+# <statsxpgained>   | The player's total xp gained | I
 # #
 # ######################################################
 # +--------------------------------------------------+ #
