@@ -8,6 +8,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.CommandPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.CrankedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.EssentialsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.FactionsVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.GriefPreventionVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.HeroesVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.InfectedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.JobsVariables;
@@ -15,6 +16,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.LWCVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.McTownsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.MiniGamesVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.MultiverseVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.OnTimeVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PVPArenaVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
@@ -101,6 +103,12 @@ public class GetVariables {
 			if (newString.contains("<factions"))
 				newString = FactionsVariables.replaceVariables(newString, player);
 		}
+		// GriefPrevention Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("GriefPrevention") != null)
+		{
+			if (newString.contains("<griefprevention"))
+				newString = GriefPreventionVariables.replaceVariables(newString, player);
+		}
 		// Heroes Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Heroes") != null)
 		{
@@ -149,12 +157,14 @@ public class GetVariables {
 			if (newString.contains("<stats"))
 				newString = StatsVariables.replaceVariables(newString, player);
 		}
+		
 		// SimpleClans Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("SimpleClans") != null)
 		{
 			if (newString.contains("<simpleclans"))
 				newString = SimpleClansVariables.replaceVariables(newString, player);
 		}
+		
 		if(Bukkit.getServer().getPluginManager().getPlugin("Skillz") != null){
 			if (newString.contains("<skillz"))
 				newString = SkillzVariables.replaceVariables(newString, player);
@@ -177,6 +187,12 @@ public class GetVariables {
 		{
 			if (newString.contains("<multiverse"))
 				newString = MultiverseVariables.replaceVariables(newString, player);
+		}
+		// OnTime Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("OnTime") != null)
+		{
+			if (newString.contains("<ontime"))
+				newString = OnTimeVariables.replaceVariables(newString, player);
 		}
 		// UTF-8
 		newString = ALTVariables.replaceVariables(newString);

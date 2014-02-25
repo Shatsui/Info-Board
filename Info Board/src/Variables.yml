@@ -336,6 +336,23 @@
 # #
 # ######################################################
 # +--------------------------------------------------+ #
+# |                     OnTime                       | #
+# |      dev.bukkit.org/bukkit-plugins/ontime/       | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <ontimetotalplay>    | The player's total play time | I
+# <ontimetotalvote>    | The player's total votes | I
+# <ontimetotalrefers>  | The player's total refers | I
+# <ontimetotalpoint>   | The player's total points | I
+# <ontimemonthplay>    | The player's month play time | I
+# <ontimemonthvote>    | The player's month votes | I
+# <ontimemonthrefers>  | The player's month refers | I
+# <ontimetodayplay>    | The player's today play time | I
+# <ontimetodayvote>    | The player's today votes | I
+# <ontimetodayrefers>  | The player's today refers | I
+# #
+# ######################################################
+# +--------------------------------------------------+ #
 # |                    PlayerPoints                  | #
 # |http://dev.bukkit.org/bukkit-plugins/playerpoints/| #
 # +--------------------------------------------------+ #
