@@ -1,6 +1,6 @@
-name: Info Board
+name: Info-Board
 main: me.xxsniperzzxxsd.infoboard.InfoBoard
-version: 0.2.0
+version: 0.2.1
 author: SniperzCiinema
 description: Show an info board
 softdepend: [Cranked, Essentials, Factions, Heroes, Infected, Jobs, LWC, mcMMO, McTowns, MiniGames, Multiverse-Core, PlayerPoints, PlotMe, PVPArena, SimpleClans, Stats, Towny, WorldGuard, AncientRPG]
@@ -9,7 +9,7 @@ commands:
     InfoBoard:
         usage: /<command>
         description: The main command for this plugin
-        aliases: [IB]
+        aliases: [ib, iboard, infob]
         
 permissions:
     InfoBoard.*:

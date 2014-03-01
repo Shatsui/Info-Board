@@ -1,3 +1,4 @@
+
 package me.xxsniperzzxxsd.infoboard.Variables;
 
 import nl.lolmen.API.SkillzAPI;
@@ -7,10 +8,11 @@ import org.bukkit.entity.Player;
 
 
 public class SkillzVariables {
+
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		SkillzAPI api = Skillz.api;
-		
+
 		if (newString.contains("<skillzacrobatics>"))
 			newString = newString.replaceAll("<skillzacrobatics>", String.valueOf(api.getLevel(player, "Acrobatics")));
 		if (newString.contains("<skillzarchery>"))
@@ -31,7 +33,7 @@ public class SkillzVariables {
 			newString = newString.replaceAll("<skillzunarmedcombat>", String.valueOf(api.getLevel(player, "Unarmed Combat")));
 		if (newString.contains("<skillzwoodcutting>"))
 			newString = newString.replaceAll("<skillzwoodcutting>", String.valueOf(api.getLevel(player, "Woodcutting")));
-		
+
 		return newString;
 	}
 }

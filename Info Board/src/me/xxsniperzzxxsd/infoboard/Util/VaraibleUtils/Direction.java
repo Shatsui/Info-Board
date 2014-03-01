@@ -7,39 +7,25 @@ import org.bukkit.entity.Player;
 public class Direction {
 
 	public static String getCardinalDirection(Player player) {
-		double rotation = player.getLocation().getYaw() + 360.0;
-
-		System.out.println(rotation);
-		if (0 <= rotation && rotation < 22.5)
-		{
-			return "South";
-		} else if (22.5 <= rotation && rotation < 67.5)
-		{
-			return "SouthWest";
-		} else if (67.5 <= rotation && rotation < 112.5)
-		{
-			return "West";
-		} else if (112.5 <= rotation && rotation < 157.5)
-		{
-			return "NorthWest";
-		} else if (157.5 <= rotation && rotation < 202.5)
-		{
+		int degrees = (Math.round(player.getLocation().getYaw()) + 270) % 360;
+		if (degrees <= 22)
 			return "North";
-		} else if (202.5 <= rotation && rotation < 247.5)
-		{
-			return "NorthEast";
-		} else if (247.5 <= rotation && rotation < 292.5)
-		{
+		if (degrees <= 67)
+			return "Northeast";
+		if (degrees <= 112)
 			return "East";
-		} else if (292.5 <= rotation && rotation < 337.5)
-		{
-			return "SouthEast";
-		} else if (337.5 <= rotation && rotation < 360.0)
-		{
+		if (degrees <= 157)
+			return "Southeast";
+		if (degrees <= 202)
 			return "South";
-		} else
-		{
-			return null;
-		}
+		if (degrees <= 247)
+			return "Southwest";
+		if (degrees <= 292)
+			return "West";
+		if (degrees <= 337)
+			return "Northwest";
+		if (degrees <= 359)
+			return "North";
+		return null;
 	}
 }

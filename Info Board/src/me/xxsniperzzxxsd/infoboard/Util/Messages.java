@@ -1,3 +1,4 @@
+
 package me.xxsniperzzxxsd.infoboard.Util;
 
 import me.xxsniperzzxxsd.infoboard.GetVariables;

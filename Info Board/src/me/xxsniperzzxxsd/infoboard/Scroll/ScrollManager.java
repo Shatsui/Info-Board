@@ -12,8 +12,8 @@ public class ScrollManager {
 
 	private static HashMap<Player, ArrayList<Scroller>> scrollers = new HashMap<Player, ArrayList<Scroller>>();
 	private static HashMap<Player, Scroller> title = new HashMap<Player, Scroller>();
-	
-	private ScrollText ScrollText= new ScrollText();
+
+	private ScrollText ScrollText = new ScrollText();
 
 	public static Scroller createScroller(Player p, String message) {
 		Scroller sc = new Scroller(p, message);
@@ -61,7 +61,8 @@ public class ScrollManager {
 	}
 
 	/**
-	 * @param scrollText the scrollText to set
+	 * @param scrollText
+	 *            the scrollText to set
 	 */
 	public void setScrollText(ScrollText scrollText) {
 		ScrollText = scrollText;

@@ -20,30 +20,28 @@ public class Files {
 	public static File variableFile = null;
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
 
 	public static FileConfiguration getConfig() {
 		return InfoBoard.me.getConfig();
 	}
 
 	public static void saveConfig() {
-		 InfoBoard.me.saveConfig();
+		InfoBoard.me.saveConfig();
 	}
 
 	public static void reloadConfig() {
-		 InfoBoard.me.reloadConfig();
+		InfoBoard.me.reloadConfig();
 	}
-
 
 	// Reload Variables File
 	public static void reloadVariables() {
 		if (variableFile == null)
 			variableFile = new File(
-					Bukkit.getPluginManager().getPlugin("Info Board").getDataFolder(),
+					Bukkit.getPluginManager().getPlugin("Info-Board").getDataFolder(),
 					"Variables.yml");
 		variableF = YamlConfiguration.loadConfiguration(variableFile);
 		// Look for defaults in the jar
-		InputStream defConfigStream = Bukkit.getPluginManager().getPlugin("Info Board").getResource("Variables.yml");
+		InputStream defConfigStream = Bukkit.getPluginManager().getPlugin("Info-Board").getResource("Variables.yml");
 		if (defConfigStream != null)
 		{
 			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);

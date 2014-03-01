@@ -10,6 +10,7 @@ import me.xxsniperzzxxsd.infoboard.Scroll.ScrollManager;
 import me.xxsniperzzxxsd.infoboard.Scroll.Scroller;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Messages;
+import me.xxsniperzzxxsd.infoboard.Util.Settings;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -31,7 +32,7 @@ public class Update {
 
 		// Lets make sure the player is supposed to see the scoreboard before we
 		// do anything to them
-		if (!Files.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && !InfoBoard.hidefrom.contains(player.getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
+		if (!Settings.isWorldDisabled(player.getWorld().getName()) && !InfoBoard.hidefrom.contains(player.getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
 			if (!player.hasPermission("InfoBoard.View"))
 			{
@@ -74,7 +75,7 @@ public class Update {
 					}
 					// If the title of this scoreboard is blank, don't do
 					// anything
-					if (Files.getConfig().getString("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Title") == null)
+					if (Settings.isPageValid(InfoBoard.rotation, worldName, rankName))
 						return true;
 					// Instead of creating a new scoreboard, we just want to
 					// update

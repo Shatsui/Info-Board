@@ -3,6 +3,7 @@ package me.xxsniperzzxxsd.infoboard.Variables;
 
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
+
 import org.bukkit.entity.Player;
 
 

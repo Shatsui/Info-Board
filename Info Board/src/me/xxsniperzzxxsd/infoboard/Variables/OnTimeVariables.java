@@ -12,7 +12,7 @@ public class OnTimeVariables {
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 
-		//TOTAL
+		// TOTAL
 		if (newString.contains("<ontimetotalplay>"))
 			newString = newString.replaceAll("<ontimetotalplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALPLAY)));
 		if (newString.contains("<ontimetotalvote>"))
@@ -22,15 +22,15 @@ public class OnTimeVariables {
 		if (newString.contains("<ontimetotalpoint>"))
 			newString = newString.replaceAll("<ontimetotalpoint>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALPOINT)));
 
-		//MONTH
+		// MONTH
 		if (newString.contains("<ontimemonthplay>"))
 			newString = newString.replaceAll("<ontimemonthplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.MONTHPLAY)));
 		if (newString.contains("<ontimemonthvote>"))
 			newString = newString.replaceAll("<ontimemonthvote>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALVOTE)));
 		if (newString.contains("<ontimemonthrefer>"))
 			newString = newString.replaceAll("<ontimemonthrefer>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.MONTHREFER)));
-		
-		//TODAY
+
+		// TODAY
 		if (newString.contains("<ontimetodayplay>"))
 			newString = newString.replaceAll("<ontimetodayplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TODAYPLAY)));
 		if (newString.contains("<ontimetodayvote>"))

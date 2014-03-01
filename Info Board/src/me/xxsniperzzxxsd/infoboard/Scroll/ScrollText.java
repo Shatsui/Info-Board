@@ -53,13 +53,18 @@ public class ScrollText {
 
 				}
 			}
-			if (ScrollManager.getTitleScroller(player) != null)
+			try
 			{
-				Scroller sc = ScrollManager.getTitleScroller(player);
-				sc.scroll();
-				Objective infoObjective = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR);
+				if (ScrollManager.getTitleScroller(player) != null)
+				{
+					Scroller sc = ScrollManager.getTitleScroller(player);
+					sc.scroll();
+					Objective infoObjective = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR);
 
-				infoObjective.setDisplayName(sc.getScrolled());
+					infoObjective.setDisplayName(sc.getScrolled());
+				}
+			} catch (NullPointerException e)
+			{
 			}
 		} else
 			ScrollManager.reset(player);

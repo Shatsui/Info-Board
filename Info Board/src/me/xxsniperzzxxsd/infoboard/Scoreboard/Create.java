@@ -28,7 +28,7 @@ public class Create {
 
 		// Before we make the scoreboard lets make sure the player is okay to
 		// see it
-		if (player.hasPermission("InfoBoard.View") && !InfoBoard.hidefrom.contains(player.getName()) && !Files.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
+		if (!Settings.isWorldDisabled(player.getWorld().getName()) && player.hasPermission("InfoBoard.View") && !InfoBoard.hidefrom.contains(player.getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
 
 			// Does the config contain a scoreboard meant for the world the

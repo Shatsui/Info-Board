@@ -32,7 +32,6 @@ public class InfoBoard extends JavaPlugin {
 
 	public String ib = "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
 
-
 	public static Economy economy;
 	public static Permission permission;
 

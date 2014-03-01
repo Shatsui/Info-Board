@@ -157,18 +157,19 @@ public class GetVariables {
 			if (newString.contains("<stats"))
 				newString = StatsVariables.replaceVariables(newString, player);
 		}
-		
+
 		// SimpleClans Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("SimpleClans") != null)
 		{
 			if (newString.contains("<simpleclans"))
 				newString = SimpleClansVariables.replaceVariables(newString, player);
 		}
-		
-		if(Bukkit.getServer().getPluginManager().getPlugin("Skillz") != null){
+
+		if (Bukkit.getServer().getPluginManager().getPlugin("Skillz") != null)
+		{
 			if (newString.contains("<skillz"))
 				newString = SkillzVariables.replaceVariables(newString, player);
-			
+
 		}
 		// WorldGuard Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard") != null)
