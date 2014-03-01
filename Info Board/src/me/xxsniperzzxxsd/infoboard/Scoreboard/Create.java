@@ -1,5 +1,6 @@
-
 package me.xxsniperzzxxsd.infoboard.Scoreboard;
+
+
 
 import java.util.List;
 
