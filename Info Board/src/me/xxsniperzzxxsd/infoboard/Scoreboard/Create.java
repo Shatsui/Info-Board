@@ -42,7 +42,7 @@ public class Create {
 			}
 			// Is there vault on the server? If so lets make sure it has a
 			// permissions plugin ready
-			if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && InfoBoard.permission != null)
+			if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && InfoBoard.permission != null && InfoBoard.permissionB)
 				try
 				{
 					// We'll try getting the players group

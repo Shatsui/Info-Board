@@ -10,7 +10,7 @@ public class VaultVariables {
 
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-		if (InfoBoard.economy != null)
+		if (InfoBoard.economy != null && InfoBoard.economyB)
 		{
 			if (newString.contains("<money>"))
 				newString = newString.replaceAll("<money>", String.valueOf((int) InfoBoard.economy.getBalance(player.getName())));

@@ -34,6 +34,8 @@ public class InfoBoard extends JavaPlugin {
 
 	public static Economy economy;
 	public static Permission permission;
+	public static boolean economyB;
+	public static boolean permissionB;
 
 	public ScrollText ScrollText;
 	public static ArrayList<String> hidefrom = new ArrayList<String>();
@@ -170,6 +172,9 @@ public class InfoBoard extends JavaPlugin {
 		{
 			permission = permissionProvider.getProvider();
 		}
+		if (permission != null)
+			permissionB = true;
+
 		return (permission != null);
 	}
 
@@ -179,6 +184,8 @@ public class InfoBoard extends JavaPlugin {
 		{
 			economy = economyProvider.getProvider();
 		}
+		if (economy != null)
+			economyB = true;
 
 		return (economy != null);
 	}

@@ -56,7 +56,7 @@ public class Update {
 
 					// If vault is on this server and permissions for vault were
 					// found, we'll try looking for their group
-					if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && InfoBoard.permission != null)
+					if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && InfoBoard.permission != null & InfoBoard.permissionB)
 					{
 						try
 						{
