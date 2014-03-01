@@ -24,7 +24,7 @@ public class PlayerListener implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if (event.getPlayer().isOp() && plugin.update)
+		if ((event.getPlayer().isOp() || (InfoBoard.permissionB && InfoBoard.permission.has(event.getPlayer(), "*"))) && plugin.update )
 		{
 			System.out.println("Theres a new update for InfoBoard(v" + plugin.name + ").");
 		}
