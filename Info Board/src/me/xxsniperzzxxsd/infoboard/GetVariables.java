@@ -18,6 +18,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.MiniGamesVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.MultiverseVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.OnTimeVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PVPArenaVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.PVPStatsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
@@ -138,6 +139,12 @@ public class GetVariables {
 		{
 			if (newString.contains("<playerpoints"))
 				newString = PlayerPointsVariables.replaceVariables(newString, player);
+		}
+		// PlayerPoints Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("pvpstats") != null)
+		{
+			if (newString.contains("<pvpstats"))
+				newString = PVPStatsVariables.replaceVariables(newString, player);
 		}
 		// PlotMe Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PlotMe") != null)
