@@ -1,6 +1,5 @@
+
 package me.xxsniperzzxxsd.infoboard.Scoreboard;
-
-
 
 import java.util.List;
 
@@ -132,7 +131,7 @@ public class Create {
 							{
 								set = true;
 							}
-							line = line.replaceAll("~!<" + l + ">", "");
+							line = line.replaceAll("~@<" + l + ">", "");
 						}
 						// Now for the scrolling lines
 						if (line.startsWith("<scroll>"))

@@ -3,6 +3,7 @@ package me.xxsniperzzxxsd.infoboard.Variables;
 
 import me.edge209.OnTime.DataIO;
 import me.edge209.OnTime.OnTimeAPI.data;
+import me.xxsniperzzxxsd.infoboard.Util.Time;
 
 import org.bukkit.entity.Player;
 
@@ -15,6 +16,8 @@ public class OnTimeVariables {
 		// TOTAL
 		if (newString.contains("<ontimetotalplay>"))
 			newString = newString.replaceAll("<ontimetotalplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALPLAY)));
+		if (newString.contains("<ontimetotalplayformated>"))
+			newString = newString.replaceAll("<ontimetotalplayformated>", String.valueOf(Time.getFormatTime(DataIO.getPlayerTimeData(player.getName(), data.TOTALPLAY))));
 		if (newString.contains("<ontimetotalvote>"))
 			newString = newString.replaceAll("<ontimetotalvote>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALVOTE)));
 		if (newString.contains("<ontimetotalrefer>"))
@@ -25,6 +28,8 @@ public class OnTimeVariables {
 		// MONTH
 		if (newString.contains("<ontimemonthplay>"))
 			newString = newString.replaceAll("<ontimemonthplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.MONTHPLAY)));
+		if (newString.contains("<ontimemonthplayformated>"))
+			newString = newString.replaceAll("<ontimemonthplayformated>", String.valueOf(Time.getFormatTime(DataIO.getPlayerTimeData(player.getName(), data.MONTHPLAY))));
 		if (newString.contains("<ontimemonthvote>"))
 			newString = newString.replaceAll("<ontimemonthvote>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALVOTE)));
 		if (newString.contains("<ontimemonthrefer>"))
@@ -33,6 +38,8 @@ public class OnTimeVariables {
 		// TODAY
 		if (newString.contains("<ontimetodayplay>"))
 			newString = newString.replaceAll("<ontimetodayplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TODAYPLAY)));
+		if (newString.contains("<ontimetodayplayformated>"))
+			newString = newString.replaceAll("<ontimetodayplayformated>", String.valueOf(Time.getFormatTime(DataIO.getPlayerTimeData(player.getName(), data.TODAYPLAY))));
 		if (newString.contains("<ontimetodayvote>"))
 			newString = newString.replaceAll("<ontimetodayvote>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TODAYVOTE)));
 		if (newString.contains("<ontimetodayrefer>"))

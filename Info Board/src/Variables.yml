@@ -63,6 +63,10 @@
 # <tps>              | Server TPS         | I
 # <motd>             | Servers MOTD       | S
 # <servername>       | The servers name   | S
+# <usedram>          | The server's used ram | I
+# <freeram>          | The server's free ram | I
+# <maxram>           | The server's max ram  | I
+# <availableprocessors>| The server's available processors | I
 # #
 # ################################################
 # +--------------------------------------------+ #
@@ -341,13 +345,16 @@
 # +--------------------------------------------------+ #
 # ######################################################
 # <ontimetotalplay>    | The player's total play time | I
+# <ontimetotalplayformated>| The player's total play time(Formated) | S
 # <ontimetotalvote>    | The player's total votes | I
 # <ontimetotalrefers>  | The player's total refers | I
 # <ontimetotalpoint>   | The player's total points | I
 # <ontimemonthplay>    | The player's month play time | I
+# <ontimemonthplayformated>| The player's month play time(Formated) | S
 # <ontimemonthvote>    | The player's month votes | I
 # <ontimemonthrefers>  | The player's month refers | I
 # <ontimetodayplay>    | The player's today play time | I
+# <ontimetodayplayformated>| The player's today play time(Formated) | S
 # <ontimetodayvote>    | The player's today votes | I
 # <ontimetodayrefers>  | The player's today refers | I
 # #
@@ -469,6 +476,7 @@
 # <statsplaced%>    | The player's total block places of a block with the id of %(Replace % With either a block id or "all") | I
 # <statsbroken%>    | The player's total block broken of a block with the id of %(Replace % With either a block id or "all") | I
 # <statstime>       | The player's total playtime | I
+# <statstimeformated>| The player's total playtime(Formated) | S
 # <statsmove>       | The player's total movements | I
 # <statsarrows>     | The player's total shot arrows | I
 # <statsjoins>      | The player's total joins | I

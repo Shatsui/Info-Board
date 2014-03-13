@@ -1,6 +1,7 @@
 
 package me.xxsniperzzxxsd.infoboard.Variables;
 
+import me.xxsniperzzxxsd.infoboard.Util.Time;
 import nl.lolmewn.stats.api.StatsAPI;
 import nl.lolmewn.stats.player.StatData;
 
@@ -29,6 +30,19 @@ public class StatsVariables {
 				value += stat.getValue(vars);
 
 			newString = newString.replaceAll("<statstime>", String.valueOf(value));
+		}
+		if (newString.contains("<statstimeformated>"))
+		{
+			StatData stat;
+
+			int value = 0;
+
+			stat = getStatsData(name, player.getWorld(), "Playtime");
+
+			for (final Object[] vars : stat.getAllVariables())
+				value += stat.getValue(vars);
+
+			newString = newString.replaceAll("<statstime>", String.valueOf(Time.getFormatTime((long)value)));
 		}
 		if (newString.contains("<statsmoves>"))
 		{

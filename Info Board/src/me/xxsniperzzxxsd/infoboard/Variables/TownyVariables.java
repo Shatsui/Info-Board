@@ -13,14 +13,14 @@ public class TownyVariables {
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 
-		if (newString.contains("<townytown>"))
+		if (newString.contains("<townyname>"))
 		{
 			try
 			{
-				newString = newString.replaceAll("<townytown>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getName()));
+				newString = newString.replaceAll("<townyname>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getName()));
 			} catch (NotRegisteredException e)
 			{
-				newString = newString.replaceAll("<townytown>", "Unknown");
+				newString = newString.replaceAll("<townyname>", "Unknown");
 			}
 		}
 

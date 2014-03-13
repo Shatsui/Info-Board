@@ -22,6 +22,14 @@ public class ServerVariables {
 			newString = newString.replaceAll("<servername>", String.valueOf(Bukkit.getServerName()));
 		if (newString.contains("<tps>"))
 			newString = newString.replaceAll("<tps>", String.valueOf(Math.round(tps * 100.0D) / 100.0D));
+		if (newString.contains("<freeram>"))
+			newString = newString.replaceAll("<freeram>", String.valueOf((Runtime.getRuntime().freeMemory() / 1024) / 1024));
+		if (newString.contains("<maxram>"))
+			newString = newString.replaceAll("<maxram>", String.valueOf((Runtime.getRuntime().maxMemory() / 1024) / 1024));
+		if (newString.contains("<usedram>"))
+			newString = newString.replaceAll("<usedram>", String.valueOf(((Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory()) / 1024) / 1024));
+		if (newString.contains("<availableprocessors>"))
+			newString = newString.replaceAll("<availableprocessors>", String.valueOf(Runtime.getRuntime().availableProcessors()));
 		if (newString.contains("<peoplewith"))
 		{
 			String perm = newString.split("<peoplewith")[1].split(">")[0];
