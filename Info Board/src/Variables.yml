@@ -387,6 +387,17 @@
 # <plotmefinished#>  | Is the plots finished (Replace # with a number [1 and up]) | B
 # <plotmeforsale#>   | Is the plot for sale (Replace # with a number [1 and up]) | B
 # #
+# #
+# ######################################################
+# +--------------------------------------------------+ #
+# |                   PrisonRankup                   | #
+# |http://dev.bukkit.org/bukkit-plugins/prisonrankup/| #
+# +--------------------------------------------------+ #
+# ######################################################
+# <prisonrankuprank>      | Your Rank | S
+# <prisonrankupnextrank>  | Your Next Rank | S
+# <prisonrankuprankprice> | Your Next Rank's Price | I
+# #
 # ######################################################
 # +--------------------------------------------------+ #
 # |                      PvpArena                    | #

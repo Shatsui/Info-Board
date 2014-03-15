@@ -141,7 +141,7 @@ public class InfoBoard extends JavaPlugin {
 					if (p.hasPermission("InfoBoard.View"))
 						Update.updateScoreBoard(p);
 			}
-		}, 0, (long) (getConfig().getDouble("Update Time") * 20));
+		}, 0, (long) getConfig().getDouble("Update Time") * 20);
 
 		if (getConfig().getBoolean("Scrolling Text.Enable"))
 		{

@@ -75,7 +75,7 @@ public class Update {
 					}
 					// If the title of this scoreboard is blank, don't do
 					// anything
-					if (Settings.isPageValid(InfoBoard.rotation, worldName, rankName))
+					if (!Settings.isPageValid(InfoBoard.rotation, worldName, rankName))
 						return true;
 					// Instead of creating a new scoreboard, we just want to
 					// update

@@ -4,6 +4,7 @@ package me.xxsniperzzxxsd.infoboard;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Messages;
 import me.xxsniperzzxxsd.infoboard.Variables.ALTVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.AncientRPGVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.CommandPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.CrankedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.EssentialsVariables;
@@ -22,6 +23,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.PVPStatsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.PrisionRankupVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ServerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.SimpleClansVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.SkillzVariables;
@@ -64,7 +66,7 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("AncientRPG") != null)
 		{
 			if (newString.contains("<ancientrpg"))
-				newString = EssentialsVariables.replaceVariables(newString, player);
+				newString = AncientRPGVariables.replaceVariables(newString, player);
 		}
 
 		// LWC Support
@@ -157,6 +159,13 @@ public class GetVariables {
 		{
 			if (newString.contains("<pvparena"))
 				newString = PVPArenaVariables.replaceVariables(newString, player);
+
+		}
+		// PrisonRankup Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("PrisonRankup") != null)
+		{
+			if (newString.contains("<prisonrankup"))
+				newString = PrisionRankupVariables.replaceVariables(newString, player);
 		}
 		// Stats Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Stats") != null)
