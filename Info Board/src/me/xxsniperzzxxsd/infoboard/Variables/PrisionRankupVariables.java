@@ -11,7 +11,7 @@ public class PrisionRankupVariables {
 
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-			String prefix = "prisionrankup";
+			String prefix = "prisonrankup";
 			String name = player.getName();
 
 		if (newString.contains("<" + prefix + "rank>"))

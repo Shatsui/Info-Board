@@ -14,6 +14,9 @@ public class ServerVariables {
 		double tps = Lag.getTPS();
 
 		// Server Variables
+
+		if (newString.contains("<onlineplayers>"))
+			newString = newString.replaceAll("<onlineplayers>", String.valueOf(Bukkit.getOnlinePlayers().length));
 		if (newString.contains("<motd>"))
 			newString = newString.replaceAll("<motd>", String.valueOf(Bukkit.getMotd()));
 		if (newString.contains("<maxplayers>"))
