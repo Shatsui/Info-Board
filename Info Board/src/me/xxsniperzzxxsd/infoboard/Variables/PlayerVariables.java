@@ -25,7 +25,7 @@ public class PlayerVariables {
 		if (newString.contains("<hunger>"))
 			newString = newString.replaceAll("<hunger>", String.valueOf(player.getFoodLevel()));
 		if (newString.contains("<health>"))
-			newString = newString.replaceAll("<health>", String.valueOf((int) ((double) Math.round(player.getHealth() * 100.0D))));
+			newString = newString.replaceAll("<health>", String.valueOf((int) ((double) Math.round(player.getHealth() * 100.0D)/100)));
 		if (newString.contains("<maxhealth>"))
 			newString = newString.replaceAll("<maxhealth>", String.valueOf(player.getMaxHealth()));
 		if (newString.contains("<worldname>"))

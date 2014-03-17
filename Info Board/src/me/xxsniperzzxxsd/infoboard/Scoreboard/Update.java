@@ -11,6 +11,7 @@ import me.xxsniperzzxxsd.infoboard.Scroll.Scroller;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Messages;
 import me.xxsniperzzxxsd.infoboard.Util.Settings;
+import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.ShouldSet;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -156,76 +157,56 @@ public class Update {
 					// that line onto the scoreboard
 					for (String s : list)
 					{
-						String newLine = Messages.getLine(s, player);
-						if (!infoBoard.getPlayers().contains(Bukkit.getOfflinePlayer(newLine)))
+						String oldLine = Messages.getLine(s, player);
+						if (!infoBoard.getPlayers().contains(Bukkit.getOfflinePlayer(oldLine)))
 						{
 							// Refer to createScoreBoard(...) to see what all of
 							// this is doing
-							boolean set = true;
 							Score score = null;
 							String line = list.get(row);
+							boolean set = ShouldSet.test(line, player);
+							line = ShouldSet.getLine(line, player);
 
-							if (newLine.equalsIgnoreCase(" "))
-							{
-								String space = "&" + spaces;
-								spaces++;
-								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
-							} else
-							{
-								if (line.contains("~!"))
-								{
-									// If variable is Unknown or 0, dont show
-									String l = (line.split("<")[1]).split(">")[0];
-									String l1 = Messages.getLine("<" + l + ">", player);
-									if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
-									{
-										set = false;
-									}
-									line = line.replaceAll("~!<" + l + ">", "");
-								} else if (line.contains("~@"))
-								{
-									// If variable is Unknown or 0, do show
-									String l = (line.split("<")[1]).split(">")[0];
-									String l1 = Messages.getLine("<" + l + ">", player);
-									if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
-									{
-										set = true;
-									}
-									line = line.replaceAll("~!<" + l + ">", "");
-								}
-								if (line.contains("<split>"))
-								{
-									String a = line.split("<split>")[0];
-									String b = line.split("<split>")[1];
-
-									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-									try
-									{
-										value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-									} catch (NumberFormatException ne)
-									{
-										value = 0;
-									}
-								} else if (line.contains(";"))
-								{
-									String a = line.split(";")[0];
-									String b = line.split(";")[1];
-
-									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-									try
-									{
-										value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-									} catch (NumberFormatException ne)
-									{
-										value = 0;
-									}
-								} else
-								{
-									score = infoObjective.getScore(Bukkit.getOfflinePlayer(newLine));
-								}
-							}
 							if (set)
 							{
+								if (line.equalsIgnoreCase(" "))
+								{
+									String space = "&" + spaces;
+									spaces++;
+									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
+								} else
+								{
+									if (line.contains("<split>"))
+									{
+										String a = line.split("<split>")[0];
+										String b = line.split("<split>")[1];
+
+										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+										try
+										{
+											value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+										} catch (NumberFormatException ne)
+										{
+											value = 0;
+										}
+									} else if (line.contains(";"))
+									{
+										String a = line.split(";")[0];
+										String b = line.split(";")[1];
+
+										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+										try
+										{
+											value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+										} catch (NumberFormatException ne)
+										{
+											value = 0;
+										}
+									} else
+									{
+										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
+									}
+								}
 								if (value == -1)
 									value = list.size() - 1 - row;
 								if (!score.getPlayer().getName().startsWith("<scroll>"))
@@ -234,9 +215,10 @@ public class Update {
 									score.setScore(value);
 								}
 								value = -1;
+
+							row++;
 							}
 						}
-						row++;
 					}
 				}
 			}

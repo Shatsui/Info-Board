@@ -8,6 +8,7 @@ import me.xxsniperzzxxsd.infoboard.Scroll.ScrollManager;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Messages;
 import me.xxsniperzzxxsd.infoboard.Util.Settings;
+import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.ShouldSet;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -91,118 +92,101 @@ public class Create {
 				for (row = 0; row != Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows").size(); row++)
 				{
 					// Set the basics
-					boolean set = true;
 					Score score = null;
 					// Get the line from the list using the row
 					String line = list.get(row);
+					boolean set = ShouldSet.test(line, player);
+					line = ShouldSet.getLine(line, player);
 					// If the line is just a space, it means empty line, so
 					// we'll
 					// just set it as only a color code
-					if (line.equalsIgnoreCase(" "))
-					{
-						String space = "&" + spaces;
-						spaces++;
-						score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
-					} else
-					{
-						// If the line is more then just a space, we'll check
-						// the
-						// other variables
-						// ~! in front of a variable means it'll only show the
-						// line
-						// if the variable isn't "0" or "Unknown"
-						if (line.contains("~!"))
-						{
-							String l = (line.split("<")[1]).split(">")[0];
-							String l1 = Messages.getLine("<" + l + ">", player);
-							if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
-								set = false;
-
-							line = line.replaceAll("~!<" + l + ">", "");
-						}
-						// ~@ in front of a variable means it'll only show the
-						// line
-						// if the variable is "0" or "Unknown"
-						else if (line.contains("~@"))
-						{
-							String l = (line.split("<")[1]).split(">")[0];
-							String l1 = Messages.getLine("<" + l + ">", player);
-							if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0"))
-							{
-								set = true;
-							}
-							line = line.replaceAll("~@<" + l + ">", "");
-						}
-						// Now for the scrolling lines
-						if (line.startsWith("<scroll>"))
-						{
-							// Replace <scroll> with "" and create the scroll
-							// object, but first lets make sure they have scroll
-							// on,
-							// because if its not then that means the timer was
-							// never started
-							if (Files.getConfig().getBoolean("Scrolling Text.Enable"))
-							{
-								line = line.replaceAll("<scroll>", "");
-								line = ScrollManager.createScroller(player, line).getScrolled();
-							} else
-							{
-								// We'll just tell them to enable scroll before
-								// trying to use scroll
-
-								line = "Enable Scroll 1st";
-							}
-						}
-						// If the line contains <split> (They want to set their
-						// own
-						// score for the line
-						if (line.contains("<split>"))
-						{
-							// We'll split the line and the score, then set them
-							String a = line.split("<split>")[0];
-							String b = line.split("<split>")[1];
-
-							score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-							// Lets make sure it is a number first, if not we'll
-							// set
-							// it as 0
-							try
-							{
-								value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-							} catch (NumberFormatException ne)
-							{
-								value = 0;
-							}
-						}// If the line contains ; (Same thing as <split> but
-							// looks
-							// nicer in a config)
-						else if (line.contains(";"))
-						{
-							String a = line.split(";")[0];
-							String b = line.split(";")[1];
-
-							score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-							try
-							{
-								value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-							} catch (NumberFormatException ne)
-							{
-								value = 0;
-							}
-						}// If the line doesn't contain any form of a split just
-							// set
-							// the line to the line
-
-						else
-							score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
-
-					}
-					// If it was determined that we are in fact showing this
-					// line,
-					// we'll give it a number that will help sort it on the
-					// scoreboard so it doesn't change the order
 					if (set)
 					{
+						if (line.equalsIgnoreCase(" "))
+						{
+							String space = "&" + spaces;
+							spaces++;
+							score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
+						} else
+						{
+							// Now for the scrolling lines
+							if (line.startsWith("<scroll>"))
+							{
+								// Replace <scroll> with "" and create the
+								// scroll
+								// object, but first lets make sure they have
+								// scroll
+								// on,
+								// because if its not then that means the timer
+								// was
+								// never started
+								if (Files.getConfig().getBoolean("Scrolling Text.Enable"))
+								{
+									line = line.replaceAll("<scroll>", "");
+									line = ScrollManager.createScroller(player, line).getScrolled();
+								} else
+								{
+									// We'll just tell them to enable scroll
+									// before
+									// trying to use scroll
+
+									line = "Enable Scroll 1st";
+								}
+							}
+							// If the line contains <split> (They want to set
+							// their
+							// own
+							// score for the line
+							if (line.contains("<split>"))
+							{
+								// We'll split the line and the score, then set
+								// them
+								String a = line.split("<split>")[0];
+								String b = line.split("<split>")[1];
+
+								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+								// Lets make sure it is a number first, if not
+								// we'll
+								// set
+								// it as 0
+								try
+								{
+									value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+								} catch (NumberFormatException ne)
+								{
+									value = 0;
+								}
+							}// If the line contains ; (Same thing as <split>
+								// but
+								// looks
+								// nicer in a config)
+							else if (line.contains(";"))
+							{
+								String a = line.split(";")[0];
+								String b = line.split(";")[1];
+
+								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+								try
+								{
+									value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+								} catch (NumberFormatException ne)
+								{
+									value = 0;
+								}
+							}// If the line doesn't contain any form of a split
+								// just
+								// set
+								// the line to the line
+
+							else
+								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
+
+						}
+						// If it was determined that we are in fact showing this
+						// line,
+						// we'll give it a number that will help sort it on the
+						// scoreboard so it doesn't change the order
+
 						if (value == -1)
 							value = list.size() - 1 - row;
 
@@ -214,6 +198,7 @@ public class Create {
 						// Then i set value back to -1(Which means it wants an
 						// auto number
 						value = -1;
+
 					}
 				}
 				// then we just set the scoreboard for the player

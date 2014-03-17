@@ -25,7 +25,7 @@ public class VaultVariables {
 		if (InfoBoard.permission != null)
 		{
 			if (newString.contains("<rank>"))
-				newString = newString.replaceAll("<rank>", String.valueOf(InfoBoard.permission.getPlayerGroups(player.getWorld(), player.getName())[0]));
+				newString = newString.replaceAll("<rank>", InfoBoard.permission.getPlayerGroups(player.getWorld(), player.getName())[0] != null ? String.valueOf(InfoBoard.permission.getPlayerGroups(player.getWorld(), player.getName())[0]) : "None");
 
 		}
 		return newString;

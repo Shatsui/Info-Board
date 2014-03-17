@@ -12,13 +12,11 @@ import org.bukkit.scoreboard.Objective;
 
 public class Messages {
 
-	public static String getLine(String string, Player user) {
-
-		String newString = string;
+	public static String getLine(String newString, Player user) {
 
 		// Replace all the variable
 		if (newString.contains("<") && newString.contains(">"))
-			newString = GetVariables.replaceVariables(string, user);
+			newString = GetVariables.replaceVariables(newString, user);
 
 		// Replace color codes
 		newString = ChatColor.translateAlternateColorCodes('&', newString);
