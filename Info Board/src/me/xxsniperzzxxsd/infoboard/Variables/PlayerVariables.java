@@ -19,7 +19,7 @@ public class PlayerVariables {
 		if (newString.contains("<player"))
 			newString = newString.replaceAll("<player>", player.getName());
 		if (newString.contains("<exp>"))
-			newString = newString.replaceAll("<exp>", String.valueOf((int) ((double) Math.round(player.getExp() * 100.0D))));
+			newString = newString.replaceAll("<exp>", String.valueOf((int) ((double) Math.round(player.getExp() * 100.0D)/100)));
 		if (newString.contains("<level"))
 			newString = newString.replaceAll("<level>", String.valueOf((int) player.getLevel()));
 		if (newString.contains("<hunger>"))
