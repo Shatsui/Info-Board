@@ -1,4 +1,4 @@
-# Info Board Config, Last Edited in v0.1.7
+# Info Board Config, Last Edited in v0.2.5
 # ################################################
 # #
 # __Legend__ #
@@ -81,6 +81,7 @@
 # <hunger>           | The player's hunger level | I
 # <health>           | The player's health | I
 # <maxhealth>        | The player's max health | I
+# <gamemode>         | The player's gamemode | S
 # <worldname>        | The player's world's name  | S
 # <worlddifficulty>  | The player's world's difficulty | I
 # <worldanimals>     | Does the player's world allow animals | B

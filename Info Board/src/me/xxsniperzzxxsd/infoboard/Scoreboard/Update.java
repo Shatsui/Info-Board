@@ -117,7 +117,7 @@ public class Update {
 							// Lets make sure this line is already on the
 							// scoreboard, and/or is a empty line and/or is a
 							// message about enabling scroll first
-							if (s.equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || op.getName().contains("Enable Scroll"))
+							if (s.equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || ChatColor.stripColor(op.getName()).length() == 0  ||op.getName().contains("Enable Scroll"))
 								onlist = true;
 
 							// If the line is a scroll message, we'll just leave
@@ -144,9 +144,9 @@ public class Update {
 					// list
 					// and remove and rows that we determined had to be updated
 					if (!remove.isEmpty())
-						for (String s : remove)
+						for (String s : remove){
 							infoBoard.resetScores(Bukkit.getOfflinePlayer(s));
-
+						}
 					// Now we reset the list just to be safe
 					list = Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows");
 

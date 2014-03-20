@@ -36,6 +36,8 @@ public class PlayerVariables {
 			newString = newString.replaceAll("<worldanimals>", String.valueOf(player.getWorld().getAllowAnimals()));
 		if (newString.contains("<worldmonsters>"))
 			newString = newString.replaceAll("<worldmonsters>", String.valueOf(player.getWorld().getAllowMonsters()));
+		if (newString.contains("<gamemode>"))
+			newString = newString.replaceAll("<gamemode>", String.valueOf(player.getGameMode().toString()));
 		if (newString.contains("<worldpvp>"))
 			newString = newString.replaceAll("<worldpvp>", String.valueOf(player.getWorld().getPVP()));
 		if (newString.contains("<worldplayers>"))
