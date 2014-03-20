@@ -70,14 +70,13 @@ public class Scroller {
 				newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
 			}
 
-			@SuppressWarnings("unused")
-			char t = newLine.charAt(0);
 		} catch (StringIndexOutOfBoundsException npe)
 		{
 			// RESETS TO THE WHOLE WORD
 			position = 0;
 			newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
 
+			System.out.println("invalid");
 			holded = 0;
 		}
 		lastMessage = newLine;
