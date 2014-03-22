@@ -76,6 +76,7 @@
 # <ping>             | The player's Ping       | I
 # <onlineplayers>    | The player's Online     | I
 # <player>           | The player name    | S
+# <op>               | Is the player an OP | B
 # <exp>              | The player's exp    | I
 # <level>            | The player's level  | I
 # <hunger>           | The player's hunger level | I

@@ -100,11 +100,12 @@ public class Update {
 					while (iter.hasNext())
 					{
 						String s = iter.next();
-						newLines.add(Messages.getLine(s, player));
+						newLines.add(Messages.getLine(ShouldSet.getLine(s, player), player));
 					}
 					// Loop through the scoreboards rows
 					for (OfflinePlayer op : infoBoard.getPlayers())
 					{
+
 						boolean onlist = false;
 						// Now we loop through our list, the reason being is
 						// that we
@@ -117,7 +118,7 @@ public class Update {
 							// Lets make sure this line is already on the
 							// scoreboard, and/or is a empty line and/or is a
 							// message about enabling scroll first
-							if (s.equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || ChatColor.stripColor(op.getName()).length() == 0  ||op.getName().contains("Enable Scroll"))
+							if (s.equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || ChatColor.stripColor(op.getName()).length() == 0 || op.getName().contains("Enable Scroll"))
 								onlist = true;
 
 							// If the line is a scroll message, we'll just leave
@@ -144,8 +145,12 @@ public class Update {
 					// list
 					// and remove and rows that we determined had to be updated
 					if (!remove.isEmpty())
-						for (String s : remove){
-							infoBoard.resetScores(Bukkit.getOfflinePlayer(s));
+						for (String s : remove)
+						{
+							if(ShouldSet.test(s, player)){
+								s = ShouldSet.getLine(s, player);
+								infoBoard.resetScores(Bukkit.getOfflinePlayer(s));
+							}
 						}
 					// Now we reset the list just to be safe
 					list = Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows");
@@ -216,7 +221,7 @@ public class Update {
 								}
 								value = -1;
 
-							row++;
+								row++;
 							}
 						}
 					}

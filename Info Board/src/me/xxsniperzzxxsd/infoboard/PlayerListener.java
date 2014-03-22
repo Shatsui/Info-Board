@@ -1,6 +1,7 @@
 
 package me.xxsniperzzxxsd.infoboard;
 
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -26,7 +27,7 @@ public class PlayerListener implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		if ((event.getPlayer().isOp() || (InfoBoard.permissionB && InfoBoard.permission.has(event.getPlayer(), "*"))) && plugin.update)
 		{
-			System.out.println("Theres a new update for InfoBoard(v" + plugin.name + ").");
+			event.getPlayer().sendMessage(ChatColor.DARK_AQUA + "Theres a new update for InfoBoard(" + ChatColor.YELLOW + plugin.name + ChatColor.DARK_AQUA+").");
 		}
 	}
 }

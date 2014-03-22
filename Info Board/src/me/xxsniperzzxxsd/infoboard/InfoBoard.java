@@ -68,7 +68,7 @@ public class InfoBoard extends JavaPlugin {
 
 		saveConfig();
 
-		if (getConfig().getBoolean("Check for updates"))
+		if (getConfig().getBoolean("Check for Updates"))
 		{
 			try
 			{

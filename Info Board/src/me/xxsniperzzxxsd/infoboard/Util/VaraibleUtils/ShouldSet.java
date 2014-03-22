@@ -13,7 +13,7 @@ public class ShouldSet {
 		{
 			String l = (line.split("~!<")[1]).split(">")[0];
 			String l1 = Messages.getLine("<" + l + ">", player);
-			if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0") || l1.equalsIgnoreCase("-1"))
+			if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("false") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0") || l1.equalsIgnoreCase("-1"))
 				return false;
 			else
 				return true;
@@ -24,7 +24,7 @@ public class ShouldSet {
 			String l = (line.split("~@<")[1]).split(">")[0];
 			System.out.println(l);
 			String l1 = Messages.getLine("<" + l + ">", player);
-			if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0")|| l1.equalsIgnoreCase("-1"))
+			if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("false") ||l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0")|| l1.equalsIgnoreCase("-1"))
 				return true;
 			else
 				return false;

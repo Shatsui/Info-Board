@@ -16,11 +16,13 @@ public class PlayerVariables {
 		// Player Variables
 		if (newString.contains("<ping>"))
 			newString = newString.replaceAll("<ping>", String.valueOf(Ping.getPing(player)));
-		if (newString.contains("<player"))
+		if (newString.contains("<player>"))
 			newString = newString.replaceAll("<player>", player.getName());
+		if (newString.contains("<op>"))
+			newString = newString.replaceAll("<op>", String.valueOf(player.isOp()));
 		if (newString.contains("<exp>"))
 			newString = newString.replaceAll("<exp>", String.valueOf((int) ((double) Math.round(player.getExp() * 100.0D)/100)));
-		if (newString.contains("<level"))
+		if (newString.contains("<level>"))
 			newString = newString.replaceAll("<level>", String.valueOf((int) player.getLevel()));
 		if (newString.contains("<hunger>"))
 			newString = newString.replaceAll("<hunger>", String.valueOf(player.getFoodLevel()));

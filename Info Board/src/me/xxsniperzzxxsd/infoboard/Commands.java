@@ -105,11 +105,13 @@ public class Commands implements CommandExecutor {
 			} else
 			{
 				sender.sendMessage("");
-				sender.sendMessage(ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "============[" + ChatColor.DARK_GREEN + " Info Board " + ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "]============");
+				sender.sendMessage(ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "============[" + ChatColor.DARK_GREEN + " Info Board v" + plugin.getDescription().getVersion() + ChatColor.GOLD + " " + ChatColor.STRIKETHROUGH + "]============");
 				sender.sendMessage(plugin.ib + "/IB Hide " + ChatColor.YELLOW + "- Hide the board");
 				sender.sendMessage(plugin.ib + "/IB Show " + ChatColor.YELLOW + "- Show the board");
 				sender.sendMessage(plugin.ib + "/IB Reload " + ChatColor.YELLOW + "- Reload the config");
 				sender.sendMessage(plugin.ib + "/IB Set <Pg> " + ChatColor.YELLOW + "- Set the page to view");
+				if(plugin.update)
+					sender.sendMessage(ChatColor.DARK_AQUA + "Theres a new update for InfoBoard(" + ChatColor.YELLOW + plugin.name + ChatColor.DARK_AQUA+").");
 			}
 
 		}
