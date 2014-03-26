@@ -21,13 +21,13 @@ public class PlayerVariables {
 		if (newString.contains("<op>"))
 			newString = newString.replaceAll("<op>", String.valueOf(player.isOp()));
 		if (newString.contains("<exp>"))
-			newString = newString.replaceAll("<exp>", String.valueOf((int) ((double) Math.round(player.getExp() * 100.0D)/100)));
+			newString = newString.replaceAll("<exp>", String.valueOf((double) Math.round(player.getExp() * 100.0D)/100));
 		if (newString.contains("<level>"))
-			newString = newString.replaceAll("<level>", String.valueOf((int) player.getLevel()));
+			newString = newString.replaceAll("<level>", String.valueOf(player.getLevel()));
 		if (newString.contains("<hunger>"))
 			newString = newString.replaceAll("<hunger>", String.valueOf(player.getFoodLevel()));
 		if (newString.contains("<health>"))
-			newString = newString.replaceAll("<health>", String.valueOf((int) ((double) Math.round(player.getHealth() * 100.0D)/100)));
+			newString = newString.replaceAll("<health>", String.valueOf((double) Math.round(player.getHealth() * 100.0D)/100));
 		if (newString.contains("<maxhealth>"))
 			newString = newString.replaceAll("<maxhealth>", String.valueOf(player.getMaxHealth()));
 		if (newString.contains("<worldname>"))

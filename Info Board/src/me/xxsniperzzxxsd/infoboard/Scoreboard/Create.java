@@ -8,7 +8,6 @@ import me.xxsniperzzxxsd.infoboard.Scroll.ScrollManager;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Messages;
 import me.xxsniperzzxxsd.infoboard.Util.Settings;
-import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.ShouldSet;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

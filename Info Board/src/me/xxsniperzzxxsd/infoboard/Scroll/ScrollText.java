@@ -41,7 +41,7 @@ public class ScrollText {
 					}
 					infoBoard.resetScores(Bukkit.getOfflinePlayer(lastString));
 
-					Score tempScore = infoObjective.getScore(Bukkit.getOfflinePlayer(" "));
+					Score tempScore = infoObjective.getScore(Bukkit.getOfflinePlayer("&1&2&3 "));
 					tempScore.setScore(1);
 					tempScore.setScore(score);
 

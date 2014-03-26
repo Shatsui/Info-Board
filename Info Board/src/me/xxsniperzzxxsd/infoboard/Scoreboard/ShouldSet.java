@@ -1,4 +1,4 @@
-package me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils;
+package me.xxsniperzzxxsd.infoboard.Scoreboard;
 
 import me.xxsniperzzxxsd.infoboard.Util.Messages;
 

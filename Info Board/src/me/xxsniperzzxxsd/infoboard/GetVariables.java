@@ -29,6 +29,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.SimpleClansVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.SkillzVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.StatsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.TownyVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.VanishNoPacketVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.VaultVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.WorldGuardVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.mcMMOVariables;
@@ -192,6 +193,12 @@ public class GetVariables {
 		{
 			if (newString.contains("<worldguard"))
 				newString = WorldGuardVariables.replaceVariables(newString, player);
+		}
+		// VanishNoPacket Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("VanishNoPacket") != null)
+		{
+			if (newString.contains("<vanish"))
+				newString = VanishNoPacketVariables.replaceVariables(newString, player);
 		}
 		// MiniGames Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("MiniGames") != null)

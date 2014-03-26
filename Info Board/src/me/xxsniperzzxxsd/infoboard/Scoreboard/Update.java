@@ -11,7 +11,6 @@ import me.xxsniperzzxxsd.infoboard.Scroll.Scroller;
 import me.xxsniperzzxxsd.infoboard.Util.Files;
 import me.xxsniperzzxxsd.infoboard.Util.Messages;
 import me.xxsniperzzxxsd.infoboard.Util.Settings;
-import me.xxsniperzzxxsd.infoboard.Util.VaraibleUtils.ShouldSet;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -78,6 +77,7 @@ public class Update {
 					// anything
 					if (!Settings.isPageValid(InfoBoard.rotation, worldName, rankName))
 						return true;
+
 					// Instead of creating a new scoreboard, we just want to
 					// update
 					// their current one with new values, so we'll just have to
@@ -93,7 +93,6 @@ public class Update {
 					List<String> list = Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows");
 					// We'll also create an array of rows to remove incase we
 					// find any
-					ArrayList<String> remove = new ArrayList<String>();
 					ArrayList<String> newLines = new ArrayList<String>();
 
 					Iterator<String> iter = list.iterator();
@@ -102,56 +101,16 @@ public class Update {
 						String s = iter.next();
 						newLines.add(Messages.getLine(ShouldSet.getLine(s, player), player));
 					}
+
+					ArrayList<String> onNow = new ArrayList<String>();
+					
 					// Loop through the scoreboards rows
 					for (OfflinePlayer op : infoBoard.getPlayers())
-					{
+						onNow.add(op.getName());
+					//Go through and remove specific lines
+					for (String string : getLinesToRemove(player, onNow, newLines))
+						infoBoard.resetScores(Bukkit.getOfflinePlayer(string));
 
-						boolean onlist = false;
-						// Now we loop through our list, the reason being is
-						// that we
-						// can't just see if the list contains as the list is
-						// the
-						// unachanged variables, so we'll never find the changed
-						// variables in there
-						for (String s : newLines)
-						{
-							// Lets make sure this line is already on the
-							// scoreboard, and/or is a empty line and/or is a
-							// message about enabling scroll first
-							if (s.equalsIgnoreCase(op.getName()) || ChatColor.stripColor(op.getName()) == null || ChatColor.stripColor(op.getName()).length() == 0 || op.getName().contains("Enable Scroll"))
-								onlist = true;
-
-							// If the line is a scroll message, we'll just leave
-							// it
-							// an let the scroll timer deal with it
-							else if (ScrollManager.getScrollers(player) != null)
-								for (Scroller scroller : ScrollManager.getScrollers(player))
-								{
-									scroller.getLastMessage().equals(op.getName());
-									onlist = true;
-								}
-
-						}
-						// If the row wasn't found on the list we'll add it to
-						// the
-						// remove list, because we can't edit the list well
-						// we're
-						// looping through it
-						if (!onlist)
-							if (!remove.contains(op.getName()))
-								remove.add(op.getName());
-					}
-					// If the "To Remove" list isn't empty, loop through the
-					// list
-					// and remove and rows that we determined had to be updated
-					if (!remove.isEmpty())
-						for (String s : remove)
-						{
-							if(ShouldSet.test(s, player)){
-								s = ShouldSet.getLine(s, player);
-								infoBoard.resetScores(Bukkit.getOfflinePlayer(s));
-							}
-						}
 					// Now we reset the list just to be safe
 					list = Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows");
 
@@ -229,5 +188,27 @@ public class Update {
 			}
 		}
 		return true;
+	}
+
+	public static ArrayList<String> getLinesToRemove(Player player, ArrayList<String> onBoard, List<String> list) {
+		ArrayList<String> toRemove = new ArrayList<String>();
+
+		for(String line : onBoard){
+			if(!list.contains(line) && ChatColor.stripColor(line) != null && ChatColor.stripColor(line).length() != 0 && !line.contains("Enable Scroll")){
+				if(ScrollManager.getScrollers(player) != null){
+					boolean b = false;
+					for (Scroller scroller : ScrollManager.getScrollers(player))
+					{
+						if(scroller.getLastMessage().equals(line))
+							b = true;
+					}
+					if(!b)
+						toRemove.add(line);
+				}
+				else
+					toRemove.add(line);
+			}
+		}
+		return toRemove;
 	}
 }
