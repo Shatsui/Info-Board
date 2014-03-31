@@ -6,7 +6,10 @@ public class ALTVariables {
 	public static String replaceVariables(String string) {
 		String newString = string;
 
-		// UTF-8
+		if(newString.contains("<ucode")){
+			String code = (newString.split("<ucode")[1]).split(">")[0];
+			newString = newString.replaceAll("<ucode"+code+">", String.valueOf((char) Integer.parseInt(code, 16)));
+		}
 		if (newString.contains("<1>"))
 			newString = newString.replaceAll("<1>", "☺");
 		if (newString.contains("<2>"))
@@ -66,7 +69,6 @@ public class ALTVariables {
 			newString = newString.replaceAll("<rightup>", "⋰");
 		if (newString.contains("<leftup>"))
 			newString = newString.replaceAll("<leftup>", "⋱");
-
 		return newString;
 	}
 }

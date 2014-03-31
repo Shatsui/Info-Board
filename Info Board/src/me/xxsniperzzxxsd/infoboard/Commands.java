@@ -67,8 +67,8 @@ public class Commands implements CommandExecutor {
 							InfoBoard.rotation = Integer.valueOf(rotate);
 							sender.sendMessage("");
 							sender.sendMessage(plugin.ib + "Rotation set to: " + args[1]);
-							plugin.timer = 0;
-							plugin.total = plugin.getConfig().getInt("Info Board." + args[1] + ".Show Time");
+							InfoBoard.timers.timer = 0;
+							InfoBoard.timers.total = plugin.getConfig().getInt("Info Board." + args[1] + ".Show Time");
 							for (Player p : Bukkit.getOnlinePlayers())
 								if (p.hasPermission("InfoBoard.View"))
 									Create.createScoreBoard(p);
@@ -89,7 +89,9 @@ public class Commands implements CommandExecutor {
 					{
 						sender.sendMessage("");
 						sender.sendMessage(plugin.ib + ChatColor.GREEN + "Configs been reloaded");
+						Bukkit.getScheduler().cancelTasks(InfoBoard.me);
 						plugin.reloadConfig();
+						InfoBoard.timers.start();
 						for (Player player : Bukkit.getOnlinePlayers())
 						{
 

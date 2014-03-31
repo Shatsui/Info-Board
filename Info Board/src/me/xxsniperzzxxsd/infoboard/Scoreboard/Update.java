@@ -2,8 +2,10 @@
 package me.xxsniperzzxxsd.infoboard.Scoreboard;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import me.xxsniperzzxxsd.infoboard.InfoBoard;
 import me.xxsniperzzxxsd.infoboard.Scroll.ScrollManager;
@@ -86,8 +88,6 @@ public class Update {
 					Scoreboard infoBoard = player.getScoreboard();
 					Objective infoObjective = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR);
 
-					int row = 0;
-					int spaces = 0;
 					// Next i get the list of rows so i can go through and make
 					// sure i only update what needs to be updated
 					List<String> list = Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows");
@@ -103,86 +103,90 @@ public class Update {
 					}
 
 					ArrayList<String> onNow = new ArrayList<String>();
-					
+
+					// ----------------------------------------------------------
+					// Remove the no longer needed lines
+					for (OfflinePlayer op : infoBoard.getPlayers())
+						onNow.add(op.getName());
+					// Go through and remove specific lines
+					for (String string : getLinesToRemove(player, onNow, newLines))
+						infoBoard.resetScores(Bukkit.getOfflinePlayer(string));
+					// -----------------------------------------------------------------
+
+					int row, spaces = 0;
+					onNow = new ArrayList<String>();
+					newLines = new ArrayList<String>();
+
+					for (String string : list)
+						newLines.add(Messages.getLine(string, player));
+
 					// Loop through the scoreboards rows
 					for (OfflinePlayer op : infoBoard.getPlayers())
 						onNow.add(op.getName());
-					//Go through and remove specific lines
-					for (String string : getLinesToRemove(player, onNow, newLines))
-						infoBoard.resetScores(Bukkit.getOfflinePlayer(string));
+					HashMap<Integer, String> toAdd = getLinesToAdd(player, onNow, newLines);
 
-					// Now we reset the list just to be safe
-					list = Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows");
-
-					// And we go through and see if the scoreboard doesn't
-					// contain
-					// the line with the changed variables, if it doesn't we
-					// through
-					// that line onto the scoreboard
-					for (String s : list)
+					for (Entry<Integer, String> e : toAdd.entrySet())
 					{
-						String oldLine = Messages.getLine(s, player);
-						if (!infoBoard.getPlayers().contains(Bukkit.getOfflinePlayer(oldLine)))
-						{
-							// Refer to createScoreBoard(...) to see what all of
-							// this is doing
-							Score score = null;
-							String line = list.get(row);
-							boolean set = ShouldSet.test(line, player);
-							line = ShouldSet.getLine(line, player);
+						// Refer to createScoreBoard(...) to see what all of
+						// this is doing
+						Score score = null;
+						row = e.getKey();
+						String line = e.getValue();
+						boolean set = ShouldSet.test(line, player);
+						line = ShouldSet.getLine(line, player);
 
-							if (set)
+						if (set)
+						{
+							if (line.equalsIgnoreCase(" "))
 							{
-								if (line.equalsIgnoreCase(" "))
+								String space = "&" + spaces;
+								spaces++;
+								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
+							} else
+							{
+								if (line.contains("<split>"))
 								{
-									String space = "&" + spaces;
-									spaces++;
-									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
+									String a = line.split("<split>")[0];
+									String b = line.split("<split>")[1];
+
+									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+									try
+									{
+										value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+									} catch (NumberFormatException ne)
+									{
+										value = 0;
+									}
+								} else if (line.contains(";"))
+								{
+									String a = line.split(";")[0];
+									String b = line.split(";")[1];
+
+									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+									try
+									{
+										value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+									} catch (NumberFormatException ne)
+									{
+										value = 0;
+									}
 								} else
 								{
-									if (line.contains("<split>"))
-									{
-										String a = line.split("<split>")[0];
-										String b = line.split("<split>")[1];
-
-										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-										try
-										{
-											value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-										} catch (NumberFormatException ne)
-										{
-											value = 0;
-										}
-									} else if (line.contains(";"))
-									{
-										String a = line.split(";")[0];
-										String b = line.split(";")[1];
-
-										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-										try
-										{
-											value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-										} catch (NumberFormatException ne)
-										{
-											value = 0;
-										}
-									} else
-									{
-										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
-									}
+									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
 								}
-								if (value == -1)
-									value = list.size() - 1 - row;
-								if (!score.getPlayer().getName().startsWith("<scroll>"))
-								{
-									score.setScore(1);
-									score.setScore(value);
-								}
-								value = -1;
-
-								row++;
 							}
+							if (value == -1)
+								value = list.size() - 1 - row;
+							if (!score.getPlayer().getName().startsWith("<scroll>"))
+							{
+								score.setScore(1);
+								score.setScore(value);
+							}
+							value = -1;
+
+							row++;
 						}
+
 					}
 				}
 			}
@@ -193,22 +197,39 @@ public class Update {
 	public static ArrayList<String> getLinesToRemove(Player player, ArrayList<String> onBoard, List<String> list) {
 		ArrayList<String> toRemove = new ArrayList<String>();
 
-		for(String line : onBoard){
-			if(!list.contains(line) && ChatColor.stripColor(line) != null && ChatColor.stripColor(line).length() != 0 && !line.contains("Enable Scroll")){
-				if(ScrollManager.getScrollers(player) != null){
+		for (String line : onBoard)
+		{
+			if (!list.contains(line) && ChatColor.stripColor(line) != null && ChatColor.stripColor(line).length() != 0 && !line.contains("Enable Scroll"))
+			{
+				if (ScrollManager.getScrollers(player) != null)
+				{
 					boolean b = false;
 					for (Scroller scroller : ScrollManager.getScrollers(player))
 					{
-						if(scroller.getLastMessage().equals(line))
+						if (scroller.getLastMessage().equals(line))
 							b = true;
 					}
-					if(!b)
+					if (!b)
 						toRemove.add(line);
-				}
-				else
+				} else
 					toRemove.add(line);
 			}
 		}
 		return toRemove;
+	}
+
+	public static HashMap<Integer, String> getLinesToAdd(Player player, ArrayList<String> onBoard, List<String> list) {
+		HashMap<Integer, String> toAdd = new HashMap<Integer, String>();
+
+		int i = 0;
+		for (String line : list)
+		{
+			if (!onBoard.contains(line) && !line.equals(" ") && !line.contains("<scroll>"))
+			{
+					toAdd.put(i, line);	
+			}
+			i++;
+		}
+		return toAdd;
 	}
 }

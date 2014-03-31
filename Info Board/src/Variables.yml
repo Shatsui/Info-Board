@@ -31,6 +31,7 @@
 # |            UTF-8 Variables                 | #
 # +--------------------------------------------+ #
 # ################################################
+# <ucode#>           | Replace # with the unicode code (http://unicode-table.com/en/)
 # <1>                | Face 1
 # <2>                | Face 2
 # <3>                | A Heart

@@ -83,7 +83,7 @@ Disabled Worlds:
 
 Scrolling Text:
   Enable: false
-  Shift Time: 1
+  Shift Time: 0.25
   
 Update Time: 2
 

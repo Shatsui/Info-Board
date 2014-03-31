@@ -129,7 +129,7 @@ public class Create {
 									// before
 									// trying to use scroll
 
-									line = "Enable Scroll 1st";
+									line = "Enable Scroll";
 								}
 							}
 							// If the line contains <split> (They want to set
