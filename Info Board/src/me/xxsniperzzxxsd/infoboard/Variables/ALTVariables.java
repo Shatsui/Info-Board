@@ -6,7 +6,7 @@ public class ALTVariables {
 	public static String replaceVariables(String string) {
 		String newString = string;
 
-		if(newString.contains("<ucode")){
+		while(newString.contains("<ucode")){
 			String code = (newString.split("<ucode")[1]).split(">")[0];
 			newString = newString.replaceAll("<ucode"+code+">", String.valueOf((char) Integer.parseInt(code, 16)));
 		}

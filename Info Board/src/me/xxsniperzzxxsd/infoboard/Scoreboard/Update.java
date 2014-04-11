@@ -132,8 +132,8 @@ public class Update {
 						Score score = null;
 						row = e.getKey();
 						String line = e.getValue();
-						boolean set = ShouldSet.test(line, player);
-						line = ShouldSet.getLine(line, player);
+						boolean set = ShouldSet.test(list.get(row), player);
+						line = ShouldSet.getLine(list.get(row), player);
 
 						if (set)
 						{

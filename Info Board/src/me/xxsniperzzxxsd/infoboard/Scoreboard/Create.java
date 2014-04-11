@@ -106,10 +106,25 @@ public class Create {
 							String space = "&" + spaces;
 							spaces++;
 							score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
+						}
+						else if (line.startsWith("<staff"))
+						{
+							String rank = line.split("<staff")[1].split(">")[0];
+							StringBuilder staff = new StringBuilder();
+
+							if(InfoBoard.permissionB)
+								for(Player user : Bukkit.getOnlinePlayers()){
+									if(InfoBoard.permission.getGroups()[0].equals(rank)){
+										staff.append(user.getName());
+										staff.append(",");
+									}
+								}
+							ScrollManager.createScroller(player, staff.toString());
+							score = infoObjective.getScore(Bukkit.getOfflinePlayer(staff.toString()));
 						} else
 						{
 							// Now for the scrolling lines
-							if (line.startsWith("<scroll>"))
+							if (line.startsWith("<scroll>") && !line.contains("<staff"))
 							{
 								// Replace <scroll> with "" and create the
 								// scroll
