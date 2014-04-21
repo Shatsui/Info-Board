@@ -16,8 +16,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class Files {
 
 	// Set up all the needed things for files
-	public static YamlConfiguration variableF = null;
-	public static File variableFile = null;
+	public static YamlConfiguration	variableF		= null;
+	public static File				variableFile	= null;
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -25,8 +25,14 @@ public class Files {
 		return InfoBoard.me.getConfig();
 	}
 
-	public static void saveConfig() {
-		InfoBoard.me.saveConfig();
+	// Get Variables file
+	public static FileConfiguration getVariables() {
+		if (Files.variableF == null)
+		{
+			reloadVariables();
+			saveVariables();
+		}
+		return Files.variableF;
 	}
 
 	public static void reloadConfig() {
@@ -35,40 +41,35 @@ public class Files {
 
 	// Reload Variables File
 	public static void reloadVariables() {
-		if (variableFile == null)
-			variableFile = new File(
+		if (Files.variableFile == null)
+			Files.variableFile = new File(
 					Bukkit.getPluginManager().getPlugin("Info-Board").getDataFolder(),
 					"Variables.yml");
-		variableF = YamlConfiguration.loadConfiguration(variableFile);
+		Files.variableF = YamlConfiguration.loadConfiguration(Files.variableFile);
 		// Look for defaults in the jar
 		InputStream defConfigStream = Bukkit.getPluginManager().getPlugin("Info-Board").getResource("Variables.yml");
 		if (defConfigStream != null)
 		{
 			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-			variableF.setDefaults(defConfig);
+			Files.variableF.setDefaults(defConfig);
 		}
 	}
 
-	// Get Variables file
-	public static FileConfiguration getVariables() {
-		if (variableF == null)
-		{
-			reloadVariables();
-			saveVariables();
-		}
-		return variableF;
+	public static void saveConfig() {
+		InfoBoard.me.saveConfig();
 	}
 
 	// Save Variables File
 	public static void saveVariables() {
-		if (variableF == null || variableFile == null)
+		if ((Files.variableF == null) || (Files.variableFile == null))
 			return;
 		try
 		{
-			getVariables().save(variableFile);
-		} catch (IOException ex)
+			getVariables().save(Files.variableFile);
+		}
+		catch (IOException ex)
 		{
-			Bukkit.getLogger().log(Level.SEVERE, "Could not save config " + variableFile, ex);
+			Bukkit.getLogger().log(Level.SEVERE, "Could not save config " + Files.variableFile, ex);
 		}
 	}
 

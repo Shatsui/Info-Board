@@ -16,10 +16,9 @@ import org.bukkit.scoreboard.Scoreboard;
 public class ScrollText {
 
 	public boolean slideScore(Player player) {
-		if (!Files.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && !InfoBoard.hidefrom.contains(player.getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
+		if (!Files.getConfig().getStringList("Disabled Worlds").contains(player.getWorld().getName()) && !InfoBoard.hidefrom.contains(player.getName()) && ((player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null) || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
 			if (ScrollManager.getScrollers(player) != null)
-			{
 				for (Scroller sc : ScrollManager.getScrollers(player))
 				{
 					sc.scroll();
@@ -35,7 +34,8 @@ public class ScrollText {
 						infoBoard = player.getScoreboard();
 						infoObjective = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR);
 						score = infoObjective.getScore(Bukkit.getOfflinePlayer(lastString)).getScore();
-					} catch (Exception e)
+					}
+					catch (Exception e)
 					{
 						Create.createScoreBoard(player);
 					}
@@ -52,7 +52,6 @@ public class ScrollText {
 					infoBoard.resetScores(tempScore.getPlayer());
 
 				}
-			}
 			try
 			{
 				if (ScrollManager.getTitleScroller(player) != null)
@@ -63,10 +62,12 @@ public class ScrollText {
 
 					infoObjective.setDisplayName(sc.getScrolled());
 				}
-			} catch (NullPointerException e)
+			}
+			catch (NullPointerException e)
 			{
 			}
-		} else
+		}
+		else
 			ScrollManager.reset(player);
 
 		return true;

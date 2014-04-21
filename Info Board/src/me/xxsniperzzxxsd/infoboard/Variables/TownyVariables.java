@@ -14,21 +14,21 @@ public class TownyVariables {
 		String newString = string;
 
 		if (newString.contains("<townyname>"))
-		{
 			try
 			{
 				newString = newString.replaceAll("<townyname>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getName()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyname>", "Unknown");
 			}
-		}
 
 		if (newString.contains("<townytitle>"))
 			try
 			{
 				newString = newString.replaceAll("<townytitle>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTitle()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townytitle>", "Unknown");
 			}
@@ -36,7 +36,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townynation>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getNation()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townynation>", "Unknown");
 			}
@@ -44,7 +45,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyresidents>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getNumResidents()));
-			} catch (NotRegisteredException e2)
+			}
+			catch (NotRegisteredException e2)
 			{
 				newString = newString.replaceAll("<townyresidents>", "0");
 
@@ -53,7 +55,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyfriends>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getFriends().size()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyfriends>", "0");
 			}
@@ -61,12 +64,14 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townybank>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getHoldingBalance()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				if (newString.contains("<townybank>"))
 					newString = newString.replaceAll("<townybank>", "0");
 
-			} catch (EconomyException e)
+			}
+			catch (EconomyException e)
 			{
 				newString = newString.replaceAll("<townybank>", "0");
 			}
@@ -74,7 +79,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townymayor>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getMayor().getName()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townymayor>", "Unknown");
 			}
@@ -82,7 +88,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townysize>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getTotalBlocks()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townysize>", "0");
 
@@ -91,7 +98,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townytag>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getTag()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townytag>", "Unknown");
 			}
@@ -99,7 +107,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townypvp>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().isPVP()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townypvp>", "Unknown");
 			}
@@ -107,7 +116,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyopen>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().isOpen()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyopen>", "Unknown");
 			}
@@ -115,7 +125,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townypublic>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().isPublic()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townypublic>", "Unknown");
 			}
@@ -123,7 +134,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyexplosions>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().isBANG()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyexplosions>", "Unknown");
 			}
@@ -134,7 +146,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyinmayor>", String.valueOf(TownyUniverse.getTownBlock(player.getLocation()).getTown().getMayor()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyinmayor>", "Unknown");
 			}
@@ -142,7 +155,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyinresidents>", String.valueOf(TownyUniverse.getTownBlock(player.getLocation()).getTown().getResidents().size()));
-			} catch (NotRegisteredException e1)
+			}
+			catch (NotRegisteredException e1)
 			{
 				newString = newString.replaceAll("<townyinresidents>", "0");
 			}
@@ -150,7 +164,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyinsize>", String.valueOf(TownyUniverse.getTownBlock(player.getLocation()).getTown().getTotalBlocks()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyinsize>", "0");
 			}
@@ -158,7 +173,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyintag>", String.valueOf(TownyUniverse.getTownBlock(player.getLocation()).getTown().getTag()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyintags>", "Unknown");
 			}
@@ -166,7 +182,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyinpvp>", String.valueOf(TownyUniverse.getTownBlock(player.getLocation()).getTown().isPVP()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyinpvp>", "Unknown");
 			}
@@ -174,7 +191,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyinopen>", String.valueOf(TownyUniverse.getTownBlock(player.getLocation()).getTown().isOpen()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyinopen>", "Unknown");
 			}
@@ -182,7 +200,8 @@ public class TownyVariables {
 			try
 			{
 				newString = newString.replaceAll("<townyinpublic>", String.valueOf(TownyUniverse.getTownBlock(player.getLocation()).getTown().isPublic()));
-			} catch (NotRegisteredException e)
+			}
+			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townyinpublic>", "Unknown");
 			}

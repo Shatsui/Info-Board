@@ -19,7 +19,8 @@ public class CommandPointsVariables {
 			try
 			{
 				newString = newString.replaceAll("<commandpoints>", String.valueOf(cp.getPoints(player.getName(), InfoBoard.me)));
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				newString = newString.replaceAll("<commandpoints>", "0");
 			}

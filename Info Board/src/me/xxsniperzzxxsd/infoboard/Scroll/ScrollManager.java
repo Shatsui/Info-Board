@@ -10,37 +10,35 @@ import org.bukkit.entity.Player;
 
 public class ScrollManager {
 
-	private static HashMap<Player, ArrayList<Scroller>> scrollers = new HashMap<Player, ArrayList<Scroller>>();
-	private static HashMap<Player, Scroller> title = new HashMap<Player, Scroller>();
-
-	private ScrollText ScrollText = new ScrollText();
+	private static HashMap<Player, ArrayList<Scroller>>	scrollers	= new HashMap<Player, ArrayList<Scroller>>();
+	private static HashMap<Player, Scroller>			title		= new HashMap<Player, Scroller>();
 
 	public static Scroller createScroller(Player p, String message) {
 		Scroller sc = new Scroller(p, message);
 		ArrayList<Scroller> scs;
-		if (scrollers.containsKey(p))
-			scs = scrollers.get(p);
+		if (ScrollManager.scrollers.containsKey(p))
+			scs = ScrollManager.scrollers.get(p);
 		else
 			scs = new ArrayList<Scroller>();
 		scs.add(sc);
-		scrollers.put(p, scs);
+		ScrollManager.scrollers.put(p, scs);
 		return sc;
 	}
 
 	public static Scroller createTitleScroller(Player p, String message) {
 
 		Scroller sc = new Scroller(p, message);
-		title.put(p, sc);
+		ScrollManager.title.put(p, sc);
 
 		return sc;
 	}
 
 	public static ArrayList<Scroller> getScrollers(Player p) {
-		return scrollers.get(p);
+		return ScrollManager.scrollers.get(p);
 	}
 
 	public static Scroller getTitleScroller(Player p) {
-		return title.get(p);
+		return ScrollManager.title.get(p);
 	}
 
 	public static void reset(Player p) {
@@ -50,14 +48,17 @@ public class ScrollManager {
 				String lastString = sc.getLastMessage();
 				p.getScoreboard().resetScores(Bukkit.getOfflinePlayer(lastString));
 			}
-		scrollers.remove(p);
+		ScrollManager.scrollers.remove(p);
+		ScrollManager.title.remove(p);
 	}
+
+	private ScrollText	ScrollText	= new ScrollText();
 
 	/**
 	 * @return the scrollText
 	 */
 	public ScrollText getScrollText() {
-		return ScrollText;
+		return this.ScrollText;
 	}
 
 	/**
@@ -65,6 +66,6 @@ public class ScrollManager {
 	 *            the scrollText to set
 	 */
 	public void setScrollText(ScrollText scrollText) {
-		ScrollText = scrollText;
+		this.ScrollText = scrollText;
 	}
 }

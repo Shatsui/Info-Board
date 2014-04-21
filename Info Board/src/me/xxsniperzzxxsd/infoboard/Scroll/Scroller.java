@@ -11,76 +11,77 @@ import org.bukkit.entity.Player;
 public class Scroller {
 
 	@SuppressWarnings("unused")
-	private Player player;
-	private String origional;
-	private int position = 0;
-	private String lastMessage;
-	private String color = "§f";
-	private int holded = 0;
+	private Player	player;
+	private String	origional;
+	private int		position	= 0;
+	private String	lastMessage;
+	private String	color		= "§f";
+	private int		holded		= 0;
 
 	public Scroller(Player player, String message)
 	{
 		this.player = player;
 		String string = message + "       " + message + "       " + message;
-		lastMessage = null;
+		this.lastMessage = null;
 		string = string.replaceAll("&x", RandomChatColor.getColor().toString());
 		string = string.replaceAll("&y", RandomChatColor.getFormat().toString());
 		string = ChatColor.translateAlternateColorCodes('&', string);
 		if (ChatColor.getLastColors(string) != null)
-			color = ChatColor.getLastColors(string);
+			this.color = ChatColor.getLastColors(string);
 
 		// Replace all the variables
 		string = GetVariables.replaceVariables(string, player);
-		origional = color + ChatColor.stripColor(string);
+		this.origional = this.color + ChatColor.stripColor(string);
 	}
 
 	public String getColors() {
-		return color;
+		return this.color;
 	}
 
 	public String getLastMessage() {
-		return lastMessage;
+		return this.lastMessage;
 	}
 
 	public String getOrigional() {
-		return origional;
+		return this.origional;
 	}
 
 	public int getPosition() {
-		return position;
-	}
-
-	public void scroll() {
-		if (holded == 2)
-			position++;
-		else
-			holded++;
+		return this.position;
 	}
 
 	public String getScrolled() {
 		String newLine = null;
 		try
 		{
-			newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
+			newLine = this.color + this.origional.substring(this.position + this.color.length(), Math.min(this.origional.length(), 16 + this.position));
 
-			if (position != 0 && newLine.equals(color + origional.substring(0 + color.length(), Math.min(origional.length(), 16))))
+			if ((this.position != 0) && newLine.equals(this.color + this.origional.substring(0 + this.color.length(), Math.min(this.origional.length(), 16))))
 			{
-				position = 0;
-				holded = 0;
-				newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
+				this.position = 0;
+				this.holded = 0;
+				newLine = this.color + this.origional.substring(this.position + this.color.length(), Math.min(this.origional.length(), 16 + this.position));
 			}
 
-		} catch (StringIndexOutOfBoundsException npe)
+		}
+		catch (StringIndexOutOfBoundsException npe)
 		{
 			// RESETS TO THE WHOLE WORD
-			position = 0;
-			newLine = color + origional.substring(position + color.length(), Math.min(origional.length(), 16 + position));
+			this.position = 0;
+			newLine = this.color + this.origional.substring(this.position + this.color.length(), Math.min(this.origional.length(), 16 + this.position));
 
 			System.out.println("invalid");
-			holded = 0;
+			this.holded = 0;
 		}
-		lastMessage = newLine;
+		this.lastMessage = newLine;
 
 		return newLine;
+	}
+
+	public void scroll() {
+		if (this.holded == 2)
+			this.position++;
+		else
+			this.holded++;
 	}
 }

@@ -26,6 +26,38 @@ import org.bukkit.scoreboard.Scoreboard;
 
 public class Update {
 
+	public static HashMap<Integer, String> getLinesToAdd(Player player, ArrayList<String> onBoard, List<String> list) {
+		HashMap<Integer, String> toAdd = new HashMap<Integer, String>();
+
+		int i = 0;
+		for (String line : list)
+		{
+			if (!onBoard.contains(line) && !line.equals(" ") && !line.contains("<scroll>"))
+				toAdd.put(i, line);
+			i++;
+		}
+		return toAdd;
+	}
+
+	public static ArrayList<String> getLinesToRemove(Player player, ArrayList<String> onBoard, List<String> list) {
+		ArrayList<String> toRemove = new ArrayList<String>();
+
+		for (String line : onBoard)
+			if (!list.contains(line) && (ChatColor.stripColor(line) != null) && (ChatColor.stripColor(line).length() != 0) && !line.contains("Enable Scroll"))
+				if (ScrollManager.getScrollers(player) != null)
+				{
+					boolean b = false;
+					for (Scroller scroller : ScrollManager.getScrollers(player))
+						if (scroller.getLastMessage().equals(line))
+							b = true;
+					if (!b)
+						toRemove.add(line);
+				}
+				else
+					toRemove.add(line);
+		return toRemove;
+	}
+
 	public static boolean updateScoreBoard(Player player) {
 
 		String worldName = "global";
@@ -34,20 +66,16 @@ public class Update {
 
 		// Lets make sure the player is supposed to see the scoreboard before we
 		// do anything to them
-		if (!Settings.isWorldDisabled(player.getWorld().getName()) && !InfoBoard.hidefrom.contains(player.getName()) && (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
-		{
+		if (!Settings.isWorldDisabled(player.getWorld().getName()) && !InfoBoard.hidefrom.contains(player.getName()) && ((player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null) || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 			if (!player.hasPermission("InfoBoard.View"))
-			{
 				player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-			} else
-			{
+			else
 				// If the player has been told to update the scoreboard when
 				// they don't even have one, we just tell it to create the
 				// scoreboard for the player first
 				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null)
-				{
 					Create.createScoreBoard(player);
-				} else
+				else
 				{
 					// We are checking to see if the players world is specified
 					// in
@@ -58,8 +86,7 @@ public class Update {
 
 					// If vault is on this server and permissions for vault were
 					// found, we'll try looking for their group
-					if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && InfoBoard.permission != null & InfoBoard.permissionB)
-					{
+					if ((Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) && ((InfoBoard.permission != null) & InfoBoard.permissionB))
 						try
 						{
 							// we'll get their group
@@ -70,21 +97,19 @@ public class Update {
 							// group to default
 							if (Files.getConfig().getString("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Title") == null)
 								rankName = "default";
-						} catch (UnsupportedOperationException UOE)
+						}
+						catch (UnsupportedOperationException UOE)
 						{
 							rankName = "default";
 						}
-					}
 					// If the title of this scoreboard is blank, don't do
 					// anything
 					if (!Settings.isPageValid(InfoBoard.rotation, worldName, rankName))
 						return true;
 
 					// Instead of creating a new scoreboard, we just want to
-					// update
-					// their current one with new values, so we'll just have to
-					// get
-					// their scoreboards and objectives
+					// update their current one with new values, so we'll just
+					// have to get their scoreboards and objectives
 					Scoreboard infoBoard = player.getScoreboard();
 					Objective infoObjective = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR);
 
@@ -142,8 +167,8 @@ public class Update {
 								String space = "&" + spaces;
 								spaces++;
 								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
-							} else
-							{
+							}
+							else
 								if (line.contains("<split>"))
 								{
 									String a = line.split("<split>")[0];
@@ -153,28 +178,30 @@ public class Update {
 									try
 									{
 										value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-									} catch (NumberFormatException ne)
+									}
+									catch (NumberFormatException ne)
 									{
 										value = 0;
 									}
-								} else if (line.contains(";"))
-								{
-									String a = line.split(";")[0];
-									String b = line.split(";")[1];
-
-									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-									try
-									{
-										value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-									} catch (NumberFormatException ne)
-									{
-										value = 0;
-									}
-								} else
-								{
-									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
 								}
-							}
+								else
+									if (line.contains(";"))
+									{
+										String a = line.split(";")[0];
+										String b = line.split(";")[1];
+
+										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+										try
+										{
+											value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+										}
+										catch (NumberFormatException ne)
+										{
+											value = 0;
+										}
+									}
+									else
+										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
 							if (value == -1)
 								value = list.size() - 1 - row;
 							if (!score.getPlayer().getName().startsWith("<scroll>"))
@@ -189,47 +216,6 @@ public class Update {
 
 					}
 				}
-			}
-		}
 		return true;
-	}
-
-	public static ArrayList<String> getLinesToRemove(Player player, ArrayList<String> onBoard, List<String> list) {
-		ArrayList<String> toRemove = new ArrayList<String>();
-
-		for (String line : onBoard)
-		{
-			if (!list.contains(line) && ChatColor.stripColor(line) != null && ChatColor.stripColor(line).length() != 0 && !line.contains("Enable Scroll"))
-			{
-				if (ScrollManager.getScrollers(player) != null)
-				{
-					boolean b = false;
-					for (Scroller scroller : ScrollManager.getScrollers(player))
-					{
-						if (scroller.getLastMessage().equals(line))
-							b = true;
-					}
-					if (!b)
-						toRemove.add(line);
-				} else
-					toRemove.add(line);
-			}
-		}
-		return toRemove;
-	}
-
-	public static HashMap<Integer, String> getLinesToAdd(Player player, ArrayList<String> onBoard, List<String> list) {
-		HashMap<Integer, String> toAdd = new HashMap<Integer, String>();
-
-		int i = 0;
-		for (String line : list)
-		{
-			if (!onBoard.contains(line) && !line.equals(" ") && !line.contains("<scroll>"))
-			{
-					toAdd.put(i, line);	
-			}
-			i++;
-		}
-		return toAdd;
 	}
 }

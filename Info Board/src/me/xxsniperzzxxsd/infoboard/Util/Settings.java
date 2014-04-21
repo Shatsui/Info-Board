@@ -8,6 +8,6 @@ public class Settings {
 	}
 
 	public static boolean isWorldDisabled(String world) {
-		return Files.getConfig().getStringList("Disabled Worlds").contains(world) || world == null;
+		return Files.getConfig().getStringList("Disabled Worlds").contains(world) || (world == null);
 	}
 }

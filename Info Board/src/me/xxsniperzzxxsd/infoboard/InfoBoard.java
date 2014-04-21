@@ -24,34 +24,43 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 public class InfoBoard extends JavaPlugin {
 
-	public static Plugin me;
-	public boolean update = false;
-	public String name = "InfoBoard";
+	public static Plugin			me;
+	public boolean					update		= false;
+	public String					name		= "InfoBoard";
 
-	public String ib = "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
+	public String					ib			= "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
 
-	public static Economy economy;
-	public static Permission permission;
-	public static boolean economyB;
-	public static boolean permissionB;
+	public static Economy			economy;
+	public static Permission		permission;
+	public static boolean			economyB;
+	public static boolean			permissionB;
 
-	public static ScrollText ScrollText;
-	public static Timers timers;
-	public static ArrayList<String> hidefrom = new ArrayList<String>();
-	public static int rotation = 1;
+	public static ScrollText		ScrollText;
+	public static Timers			timers;
+	public static ArrayList<String>	hidefrom	= new ArrayList<String>();
+	public static int				rotation	= 1;
 
-	
+	@Override
+	public void onDisable() {
+		Bukkit.getScheduler().cancelTasks(this);
+		for (Player player : Bukkit.getOnlinePlayers())
+			if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null)
+				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard"))
+					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+	}
 
+	@Override
 	public void onEnable() {
-		me = this;
-		timers = new Timers();
-		ScrollText = new ScrollText();
+		InfoBoard.me = this;
+		InfoBoard.timers = new Timers();
+		InfoBoard.ScrollText = new ScrollText();
 		try
 		{
 			Metrics metrics = new Metrics(this);
 			metrics.start();
 			System.out.println("Metrics was started!");
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			System.out.println("Metrics was unable to start...");
 		}
@@ -74,15 +83,16 @@ public class InfoBoard extends JavaPlugin {
 				Updater updater = new Updater(this, 65787, getFile(),
 						Updater.UpdateType.NO_DOWNLOAD, false);
 
-				update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
-				name = updater.getLatestName();
+				this.update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
+				this.name = updater.getLatestName();
 
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				System.out.println("The auto-updater tried to contact dev.bukkit.org, but was unsuccessful.");
 			}
-			if (update)
-				System.out.println("Theres a new update for InfoBoard(v" + name + ").");
+			if (this.update)
+				System.out.println("Theres a new update for InfoBoard(v" + this.name + ").");
 		}
 
 		// Start TPS
@@ -95,40 +105,28 @@ public class InfoBoard extends JavaPlugin {
 			setupEconomy();
 			setupPermissions();
 		}
-		timers.start();
-		
-	}
+		InfoBoard.timers.start();
 
-	public void onDisable() {
-		Bukkit.getScheduler().cancelTasks(this);
-		for (Player player : Bukkit.getOnlinePlayers())
-			if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null)
-				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard"))
-					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-	}
-
-	private boolean setupPermissions() {
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
-		if (permissionProvider != null)
-		{
-			permission = permissionProvider.getProvider();
-		}
-		if (permission != null)
-			permissionB = true;
-
-		return (permission != null);
 	}
 
 	private boolean setupEconomy() {
 		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
 		if (economyProvider != null)
-		{
-			economy = economyProvider.getProvider();
-		}
-		if (economy != null)
-			economyB = true;
+			InfoBoard.economy = economyProvider.getProvider();
+		if (InfoBoard.economy != null)
+			InfoBoard.economyB = true;
 
-		return (economy != null);
+		return (InfoBoard.economy != null);
+	}
+
+	private boolean setupPermissions() {
+		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+		if (permissionProvider != null)
+			InfoBoard.permission = permissionProvider.getProvider();
+		if (InfoBoard.permission != null)
+			InfoBoard.permissionB = true;
+
+		return (InfoBoard.permission != null);
 	}
 
 }

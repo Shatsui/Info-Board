@@ -44,7 +44,8 @@ public class Messages {
 			// and create a Title scroller
 			title = ScrollManager.createTitleScroller(player, title).getScrolled();
 
-		} else
+		}
+		else
 			// If it's not a scrolling line, we'll just get the line normally
 			// with the variables
 			title = getLine(title, player);

@@ -27,12 +27,8 @@ public class WorldGuardVariables {
 
 		ArrayList<String> playersRegions = new ArrayList<String>();
 		for (Entry<String, ProtectedRegion> r : regions.getRegions().entrySet())
-		{
 			if (r.getValue().isOwner(lplayer))
-			{
 				playersRegions.add(r.getKey());
-			}
-		}
 		Iterator<ProtectedRegion> iter = regions.getApplicableRegions(player.getLocation()).iterator();
 		while (iter.hasNext())
 			inRegions.add(iter.next());
@@ -40,25 +36,25 @@ public class WorldGuardVariables {
 		// //////////////////////////////////////////////////
 
 		if (newString.contains("<worldguardinid>"))
-			if (!(inRegions.isEmpty() || inRegions.get(0) == null))
+			if (!(inRegions.isEmpty() || (inRegions.get(0) == null)))
 				newString = newString.replaceAll("<worldguardinid>", String.valueOf(inRegions.get(0).getId()));
 			else
 				newString = newString.replaceAll("<worldguardinid>", "Unknown");
 
 		if (newString.contains("<worldguardinowner>"))
-			if (!(inRegions.isEmpty() || inRegions.get(0) == null))
+			if (!(inRegions.isEmpty() || (inRegions.get(0) == null)))
 				newString = newString.replaceAll("<worldguardinowner>", String.valueOf(inRegions.get(0).getOwners().getPlayers().iterator().next()));
 			else
 				newString = newString.replaceAll("<worldguardinowner>", "Unknown");
 
 		if (newString.contains("<worldguardinvolume>"))
-			if (!(inRegions.isEmpty() || inRegions.get(0) == null))
+			if (!(inRegions.isEmpty() || (inRegions.get(0) == null)))
 				newString = newString.replaceAll("<worldguardinvolume>", String.valueOf(inRegions.get(0).volume()));
 			else
 				newString = newString.replaceAll("<worldguardinvolume>", "0");
 
 		if (newString.contains("<worldguardinmembers>"))
-			if (!(inRegions.isEmpty() || inRegions.get(0) == null))
+			if (!(inRegions.isEmpty() || (inRegions.get(0) == null)))
 				newString = newString.replaceAll("<worldguardinmembers>", String.valueOf(inRegions.get(0).getMembers().size()));
 			else
 				newString = newString.replaceAll("<worldguardinmembers>", "0");
@@ -67,13 +63,11 @@ public class WorldGuardVariables {
 		{
 			String flag = newString.split("<worldguardinflag")[1].split(">")[0];
 
-			if (!(inRegions.isEmpty() || inRegions.get(0) == null))
+			if (!(inRegions.isEmpty() || (inRegions.get(0) == null)))
 
 				newString = newString.replaceAll("<worldguardinflag" + (flag) + ">", String.valueOf(inRegions.get(0).getFlag(DefaultFlag.fuzzyMatchFlag(flag))));
 			else
-			{
 				newString = newString.replaceAll("<worldguardinflag" + (flag) + ">", "Unknown");
-			}
 		}
 		return newString;
 	}

@@ -20,7 +20,8 @@ public class Ping {
 			Field pingField = nmsplayer.getClass().getDeclaredField("ping");
 			pingField.setAccessible(true);
 			ping = pingField.getInt(nmsplayer);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

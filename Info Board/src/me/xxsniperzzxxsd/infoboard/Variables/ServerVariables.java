@@ -39,10 +39,8 @@ public class ServerVariables {
 
 			int i = 0;
 			for (Player ppl : Bukkit.getOnlinePlayers())
-			{
 				if (ppl.hasPermission(perm))
 					i++;
-			}
 			newString = newString.replaceAll("<peoplewith" + (perm) + ">", String.valueOf(i));
 		}
 		return newString;

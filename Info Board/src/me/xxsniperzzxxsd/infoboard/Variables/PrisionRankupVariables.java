@@ -1,7 +1,6 @@
 
 package me.xxsniperzzxxsd.infoboard.Variables;
 
-
 import net.craftservers.prisonrankup.PrisonRankup;
 
 import org.bukkit.entity.Player;
@@ -11,8 +10,8 @@ public class PrisionRankupVariables {
 
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-			String prefix = "prisonrankup";
-			String name = player.getName();
+		String prefix = "prisonrankup";
+		String name = player.getName();
 
 		if (newString.contains("<" + prefix + "rank>"))
 			newString = newString.replaceAll("<" + prefix + "rank>", PrisonRankup.getRank(name) != null ? PrisonRankup.getRank(name) : "None");
@@ -20,7 +19,7 @@ public class PrisionRankupVariables {
 			newString = newString.replaceAll("<" + prefix + "nextrank>", PrisonRankup.getNextRank(name) != null ? PrisonRankup.getNextRank(name) : "None");
 		if (newString.contains("<" + prefix + "rankprice>"))
 			newString = newString.replaceAll("<" + prefix + "rankprice>", PrisonRankup.getNextRank(name) != null ? PrisonRankup.getRankPrice(PrisonRankup.getNextRank(name)) : "0");
-		
+
 		return newString;
 	}
 }

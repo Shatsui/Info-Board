@@ -14,6 +14,16 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class StatsVariables {
 
+	private static StatData getStatsData(String player, World world, String stat) {
+		RegisteredServiceProvider<StatsAPI> stats = Bukkit.getServer().getServicesManager().getRegistration(nl.lolmewn.stats.api.StatsAPI.class);
+		StatsAPI statsAPI = stats.getProvider();
+
+		if (statsAPI.isUsingBetaFunctions())
+			return statsAPI.getStatsPlayer(player).getStatData(statsAPI.getStat(stat), world.getName(), true);
+		else
+			return statsAPI.getStatsPlayer(player).getStatData(statsAPI.getStat(stat), true);
+	}
+
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		String name = player.getName();
@@ -42,7 +52,7 @@ public class StatsVariables {
 			for (final Object[] vars : stat.getAllVariables())
 				value += stat.getValue(vars);
 
-			newString = newString.replaceAll("<statstime>", String.valueOf(Time.getFormatTime((long)value)));
+			newString = newString.replaceAll("<statstime>", String.valueOf(Time.getFormatTime((long) value)));
 		}
 		if (newString.contains("<statsmoves>"))
 		{
@@ -355,7 +365,7 @@ public class StatsVariables {
 			StatData blockStat;
 			blockStat = getStatsData(name, player.getWorld(), "Block place");
 			for (final Object[] vars : blockStat.getAllVariables())
-				if (id == null || vars[0].toString().equals(s))
+				if ((id == null) || vars[0].toString().equals(s))
 					value += blockStat.getValue(vars);
 
 			newString = newString.replaceAll("<statsplaced" + s + ">", String.valueOf(value));
@@ -372,7 +382,7 @@ public class StatsVariables {
 			StatData blockStat;
 			blockStat = getStatsData(name, player.getWorld(), "Block break");
 			for (final Object[] vars : blockStat.getAllVariables())
-				if (id == null || vars[0].toString().equals(s))
+				if ((id == null) || vars[0].toString().equals(s))
 					value += blockStat.getValue(vars);
 
 			newString = newString.replaceAll("<statsbroken" + s + ">", String.valueOf(value));
@@ -386,23 +396,19 @@ public class StatsVariables {
 			if (s.equals("all"))
 				mob = null;
 			else
-			{
 				try
 				{
 					mob = EntityType.valueOf(s.toUpperCase());
-				} catch (Exception e)
+				}
+				catch (Exception e)
 				{
 					value = 0;
 				}
-			}
 			StatData blockStat;
 			blockStat = getStatsData(name, player.getWorld(), "Kill");
 			for (final Object[] vars : blockStat.getAllVariables())
-				if (mob == null || EntityType.valueOf(vars[0].toString().toUpperCase()) == mob)
-				{
+				if ((mob == null) || (EntityType.valueOf(vars[0].toString().toUpperCase()) == mob))
 					value += blockStat.getValue(vars);
-
-				}
 
 			newString = newString.replaceAll("<statskills" + s + ">", String.valueOf(value));
 		}
@@ -417,21 +423,11 @@ public class StatsVariables {
 			StatData blockStat;
 			blockStat = getStatsData(name, player.getWorld(), "Death");
 			for (final Object[] vars : blockStat.getAllVariables())
-				if (cause == null || vars[0].toString().toUpperCase().equals(s.toUpperCase()))
+				if ((cause == null) || vars[0].toString().toUpperCase().equals(s.toUpperCase()))
 					value += blockStat.getValue(vars);
 
 			newString = newString.replaceAll("<statsdeaths" + s + ">", String.valueOf(value));
 		}
 		return newString;
-	}
-
-	private static StatData getStatsData(String player, World world, String stat) {
-		RegisteredServiceProvider<StatsAPI> stats = Bukkit.getServer().getServicesManager().getRegistration(nl.lolmewn.stats.api.StatsAPI.class);
-		StatsAPI statsAPI = stats.getProvider();
-
-		if (statsAPI.isUsingBetaFunctions())
-			return statsAPI.getStatsPlayer(player).getStatData(statsAPI.getStat(stat), world.getName(), true);
-		else
-			return statsAPI.getStatsPlayer(player).getStatData(statsAPI.getStat(stat), true);
 	}
 }

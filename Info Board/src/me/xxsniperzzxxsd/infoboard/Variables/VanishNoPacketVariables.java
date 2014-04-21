@@ -15,26 +15,28 @@ public class VanishNoPacketVariables {
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		String name = player.getName();
-		
+
 		if (newString.contains("<vanishhidden>"))
 			try
 			{
 				newString = newString.replaceAll("<vanishhidden>", String.valueOf(VanishNoPacket.isVanished(name)));
-			} catch (VanishNotLoadedException e1)
+			}
+			catch (VanishNotLoadedException e1)
 			{
 				newString = newString.replaceAll("<vanishhidden>", "false");
 			}
-		if (newString.contains("<vanishonline>")){
+		if (newString.contains("<vanishonline>"))
+		{
 			ArrayList<String> online = new ArrayList<String>();
-			for(Player p : Bukkit.getOnlinePlayers()){
+			for (Player p : Bukkit.getOnlinePlayers())
 				try
 				{
-					if(!VanishNoPacket.isVanished(p.getName()))
+					if (!VanishNoPacket.isVanished(p.getName()))
 						online.add(p.getName());
-				} catch (VanishNotLoadedException e)
+				}
+				catch (VanishNotLoadedException e)
 				{
 				}
-			}
 			newString = newString.replaceAll("<vanishonline>", String.valueOf(online.size()));
 
 		}

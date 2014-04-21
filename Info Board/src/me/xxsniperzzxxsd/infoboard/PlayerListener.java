@@ -11,11 +11,11 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 public class PlayerListener implements Listener {
 
-	public InfoBoard plugin;
+	public InfoBoard	plugin;
 
 	public PlayerListener(InfoBoard instance)
 	{
-		plugin = instance;
+		this.plugin = instance;
 	}
 
 	@EventHandler
@@ -25,9 +25,7 @@ public class PlayerListener implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if ((event.getPlayer().isOp() || (InfoBoard.permissionB && InfoBoard.permission.has(event.getPlayer(), "*"))) && plugin.update)
-		{
-			event.getPlayer().sendMessage(ChatColor.DARK_AQUA + "Theres a new update for InfoBoard(" + ChatColor.YELLOW + plugin.name + ChatColor.DARK_AQUA+").");
-		}
+		if ((event.getPlayer().isOp() || (InfoBoard.permissionB && InfoBoard.permission.has(event.getPlayer(), "*"))) && this.plugin.update)
+			event.getPlayer().sendMessage(ChatColor.DARK_AQUA + "Theres a new update for InfoBoard(" + ChatColor.YELLOW + this.plugin.name + ChatColor.DARK_AQUA + ").");
 	}
 }

@@ -3,9 +3,7 @@ package me.xxsniperzzxxsd.infoboard.Util;
 
 public class Time {
 
-
 	/**
-	 * 
 	 * @param time
 	 * @return the time in a stats format
 	 */

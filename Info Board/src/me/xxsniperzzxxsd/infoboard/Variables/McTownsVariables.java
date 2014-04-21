@@ -26,7 +26,7 @@ public class McTownsVariables {
 		{
 			int i = Integer.valueOf(newString.split("<mctownsname")[1].split(">")[0]) - 1;
 
-			if (towns.size() >= i + 1)
+			if (towns.size() >= (i + 1))
 				newString = newString.replaceAll("<mctownsname" + (i + 1) + ">", String.valueOf(towns.get(i).getTownName()));
 			else
 				newString = newString.replaceAll("<mctownsname" + (i + 1) + ">", "Join a Town");
@@ -36,7 +36,7 @@ public class McTownsVariables {
 		{
 			int i = Integer.valueOf(newString.split("<mctownsmayor")[1].split(">")[0]) - 1;
 
-			if (towns.size() >= i + 1)
+			if (towns.size() >= (i + 1))
 				newString = newString.replaceAll("<mctownsmayor" + (i + 1) + ">", String.valueOf(towns.get(i).getMayor()));
 			else
 				newString = newString.replaceAll("<mctownsmayor" + (i + 1) + ">", "Unknown");
@@ -46,7 +46,7 @@ public class McTownsVariables {
 		{
 			int i = Integer.valueOf(newString.split("<mctownssize")[1].split(">")[0]) - 1;
 
-			if (towns.size() >= i + 1)
+			if (towns.size() >= (i + 1))
 				newString = newString.replaceAll("<mctownssize" + (i + 1) + ">", String.valueOf(towns.get(i).getSize()));
 			else
 				newString = newString.replaceAll("<mctownssize" + (i + 1) + ">", "0");
@@ -56,7 +56,7 @@ public class McTownsVariables {
 		{
 			int i = Integer.valueOf(newString.split("<mctownsresidents")[1].split(">")[0]) - 1;
 
-			if (towns.size() >= i + 1)
+			if (towns.size() >= (i + 1))
 				newString = newString.replaceAll("<mctownsresidents" + (i + 1) + ">", String.valueOf(towns.get(i).getResidentNames().length));
 			else
 				newString = newString.replaceAll("<mctownsresidents" + (i + 1) + ">", "0");
@@ -66,7 +66,7 @@ public class McTownsVariables {
 		{
 			int i = Integer.valueOf(newString.split("<mctownsterritories")[1].split(">")[0]) - 1;
 
-			if (towns.size() >= i + 1)
+			if (towns.size() >= (i + 1))
 				newString = newString.replaceAll("<mctownsterritories" + (i + 1) + ">", String.valueOf(towns.get(i).getTerritoriesCollection().size()));
 			else
 				newString = newString.replaceAll("<mctownsterritories" + (i + 1) + ">", "0");
@@ -76,7 +76,7 @@ public class McTownsVariables {
 		{
 			int i = Integer.valueOf(newString.split("<mctownsfriendlyfire")[1].split(">")[0]) - 1;
 
-			if (towns.size() >= i + 1)
+			if (towns.size() >= (i + 1))
 				newString = newString.replaceAll("<mctownsfriendlyfire" + (i + 1) + ">", String.valueOf(towns.get(i).allowsFriendlyFire()));
 			else
 				newString = newString.replaceAll("<mctownsfriendlyfire" + (i + 1) + ">", "Unknown");
@@ -86,7 +86,7 @@ public class McTownsVariables {
 		{
 			int i = Integer.valueOf(newString.split("<mctownsassistants")[1].split(">")[0]) - 1;
 
-			if (towns.size() >= i + 1)
+			if (towns.size() >= (i + 1))
 				newString = newString.replaceAll("<mctownsassistants" + (i + 1) + ">", String.valueOf(towns.get(i).getAssistantNames().size()));
 			else
 				newString = newString.replaceAll("<mctownsassistants" + (i + 1) + ">", "0");

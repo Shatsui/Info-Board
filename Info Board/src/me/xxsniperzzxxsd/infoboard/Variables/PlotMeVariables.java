@@ -19,9 +19,7 @@ public class PlotMeVariables {
 		HashMap<String, Plot> plotsMap = PlotManager.getPlots(player);
 		ArrayList<Plot> plots = new ArrayList<Plot>();
 		for (Entry<String, Plot> set : plotsMap.entrySet())
-		{
 			plots.add(set.getValue());
-		}
 
 		if (newString.contains("<plotmeplots>"))
 			newString = newString.replaceAll("<plotmeplots>", String.valueOf(PlotManager.getPlots(player).size()));
@@ -51,7 +49,7 @@ public class PlotMeVariables {
 				newString = newString.replaceAll("<plotmeinbid>", "0");
 
 		if (newString.contains("<plotmeinbidder>"))
-			if (PlotManager.getPlotById(player.getLocation()) != null && PlotManager.getPlotById(player.getLocation()).currentbidder != "")
+			if ((PlotManager.getPlotById(player.getLocation()) != null) && (PlotManager.getPlotById(player.getLocation()).currentbidder != ""))
 				newString = newString.replaceAll("<plotmeinbidder>", String.valueOf(PlotManager.getPlotById(player.getLocation()).currentbidder));
 			else
 				newString = newString.replaceAll("<plotmeinbidder>", "Unknown");
@@ -72,7 +70,7 @@ public class PlotMeVariables {
 		{
 			int i = Integer.valueOf(newString.split("<plotmeid")[1].split(">")[0]) - 1;
 
-			if (plots.size() >= i + 1)
+			if (plots.size() >= (i + 1))
 				newString = newString.replaceAll("<plotmeid" + (i + 1) + ">", String.valueOf(plots.get(i).id));
 			else
 				newString = newString.replaceAll("<plotmeid" + (i + 1) + ">", "0");
@@ -81,7 +79,7 @@ public class PlotMeVariables {
 		{
 			int i = Integer.valueOf(newString.split("<plotmebid")[1].split(">")[0]) - 1;
 
-			if (plots.size() >= i + 1)
+			if (plots.size() >= (i + 1))
 				newString = newString.replaceAll("<plotmebid" + (i + 1) + ">", String.valueOf(plots.get(i).currentbid));
 			else
 				newString = newString.replaceAll("<plotmebid" + (i + 1) + ">", "0");
@@ -90,7 +88,7 @@ public class PlotMeVariables {
 		{
 			int i = Integer.valueOf(newString.split("<plotmebidder")[1].split(">")[0]) - 1;
 
-			if (plots.size() >= i + 1 && String.valueOf(plots.get(i).currentbidder) != "")
+			if ((plots.size() >= (i + 1)) && (String.valueOf(plots.get(i).currentbidder) != ""))
 				newString = newString.replaceAll("<plotmebidder" + (i + 1) + ">", String.valueOf(plots.get(i).currentbidder));
 			else
 				newString = newString.replaceAll("<plotmebidder" + (i + 1) + ">", "Unknown");
@@ -99,7 +97,7 @@ public class PlotMeVariables {
 		{
 			int i = Integer.valueOf(newString.split("<plotmecomments")[1].split(">")[0]) - 1;
 
-			if (plots.size() >= i + 1)
+			if (plots.size() >= (i + 1))
 				newString = newString.replaceAll("<plotmecomments" + (i + 1) + ">", String.valueOf(plots.get(i).getCommentsCount()));
 			else
 				newString = newString.replaceAll("<plotmecomments" + (i + 1) + ">", "0");
@@ -109,7 +107,7 @@ public class PlotMeVariables {
 		{
 			int i = Integer.valueOf(newString.split("<plotmefinished")[1].split(">")[0]) - 1;
 
-			if (plots.size() >= i + 1)
+			if (plots.size() >= (i + 1))
 				newString = newString.replaceAll("<plotmefinished" + (i + 1) + ">", String.valueOf(plots.get(i).finished));
 			else
 				newString = newString.replaceAll("<plotmefinished" + (i + 1) + ">", "Unknown");
@@ -118,7 +116,7 @@ public class PlotMeVariables {
 		{
 			int i = Integer.valueOf(newString.split("<plotmeforsale")[1].split(">")[0]) - 1;
 
-			if (plots.size() >= i + 1)
+			if (plots.size() >= (i + 1))
 				newString = newString.replaceAll("<plotmeforsale" + (i + 1) + ">", String.valueOf(plots.get(i).forsale));
 			else
 				newString = newString.replaceAll("<plotmeforsale" + (i + 1) + ">", "0");
