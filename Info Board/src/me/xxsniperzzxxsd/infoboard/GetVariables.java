@@ -14,6 +14,7 @@ import me.xxsniperzzxxsd.infoboard.Variables.HeroesVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.InfectedVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.JobsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.LWCVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.MarriageVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.McTownsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.MiniGamesVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.MultiverseVariables;
@@ -23,7 +24,9 @@ import me.xxsniperzzxxsd.infoboard.Variables.PVPStatsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerPointsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlayerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PlotMeVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.PointsAPIVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.PrisionRankupVariables;
+import me.xxsniperzzxxsd.infoboard.Variables.PvpLevelsVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.ServerVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.SimpleClansVariables;
 import me.xxsniperzzxxsd.infoboard.Variables.SkillzVariables;
@@ -68,6 +71,11 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("LWC") != null)
 			if (newString.contains("<lwc"))
 				newString = LWCVariables.replaceVariables(newString, player);
+
+		// Marriage Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("Marriage") != null)
+			if (newString.contains("<marriage"))
+				newString = MarriageVariables.replaceVariables(newString, player);
 
 		// Cranked Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Cranked") != null)
@@ -125,6 +133,14 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("pvparena") != null)
 			if (newString.contains("<pvparena"))
 				newString = PVPArenaVariables.replaceVariables(newString, player);
+		// PvpLevels Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("PvpLevels") != null)
+			if (newString.contains("<pvplevels"))
+				newString = PvpLevelsVariables.replaceVariables(newString, player);
+		// PointsAPI Support
+		if (Bukkit.getServer().getPluginManager().getPlugin("PointsAPI") != null)
+			if (newString.contains("<pointsapi"))
+				newString = PointsAPIVariables.replaceVariables(newString, player);
 		// PrisonRankup Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PrisonRankup") != null)
 			if (newString.contains("<prisonrankup"))

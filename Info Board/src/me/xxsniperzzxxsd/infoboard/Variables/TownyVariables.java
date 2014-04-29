@@ -63,7 +63,7 @@ public class TownyVariables {
 		if (newString.contains("<townybank>"))
 			try
 			{
-				newString = newString.replaceAll("<townybank>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getHoldingBalance()));
+				newString = newString.replaceAll("<townybank>", String.valueOf(TownyUniverse.getDataSource().getResident(player.getName()).getTown().getHoldingBalance()));
 			}
 			catch (NotRegisteredException e)
 			{

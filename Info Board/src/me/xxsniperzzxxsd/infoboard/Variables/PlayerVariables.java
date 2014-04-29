@@ -79,7 +79,7 @@ public class PlayerVariables {
 		if (newString.contains("<hand>"))
 			newString = newString.replaceAll("<hand>", String.valueOf((player.getInventory().getItemInHand() == null ? "None" : player.getInventory().getItemInHand().getType().name()) + ""));
 		if (newString.contains("<handdurability>"))
-			newString = newString.replaceAll("<handdurability>", String.valueOf(player.getItemInHand() == null ? 0 : player.getInventory().getHelmet().getDurability()));
+			newString = newString.replaceAll("<handdurability>", String.valueOf(player.getItemInHand() == null ? 0 : player.getInventory().getItemInHand().getDurability()));
 		if (newString.contains("<doihave"))
 		{
 			String perm = newString.split("<doihave")[1].split(">")[0];

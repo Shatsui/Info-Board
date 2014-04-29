@@ -251,6 +251,16 @@
 # #
 # ######################################################
 # +--------------------------------------------------+ #
+# |                     Marriage                     | #
+# | dev.bukkit.org/bukkit-plugins/marriage-reloaded  | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <marriagepartner>       | The player's partner's name | S
+# <marriageonline>        | Is the player's partner online | B
+# <marriagemarried>       | Is the player married | B
+# #
+# ######################################################
+# +--------------------------------------------------+ #
 # |                      mcMMO                       | #
 # |   http://dev.bukkit.org/bukkit-plugins/mcmmo/    | #
 # +--------------------------------------------------+ #
@@ -371,6 +381,14 @@
 # #
 # ######################################################
 # +--------------------------------------------------+ #
+# |                      PointsAPI                   | #
+# |  http://dev.bukkit.org/bukkit-plugins/pointsapi/ | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <pointsapi>      | Your Points | I
+# #
+# ######################################################
+# +--------------------------------------------------+ #
 # |                      PlotMe                      | #
 # |   http://dev.bukkit.org/bukkit-plugins/plotme/   | #
 # +--------------------------------------------------+ #
@@ -420,6 +438,17 @@
 # <pvparenastatswins>       | The player's wins | I
 # <pvparenastatsmaxdamage>     | The player's max damage done | I
 # <pvparenastatsmaxdamagetaken>| The player's max damage taken | I
+# #
+# ######################################################
+# +--------------------------------------------------+ #
+# |                      PvpLevels                   | #
+# | http://dev.bukkit.org/bukkit-plugins/pvplevels/  | #
+# +--------------------------------------------------+ #
+# ######################################################
+# <pvplevelslevel>    | The player's level | I
+# <pvplevelskills>    | The player's kills | I
+# <pvplevelsdeath>    | The player's death | I
+# <pvplevelskdr>      | The player's kill death ratio | I
 # #
 # ######################################################
 # +--------------------------------------------------+ #

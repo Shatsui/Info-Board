@@ -14,11 +14,11 @@ public class PrisionRankupVariables {
 		String name = player.getName();
 
 		if (newString.contains("<" + prefix + "rank>"))
-			newString = newString.replaceAll("<" + prefix + "rank>", PrisonRankup.getRank(name) != null ? PrisonRankup.getRank(name) : "None");
+			newString = newString.replaceAll("<" + prefix + "rank>", PrisonRankup.getRank(name) != null ? PrisonRankup.getRank(name).getName() : "None");
 		if (newString.contains("<" + prefix + "nextrank>"))
-			newString = newString.replaceAll("<" + prefix + "nextrank>", PrisonRankup.getNextRank(name) != null ? PrisonRankup.getNextRank(name) : "None");
+			newString = newString.replaceAll("<" + prefix + "nextrank>", PrisonRankup.getNextRank(name).getName() != null ? PrisonRankup.getNextRank(name).getName() : "None");
 		if (newString.contains("<" + prefix + "rankprice>"))
-			newString = newString.replaceAll("<" + prefix + "rankprice>", PrisonRankup.getNextRank(name) != null ? PrisonRankup.getRankPrice(PrisonRankup.getNextRank(name)) : "0");
+			newString = newString.replaceAll("<" + prefix + "rankprice>", PrisonRankup.getNextRank(name) != null ? PrisonRankup.getNextRank(name).getPriceString() : "0");
 
 		return newString;
 	}
