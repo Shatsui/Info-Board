@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 
 
 public class PlayerVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
-
+		
 		String newString = string;
-
+		
 		// Player Variables
 		if (newString.contains("<ping>"))
 			newString = newString.replaceAll("<ping>", String.valueOf(Ping.getPing(player)));
@@ -83,10 +83,10 @@ public class PlayerVariables {
 		if (newString.contains("<doihave"))
 		{
 			String perm = newString.split("<doihave")[1].split(">")[0];
-
+			
 			newString = newString.replaceAll("<doihave" + (perm) + ">", String.valueOf(player.hasPermission(perm)));
 		}
 		return newString;
 	}
-
+	
 }

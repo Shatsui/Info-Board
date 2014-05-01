@@ -2,10 +2,10 @@
 package me.xxsniperzzxxsd.infoboard.Variables;
 
 public class ALTVariables {
-
+	
 	public static String replaceVariables(String string) {
 		String newString = string;
-
+		
 		while (newString.contains("<ucode"))
 		{
 			String code = (newString.split("<ucode")[1]).split(">")[0];
@@ -59,7 +59,7 @@ public class ALTVariables {
 			newString = newString.replaceAll("<205>", "═");
 		if (newString.contains("<247>"))
 			newString = newString.replaceAll("<247>", "≈");
-
+		
 		if (newString.contains("<skull>"))
 			newString = newString.replaceAll("<skull>", "☠");
 		if (newString.contains("<arrow>"))

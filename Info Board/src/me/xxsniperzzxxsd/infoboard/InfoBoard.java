@@ -23,23 +23,23 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 
 public class InfoBoard extends JavaPlugin {
-
-	public static Plugin			me;
-	public boolean					update		= false;
-	public String					name		= "InfoBoard";
-
-	public String					ib			= "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
-
-	public static Economy			economy;
-	public static Permission		permission;
-	public static boolean			economyB;
-	public static boolean			permissionB;
-
-	public static ScrollText		ScrollText;
-	public static Timers			timers;
+	
+	public static Plugin						me;
+	public boolean									update		= false;
+	public String										name			= "InfoBoard";
+	
+	public String										ib				= "" + ChatColor.RED + ChatColor.BOLD + "➳" + ChatColor.GRAY;
+	
+	public static Economy						economy;
+	public static Permission				permission;
+	public static boolean						economyB;
+	public static boolean						permissionB;
+	
+	public static ScrollText				ScrollText;
+	public static Timers						timers;
 	public static ArrayList<String>	hidefrom	= new ArrayList<String>();
-	public static int				rotation	= 1;
-
+	public static int								rotation	= 1;
+	
 	@Override
 	public void onDisable() {
 		Bukkit.getScheduler().cancelTasks(this);
@@ -48,7 +48,7 @@ public class InfoBoard extends JavaPlugin {
 				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard"))
 					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 	}
-
+	
 	@Override
 	public void onEnable() {
 		InfoBoard.me = this;
@@ -67,25 +67,24 @@ public class InfoBoard extends JavaPlugin {
 		PlayerListener PlayerListener = new PlayerListener(this);
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(PlayerListener, this);
-
+		
 		getCommand("InfoBoard").setExecutor(new Commands(this));
-
+		
 		Files.getVariables().options().copyDefaults(true);
 		Files.saveVariables();
 		getConfig().options().copyDefaults(true);
-
+		
 		saveConfig();
-
+		
 		if (getConfig().getBoolean("Check for Updates"))
 		{
 			try
 			{
-				Updater updater = new Updater(this, 65787, getFile(),
-						Updater.UpdateType.NO_DOWNLOAD, false);
-
+				Updater updater = new Updater(this, 65787, getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
+				
 				this.update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE;
 				this.name = updater.getLatestName();
-
+				
 			}
 			catch (Exception ex)
 			{
@@ -94,39 +93,39 @@ public class InfoBoard extends JavaPlugin {
 			if (this.update)
 				System.out.println("Theres a new update for InfoBoard(v" + this.name + ").");
 		}
-
+		
 		// Start TPS
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
-
+		
 		// Set up Scoreboard
-
+		
 		if (!(getServer().getPluginManager().getPlugin("Vault") == null))
 		{
 			setupEconomy();
 			setupPermissions();
 		}
 		InfoBoard.timers.start();
-
+		
 	}
-
+	
 	private boolean setupEconomy() {
 		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
 		if (economyProvider != null)
 			InfoBoard.economy = economyProvider.getProvider();
 		if (InfoBoard.economy != null)
 			InfoBoard.economyB = true;
-
+		
 		return (InfoBoard.economy != null);
 	}
-
+	
 	private boolean setupPermissions() {
 		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
 		if (permissionProvider != null)
 			InfoBoard.permission = permissionProvider.getProvider();
 		if (InfoBoard.permission != null)
 			InfoBoard.permissionB = true;
-
+		
 		return (InfoBoard.permission != null);
 	}
-
+	
 }

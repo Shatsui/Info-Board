@@ -8,13 +8,13 @@ import org.bukkit.entity.Player;
 
 
 public class ServerVariables {
-
+	
 	public static String replaceVariables(String string) {
 		String newString = string;
 		double tps = Lag.getTPS();
-
+		
 		// Server Variables
-
+		
 		if (newString.contains("<onlineplayers>"))
 			newString = newString.replaceAll("<onlineplayers>", String.valueOf(Bukkit.getOnlinePlayers().length));
 		if (newString.contains("<motd>"))
@@ -36,7 +36,7 @@ public class ServerVariables {
 		if (newString.contains("<peoplewith"))
 		{
 			String perm = newString.split("<peoplewith")[1].split(">")[0];
-
+			
 			int i = 0;
 			for (Player ppl : Bukkit.getOnlinePlayers())
 				if (ppl.hasPermission(perm))

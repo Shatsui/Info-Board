@@ -16,7 +16,7 @@ import org.bukkit.ChatColor;
  */
 
 public class RandomChatColor {
-
+	
 	public static ChatColor getColor(ChatColor... chatColors) {
 		Random r = new Random();
 		ChatColor[] colors;
@@ -30,7 +30,7 @@ public class RandomChatColor {
 		ChatColor rc = colors[i];
 		return rc;
 	}
-
+	
 	public static ChatColor getFormat(ChatColor... chatColors) {
 		Random r = new Random();
 		ChatColor[] colors;

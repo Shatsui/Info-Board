@@ -10,11 +10,11 @@ import org.bukkit.entity.Player;
 
 
 public class InfectedVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		InfPlayer ip = InfPlayerManager.getInfPlayer(player);
-
+		
 		try
 		{
 			if (newString.contains("<infectedpoints>"))

@@ -11,7 +11,7 @@ import pgDev.bukkit.CommandPoints.CommandPointsAPI;
 
 
 public class CommandPointsVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		CommandPointsAPI cp = ((CommandPoints) Bukkit.getServer().getPluginManager().getPlugin("CommandPoints")).getAPI();

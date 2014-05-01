@@ -11,11 +11,11 @@ import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 
 @SuppressWarnings("deprecation")
 public class VanishNoPacketVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		String name = player.getName();
-
+		
 		if (newString.contains("<vanishhidden>"))
 			try
 			{
@@ -38,7 +38,7 @@ public class VanishNoPacketVariables {
 				{
 				}
 			newString = newString.replaceAll("<vanishonline>", String.valueOf(online.size()));
-
+			
 		}
 		return newString;
 	}

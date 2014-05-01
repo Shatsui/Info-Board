@@ -8,14 +8,14 @@ import org.bukkit.entity.Player;
 
 
 public class PlayerPointsVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		PlayerPointsAPI pp = ((PlayerPoints) Bukkit.getServer().getPluginManager().getPlugin("PlayerPoints")).getAPI();
-
+		
 		if (newString.contains("<playerpoints>"))
 			newString = newString.replaceAll("<playerpoints>", String.valueOf(pp.look(player.getName())));
-
+		
 		return newString;
 	}
 }

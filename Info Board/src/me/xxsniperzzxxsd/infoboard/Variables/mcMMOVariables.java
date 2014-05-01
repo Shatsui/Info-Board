@@ -10,10 +10,10 @@ import com.gmail.nossr50.util.player.UserManager;
 
 
 public class mcMMOVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-
+		
 		McMMOPlayer mp = UserManager.getPlayer(player.getName());
 		if (newString.contains("<mcmmopowerlevel>"))
 			newString = newString.replaceAll("<mcmmopowerlevel>", String.valueOf(mp.getPowerLevel()));
@@ -43,7 +43,7 @@ public class mcMMOVariables {
 			newString = newString.replaceAll("<mcmmounarmed>", String.valueOf(mp.getUnarmedManager().getSkillLevel()));
 		if (newString.contains("<mcmmowoodcutting>"))
 			newString = newString.replaceAll("<mcmmowoodcutting>", String.valueOf(mp.getWoodcuttingManager().getSkillLevel()));
-
+		
 		if (newString.contains("<mcmmomaxpowerlevel>"))
 			newString = newString.replaceAll("<mcmmomaxpowerlevel>", String.valueOf(ExperienceAPI.getPowerLevelCap()));
 		if (newString.contains("<mcmmomaxacrobatics>"))
@@ -72,7 +72,7 @@ public class mcMMOVariables {
 			newString = newString.replaceAll("<mcmmomaxunarmed>", String.valueOf(ExperienceAPI.getLevelCap("UNARMED")));
 		if (newString.contains("<mcmmomaxwoodcutting>"))
 			newString = newString.replaceAll("<mcmmomaxwoodcutting>", String.valueOf(ExperienceAPI.getLevelCap("WOODCUTTING")));
-
+		
 		if (newString.contains("<mcmmonextacrobatics>"))
 			newString = newString.replaceAll("<mcmmonextacrobatics>", String.valueOf(ExperienceAPI.getXPToNextLevel(player, "ACROBATICS")));
 		if (newString.contains("<mcmmonextarchery>"))
@@ -99,7 +99,7 @@ public class mcMMOVariables {
 			newString = newString.replaceAll("<mcmmonextunarmed>", String.valueOf(ExperienceAPI.getXPToNextLevel(player, "UNARMED")));
 		if (newString.contains("<mcmmonextwoodcutting>"))
 			newString = newString.replaceAll("<mcmmonextwoodcutting>", String.valueOf(ExperienceAPI.getXPToNextLevel(player, "WOODCUTTING")));
-
+		
 		if (newString.contains("<mcmmoparty>"))
 			newString = newString.replaceAll("<mcmmoparty>", String.valueOf("" + (PartyManager.getParty(player.getName()) != null ? PartyManager.getParty(player.getName()).getName() : "Unknown")));
 		if (newString.contains("<mcmmopartyleader>"))
@@ -110,10 +110,10 @@ public class mcMMOVariables {
 			newString = newString.replaceAll("<mcmmopartymembers>", String.valueOf("" + (PartyManager.getParty(player.getName()) != null ? PartyManager.getParty(player.getName()).getMembers().size() : "0")));
 		if (newString.contains("<mcmmopartymemberson>"))
 			newString = newString.replaceAll("<mcmmopartymemberson>", String.valueOf("" + (PartyManager.getParty(player.getName()) != null ? PartyManager.getParty(player.getName()).getOnlineMembers().size() : "0")));
-
+		
 		if (newString.contains("<mcmmogodmode>"))
 			newString = newString.replaceAll("<mcmmogodmode>", String.valueOf(UserManager.getPlayer(player.getName()).getGodMode()));
-
+		
 		return newString;
 	}
 }

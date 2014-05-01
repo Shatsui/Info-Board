@@ -14,17 +14,17 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 
 public class Files {
-
+	
 	// Set up all the needed things for files
-	public static YamlConfiguration	variableF		= null;
-	public static File				variableFile	= null;
-
+	public static YamlConfiguration	variableF			= null;
+	public static File							variableFile	= null;
+	
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 	public static FileConfiguration getConfig() {
 		return InfoBoard.me.getConfig();
 	}
-
+	
 	// Get Variables file
 	public static FileConfiguration getVariables() {
 		if (Files.variableF == null)
@@ -34,17 +34,16 @@ public class Files {
 		}
 		return Files.variableF;
 	}
-
+	
 	public static void reloadConfig() {
 		InfoBoard.me.reloadConfig();
 	}
-
+	
 	// Reload Variables File
 	public static void reloadVariables() {
 		if (Files.variableFile == null)
 			Files.variableFile = new File(
-					Bukkit.getPluginManager().getPlugin("Info-Board").getDataFolder(),
-					"Variables.yml");
+					Bukkit.getPluginManager().getPlugin("Info-Board").getDataFolder(), "Variables.yml");
 		Files.variableF = YamlConfiguration.loadConfiguration(Files.variableFile);
 		// Look for defaults in the jar
 		InputStream defConfigStream = Bukkit.getPluginManager().getPlugin("Info-Board").getResource("Variables.yml");
@@ -54,11 +53,11 @@ public class Files {
 			Files.variableF.setDefaults(defConfig);
 		}
 	}
-
+	
 	public static void saveConfig() {
 		InfoBoard.me.saveConfig();
 	}
-
+	
 	// Save Variables File
 	public static void saveVariables() {
 		if ((Files.variableF == null) || (Files.variableFile == null))
@@ -72,5 +71,5 @@ public class Files {
 			Bukkit.getLogger().log(Level.SEVERE, "Could not save config " + Files.variableFile, ex);
 		}
 	}
-
+	
 }

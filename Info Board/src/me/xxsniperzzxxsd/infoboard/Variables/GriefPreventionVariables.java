@@ -8,13 +8,13 @@ import org.bukkit.entity.Player;
 
 
 public class GriefPreventionVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		String prefix = "griefprevention";
 		GriefPrevention inst = GriefPrevention.instance;
 		PlayerData pd = inst.dataStore.getPlayerData(player.getName());
-
+		
 		if (newString.contains("<" + prefix + "claims>"))
 			newString = newString.replaceAll("<" + prefix + "claims>", String.valueOf(pd.claims.size()));
 		if (newString.contains("<" + prefix + "spamcount>"))
@@ -25,7 +25,7 @@ public class GriefPreventionVariables {
 			newString = newString.replaceAll("<" + prefix + "accruedclaims>", String.valueOf(pd.accruedClaimBlocks));
 		if (newString.contains("<" + prefix + "remainingclaims>"))
 			newString = newString.replaceAll("<" + prefix + "remainingclaims>", String.valueOf(pd.getRemainingClaimBlocks()));
-
+		
 		return newString;
 	}
 }

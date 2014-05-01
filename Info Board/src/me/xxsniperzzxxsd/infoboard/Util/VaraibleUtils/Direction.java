@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 
 public class Direction {
-
+	
 	public static String getCardinalDirection(Player player) {
 		int degrees = (Math.round(player.getLocation().getYaw()) + 270) % 360;
 		if (degrees <= 22)

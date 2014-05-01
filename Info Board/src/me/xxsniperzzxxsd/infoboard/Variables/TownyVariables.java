@@ -9,10 +9,10 @@ import com.palmergames.bukkit.towny.object.TownyUniverse;
 
 
 public class TownyVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-
+		
 		if (newString.contains("<townyname>"))
 			try
 			{
@@ -22,7 +22,7 @@ public class TownyVariables {
 			{
 				newString = newString.replaceAll("<townyname>", "Unknown");
 			}
-
+		
 		if (newString.contains("<townytitle>"))
 			try
 			{
@@ -49,7 +49,7 @@ public class TownyVariables {
 			catch (NotRegisteredException e2)
 			{
 				newString = newString.replaceAll("<townyresidents>", "0");
-
+				
 			}
 		if (newString.contains("<townyfriends>"))
 			try
@@ -69,7 +69,7 @@ public class TownyVariables {
 			{
 				if (newString.contains("<townybank>"))
 					newString = newString.replaceAll("<townybank>", "0");
-
+				
 			}
 			catch (EconomyException e)
 			{
@@ -92,7 +92,7 @@ public class TownyVariables {
 			catch (NotRegisteredException e)
 			{
 				newString = newString.replaceAll("<townysize>", "0");
-
+				
 			}
 		if (newString.contains("<townytag>"))
 			try
@@ -141,7 +141,7 @@ public class TownyVariables {
 			}
 		if (newString.contains("<townyintown>"))
 			newString = newString.replaceAll("<townyintown>", String.valueOf(TownyUniverse.getTownName(player.getLocation())));
-
+		
 		if (newString.contains("<townyinmayor>"))
 			try
 			{
@@ -205,7 +205,7 @@ public class TownyVariables {
 			{
 				newString = newString.replaceAll("<townyinpublic>", "Unknown");
 			}
-
+		
 		return newString;
 	}
 }

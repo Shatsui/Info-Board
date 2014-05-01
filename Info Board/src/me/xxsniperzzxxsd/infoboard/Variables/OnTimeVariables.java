@@ -9,10 +9,10 @@ import org.bukkit.entity.Player;
 
 
 public class OnTimeVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-
+		
 		// TOTAL
 		if (newString.contains("<ontimetotalplay>"))
 			newString = newString.replaceAll("<ontimetotalplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALPLAY)));
@@ -24,7 +24,7 @@ public class OnTimeVariables {
 			newString = newString.replaceAll("<ontimetotalrefer>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALREFER)));
 		if (newString.contains("<ontimetotalpoint>"))
 			newString = newString.replaceAll("<ontimetotalpoint>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALPOINT)));
-
+		
 		// MONTH
 		if (newString.contains("<ontimemonthplay>"))
 			newString = newString.replaceAll("<ontimemonthplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.MONTHPLAY)));
@@ -34,7 +34,7 @@ public class OnTimeVariables {
 			newString = newString.replaceAll("<ontimemonthvote>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TOTALVOTE)));
 		if (newString.contains("<ontimemonthrefer>"))
 			newString = newString.replaceAll("<ontimemonthrefer>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.MONTHREFER)));
-
+		
 		// TODAY
 		if (newString.contains("<ontimetodayplay>"))
 			newString = newString.replaceAll("<ontimetodayplay>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TODAYPLAY)));
@@ -44,7 +44,7 @@ public class OnTimeVariables {
 			newString = newString.replaceAll("<ontimetodayvote>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TODAYVOTE)));
 		if (newString.contains("<ontimetodayrefer>"))
 			newString = newString.replaceAll("<ontimetodayrefer>", String.valueOf(DataIO.getPlayerTimeData(player.getName(), data.TODAYREFER)));
-
+		
 		return newString;
 	}
 }

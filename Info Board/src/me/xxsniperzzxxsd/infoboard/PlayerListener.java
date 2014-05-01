@@ -10,19 +10,19 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 
 public class PlayerListener implements Listener {
-
+	
 	public InfoBoard	plugin;
-
+	
 	public PlayerListener(InfoBoard instance)
 	{
 		this.plugin = instance;
 	}
-
+	
 	@EventHandler
 	public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
 		event.getPlayer().getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 	}
-
+	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		if ((event.getPlayer().isOp() || (InfoBoard.permissionB && InfoBoard.permission.has(event.getPlayer(), "*"))) && this.plugin.update)

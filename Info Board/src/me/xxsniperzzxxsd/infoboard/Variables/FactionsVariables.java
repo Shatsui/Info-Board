@@ -11,16 +11,16 @@ import com.massivecraft.mcore.ps.PS;
 
 
 public class FactionsVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-
+		
 		UPlayer uplayer = UPlayer.get(player);
-
+		
 		if (newString.contains("<factionsf") && !newString.contains("<factionsfin"))
 		{
 			Faction faction = uplayer.getFaction();
-
+			
 			if (newString.contains("<factionsfname>"))
 				newString = newString.replaceAll("<factionsfname>", faction.getName());
 			if (newString.contains("<factionsfland>"))
@@ -42,11 +42,11 @@ public class FactionsVariables {
 			newString = newString.replaceAll("<factionsmaxpower>", String.valueOf(uplayer.getPowerMaxRounded()));
 		if (newString.contains("<factionsrole>"))
 			newString = newString.replaceAll("<factionsrole>", String.valueOf(uplayer.getRole()));
-
+		
 		if (newString.contains("<factionsfin"))
 		{
 			Faction inFaction = BoardColls.get().getFactionAt(PS.valueOf(uplayer.getPlayer().getLocation().getChunk()));
-
+			
 			if (newString.contains("<factionsfinname>"))
 				newString = newString.replaceAll("<factionsfinname>", String.valueOf(inFaction.getName()));
 			if (newString.contains("<factionsfinland>"))

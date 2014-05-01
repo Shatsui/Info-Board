@@ -12,16 +12,16 @@ import org.bukkit.entity.Player;
 
 
 public class PVPArenaVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		String prefix = "pvparena";
-
+		
 		PAStatMap stats = ArenaPlayer.parsePlayer(player.getName()).getStatistics();
-
+		
 		String ArenaName = PVPArenaAPI.getArenaName(player);
 		Arena a = ArenaManager.getArenaByName(ArenaName);
-
+		
 		if (newString.contains("<" + prefix + "arenaname>"))
 			newString = newString.replaceAll("<" + prefix + "arenaname>", ArenaName == null ? "Unknown" : ArenaName);
 		if (newString.contains("<" + prefix + "arenaowner>"))
@@ -32,7 +32,7 @@ public class PVPArenaVariables {
 			newString = newString.replaceAll("<" + prefix + "arenaround>", String.valueOf(a == null ? 0 : a.getRound()));
 		if (newString.contains("<" + prefix + "arenateams>"))
 			newString = newString.replaceAll("<" + prefix + "arenateams>", String.valueOf(a == null ? 0 : a.getTeams().size()));
-
+		
 		if (newString.contains("<" + prefix + "statskills>"))
 			newString = newString.replaceAll("<" + prefix + "statskills>", String.valueOf(stats.getStat(type.KILLS)));
 		if (newString.contains("<" + prefix + "statsdeaths>"))
@@ -49,7 +49,7 @@ public class PVPArenaVariables {
 			newString = newString.replaceAll("<" + prefix + "statsmaxdamage>", String.valueOf(stats.getStat(type.MAXDAMAGE)));
 		if (newString.contains("<" + prefix + "statsmaxdamagetake>"))
 			newString = newString.replaceAll("<" + prefix + "statsmaxdamagetake>", String.valueOf(stats.getStat(type.MAXDAMAGETAKE)));
-
+		
 		return newString;
 	}
 }

@@ -9,13 +9,13 @@ import com.earth2me.essentials.User;
 
 
 public class EssentialsVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-
+		
 		Essentials e = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
 		User user = e.getUser(player);
-
+		
 		if (user != null)
 		{
 			if (newString.contains("<esshomes>"))
@@ -35,7 +35,7 @@ public class EssentialsVariables {
 		}
 		if (newString.contains("<essjails>"))
 			newString = newString.replaceAll("<essjails>", String.valueOf(e.getJails().getCount()));
-
+		
 		return newString;
 	}
 }

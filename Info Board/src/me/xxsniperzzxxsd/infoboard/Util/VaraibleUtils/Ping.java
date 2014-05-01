@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 
 public class Ping {
-
+	
 	public static int getPing(Player p) {
 		int ping = new Random(50).nextInt();
 		try
@@ -27,5 +27,5 @@ public class Ping {
 		}
 		return ping;
 	}
-
+	
 }

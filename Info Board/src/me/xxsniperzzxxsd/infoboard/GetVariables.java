@@ -42,41 +42,41 @@ import org.bukkit.entity.Player;
 
 
 public class GetVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-
+		
 		// Server Variables
 		newString = ServerVariables.replaceVariables(newString);
-
+		
 		// Player Variables
 		newString = PlayerVariables.replaceVariables(newString, player);
-
+		
 		// Infected Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Infected") != null)
 			if (newString.contains("<infected"))
 				newString = InfectedVariables.replaceVariables(newString, player);
-
+		
 		// Essentials Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Essentials") != null)
 			if (newString.contains("<ess"))
 				newString = EssentialsVariables.replaceVariables(newString, player);
-
+		
 		// AncientRPG Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("AncientRPG") != null)
 			if (newString.contains("<ancientrpg"))
 				newString = AncientRPGVariables.replaceVariables(newString, player);
-
+		
 		// LWC Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("LWC") != null)
 			if (newString.contains("<lwc"))
 				newString = LWCVariables.replaceVariables(newString, player);
-
+		
 		// Marriage Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Marriage") != null)
 			if (newString.contains("<marriage"))
 				newString = MarriageVariables.replaceVariables(newString, player);
-
+		
 		// Cranked Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Cranked") != null)
 			if (newString.contains("<cranked"))
@@ -149,12 +149,12 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("Stats") != null)
 			if (newString.contains("<stats"))
 				newString = StatsVariables.replaceVariables(newString, player);
-
+		
 		// SimpleClans Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("SimpleClans") != null)
 			if (newString.contains("<simpleclans"))
 				newString = SimpleClansVariables.replaceVariables(newString, player);
-
+		
 		if (Bukkit.getServer().getPluginManager().getPlugin("Skillz") != null)
 			if (newString.contains("<skillz"))
 				newString = SkillzVariables.replaceVariables(newString, player);
@@ -180,12 +180,12 @@ public class GetVariables {
 				newString = OnTimeVariables.replaceVariables(newString, player);
 		// UTF-8
 		newString = ALTVariables.replaceVariables(newString);
-
+		
 		// Custom Variables
 		for (String custom : Files.getConfig().getConfigurationSection("Custom Variables").getKeys(true))
 			if (newString.contains(custom))
 				newString = newString.replaceAll(custom, Messages.getLine(Files.getConfig().getString("Custom Variables." + custom), player));
-
+		
 		return newString;
 	}
 }

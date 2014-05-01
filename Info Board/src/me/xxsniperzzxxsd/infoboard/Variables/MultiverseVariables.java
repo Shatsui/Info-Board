@@ -9,14 +9,14 @@ import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 
 
 public class MultiverseVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		String prefix = "multiverse";
-
+		
 		MultiverseCore mv = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
 		MultiverseWorld mw = mv.getMVWorldManager().getMVWorld(player.getWorld());
-
+		
 		if (newString.contains("<" + prefix + "alias>"))
 			newString = newString.replaceAll("<" + prefix + "alias>", mw.getAlias());
 		if (newString.contains("<" + prefix + "autoheal>"))

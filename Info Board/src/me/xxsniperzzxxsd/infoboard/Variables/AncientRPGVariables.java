@@ -12,22 +12,22 @@ import com.ancientshores.AncientRPG.Party.AncientRPGParty;
 
 
 public class AncientRPGVariables {
-
+	
 	@SuppressWarnings("static-access")
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
 		ApiManager api = AncientRPG.getApiManager();
 		PlayerData pd = api.getPlayerData(player);
-
+		
 		if (newString.contains("<ancientrpgrace>"))
 			newString = newString.replaceAll("<ancientrpgrace>", String.valueOf(pd.getRacename()));
 		if (newString.contains("<ancientrpgstance>"))
 			newString = newString.replaceAll("<ancientrpgstance>", String.valueOf(pd.getStance()));
-
+		
 		if (newString.contains("ancientrpgclass"))
 		{
 			AncientRPGClass pc = api.getPlayerClass(pd);
-
+			
 			if (newString.contains("<ancientrpgclass>"))
 				newString = newString.replaceAll("<ancientrpgclass>", String.valueOf(pc == null ? "Unknown" : pc.name));
 			if (newString.contains("<ancientrpgclasslevel>"))
@@ -42,7 +42,7 @@ public class AncientRPGVariables {
 		if (newString.contains("ancientrpgguild"))
 		{
 			AncientRPGGuild pg = api.getPlayerGuild(player.getName());
-
+			
 			if (newString.contains("<ancientrpgguild>"))
 				newString = newString.replaceAll("<ancientrpgguild>", String.valueOf(pg == null ? "Unknown" : pg.gName));
 			if (newString.contains("<ancientrpgguildleader>"))
@@ -57,7 +57,7 @@ public class AncientRPGVariables {
 		if (newString.contains("ancientrpgparty"))
 		{
 			AncientRPGParty pp = api.getPlayerParty(player);
-
+			
 			if (newString.contains("<ancientrpgpartyleader>"))
 				newString = newString.replaceAll("<ancientrpgpartyleader>", String.valueOf(pp == null ? "Unknown" : pp.mLeader));
 			if (newString.contains("<ancientrpgpartymaxmembers>"))

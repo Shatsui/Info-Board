@@ -19,18 +19,18 @@ import org.bukkit.scoreboard.ScoreboardManager;
 
 
 public class Create {
-
+	
 	public static boolean createScoreBoard(Player player) {
-
+		
 		String worldName = "global";
 		String rankName = "default";
 		int value = -1;
-
+		
 		// Before we make the scoreboard lets make sure the player is okay to
 		// see it
 		if (!Settings.isWorldDisabled(player.getWorld().getName()) && player.hasPermission("InfoBoard.View") && !InfoBoard.hidefrom.contains(player.getName()) && ((player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null) || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
-
+			
 			// Does the config contain a scoreboard meant for the world the
 			// players in
 			if (Files.getConfig().contains("Info Board." + String.valueOf(InfoBoard.rotation) + "." + player.getWorld().getName()))
@@ -55,7 +55,7 @@ public class Create {
 					// the default group
 					rankName = "default";
 				}
-
+			
 			if (Settings.isPageValid(InfoBoard.rotation, worldName, rankName))
 			{
 				// If the player has an objective in the sidebar
@@ -69,20 +69,20 @@ public class Create {
 				}
 				// Create a new scoreboard and set it to the sidebar display
 				ScoreboardManager manager = Bukkit.getScoreboardManager();
-
+				
 				Scoreboard infoBoard = manager.getNewScoreboard();
 				Objective infoObjective = infoBoard.registerNewObjective("InfoBoard", "dummy");
 				infoObjective.setDisplaySlot(DisplaySlot.SIDEBAR);
-
+				
 				// Remove and scrolling texts that the player may have had
 				ScrollManager.reset(player);
-
+				
 				// Now we go to the title setting method thats down below
 				infoObjective.setDisplayName(Messages.getTitle(player, infoObjective, worldName, rankName));
-
+				
 				int row;
 				int spaces = 0;
-
+				
 				// I create a list variable to go through so i can remember what
 				// row
 				// number i'm on by using the for loop below
@@ -106,117 +106,115 @@ public class Create {
 							spaces++;
 							score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
 						}
+						else if (line.startsWith("<staff"))
+						{
+							String rank = line.split("<staff")[1].split(">")[0];
+							StringBuilder staff = new StringBuilder();
+							
+							if (InfoBoard.permissionB)
+								for (Player user : Bukkit.getOnlinePlayers())
+									if (InfoBoard.permission.getGroups()[0].equals(rank))
+									{
+										staff.append(user.getName());
+										staff.append(",");
+									}
+							ScrollManager.createScroller(player, staff.toString());
+							score = infoObjective.getScore(Bukkit.getOfflinePlayer(staff.toString()));
+						}
 						else
-							if (line.startsWith("<staff"))
-							{
-								String rank = line.split("<staff")[1].split(">")[0];
-								StringBuilder staff = new StringBuilder();
-
-								if (InfoBoard.permissionB)
-									for (Player user : Bukkit.getOnlinePlayers())
-										if (InfoBoard.permission.getGroups()[0].equals(rank))
-										{
-											staff.append(user.getName());
-											staff.append(",");
-										}
-								ScrollManager.createScroller(player, staff.toString());
-								score = infoObjective.getScore(Bukkit.getOfflinePlayer(staff.toString()));
-							}
-							else
-							{
-								// Now for the scrolling lines
-								if (line.startsWith("<scroll>") && !line.contains("<staff"))
-									// Replace <scroll> with "" and create the
-									// scroll
-									// object, but first lets make sure they
-									// have
-									// scroll
-									// on,
-									// because if its not then that means the
-									// timer
-									// was
-									// never started
-									if (Files.getConfig().getBoolean("Scrolling Text.Enable"))
-									{
-										line = line.replaceAll("<scroll>", "");
-										line = ScrollManager.createScroller(player, line).getScrolled();
-									}
-									else
-										line = "Enable Scroll";
-								// If the line contains <split> (They want to
-								// set
-								// their
-								// own
-								// score for the line
-								if (line.contains("<split>"))
+						{
+							// Now for the scrolling lines
+							if (line.startsWith("<scroll>") && !line.contains("<staff"))
+								// Replace <scroll> with "" and create the
+								// scroll
+								// object, but first lets make sure they
+								// have
+								// scroll
+								// on,
+								// because if its not then that means the
+								// timer
+								// was
+								// never started
+								if (Files.getConfig().getBoolean("Scrolling Text.Enable"))
 								{
-									// We'll split the line and the score, then
-									// set
-									// them
-									String a = line.split("<split>")[0];
-									String b = line.split("<split>")[1];
-
-									score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-									// Lets make sure it is a number first, if
-									// not
-									// we'll
-									// set
-									// it as 0
-									try
-									{
-										value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-									}
-									catch (NumberFormatException ne)
-									{
-										value = 0;
-									}
-								}// If the line contains ; (Same thing as
-									// <split>
-									// but
-									// looks
-									// nicer in a config)
+									line = line.replaceAll("<scroll>", "");
+									line = ScrollManager.createScroller(player, line).getScrolled();
+								}
 								else
-									if (line.contains(";"))
-									{
-										String a = line.split(";")[0];
-										String b = line.split(";")[1];
-
-										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-										try
-										{
-											value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-										}
-										catch (NumberFormatException ne)
-										{
-											value = 0;
-										}
-									}// If the line doesn't contain any form of
-										// a split
-										// just
-										// set
-										// the line to the line
-
-									else
-										score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
-
-							}
+									line = "Enable Scroll";
+							// If the line contains <split> (They want to
+							// set
+							// their
+							// own
+							// score for the line
+							if (line.contains("<split>"))
+							{
+								// We'll split the line and the score, then
+								// set
+								// them
+								String a = line.split("<split>")[0];
+								String b = line.split("<split>")[1];
+								
+								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+								// Lets make sure it is a number first, if
+								// not
+								// we'll
+								// set
+								// it as 0
+								try
+								{
+									value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+								}
+								catch (NumberFormatException ne)
+								{
+									value = 0;
+								}
+							}// If the line contains ; (Same thing as
+								// <split>
+								// but
+								// looks
+								// nicer in a config)
+							else if (line.contains(";"))
+							{
+								String a = line.split(";")[0];
+								String b = line.split(";")[1];
+								
+								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
+								try
+								{
+									value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
+								}
+								catch (NumberFormatException ne)
+								{
+									value = 0;
+								}
+							}// If the line doesn't contain any form of
+								// a split
+								// just
+								// set
+								// the line to the line
+							
+							else
+								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
+							
+						}
 						// If it was determined that we are in fact showing this
 						// line,
 						// we'll give it a number that will help sort it on the
 						// scoreboard so it doesn't change the order
-
+						
 						if (value == -1)
 							value = list.size() - 1 - row;
-
+						
 						// I set it as 1 first, so if "value" is 0, it'll
 						// still show the value as 0
 						score.setScore(1);
 						score.setScore(value);
-
+						
 						// Then i set value back to -1(Which means it wants an
 						// auto number
 						value = -1;
-
+						
 					}
 				}
 				// then we just set the scoreboard for the player
@@ -225,5 +223,5 @@ public class Create {
 		}
 		return true;
 	}
-
+	
 }

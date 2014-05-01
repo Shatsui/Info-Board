@@ -11,17 +11,17 @@ import org.bukkit.entity.Player;
 
 
 public class SimpleClansVariables {
-
+	
 	public static String replaceVariables(String string, Player player) {
 		String newString = string;
-
+		
 		ClanManager cm = ((SimpleClans) Bukkit.getPluginManager().getPlugin("SimpleClans")).getClanManager();
-
+		
 		ClanPlayer cp = cm.getClanPlayer(player);
-
+		
 		if (cp == null)
 			cp = cm.getCreateClanPlayer(player.getName());
-
+		
 		if (newString.contains("<simpleclanskills>"))
 			newString = newString.replaceAll("<simpleclanskills>", String.valueOf(cp.getNeutralKills() + cp.getCivilianKills() + cp.getRivalKills()));
 		if (newString.contains("<simpleclansciviliankills>"))
@@ -38,12 +38,12 @@ public class SimpleClansVariables {
 			newString = newString.replaceAll("<simpleclanskdr>", String.valueOf(cp.getKDR()));
 		if (newString.contains("<simpleclanstag>"))
 			newString = newString.replaceAll("<simpleclanstag>", String.valueOf(cp.getTag()));
-
+		
 		if (newString.contains("<simpleclansclan"))
 		{
-
+			
 			Clan c = cm.getClanByPlayerName(player.getName());
-
+			
 			if (newString.contains("<simpleclansclanaveragewk>"))
 				newString = newString.replaceAll("<simpleclansclanaveragewk>", String.valueOf(c == null ? 0 : c.getAverageWK()));
 			if (newString.contains("<simpleclansclanbalance>"))
