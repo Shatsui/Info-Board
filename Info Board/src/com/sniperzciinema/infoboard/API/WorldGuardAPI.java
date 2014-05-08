@@ -1,0 +1,45 @@
+
+package com.sniperzciinema.infoboard.API;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import com.sniperzciinema.infoboard.Util.Settings;
+
+
+public class WorldGuardAPI {
+	
+	private static ArrayList<ProtectedRegion> getRegionsIn(Location loc) {
+		ArrayList<ProtectedRegion> inRegions = new ArrayList<ProtectedRegion>();
+		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getPluginManager().getPlugin("WorldGuard");
+		
+		RegionManager regions = wg.getRegionManager(loc.getWorld());
+		
+		Iterator<ProtectedRegion> iter = regions.getApplicableRegions(loc).iterator();
+		while (iter.hasNext())
+			inRegions.add(iter.next());
+		
+		return inRegions;
+	}
+	
+	public static boolean portalsAllowedHere(Location loc) {
+		boolean allowed = true;
+		if (hasWorldGuardOnServer())
+		{
+			for (ProtectedRegion region : getRegionsIn(loc))
+				if (Settings.getRegionsDisabled().contains(region.getId()))
+					allowed = false;
+		}
+		return allowed;
+	}
+	
+	private static boolean hasWorldGuardOnServer() {
+		return Bukkit.getPluginManager().getPlugin("WorldGuard") != null;
+	}
+}

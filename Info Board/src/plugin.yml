@@ -1,6 +1,6 @@
 name: Info-Board
-main: me.xxsniperzzxxsd.infoboard.InfoBoard
-version: 0.4.0
+main: com.sniperzciinema.infoboard.InfoBoard
+version: 0.4.1
 author: SniperzCiinema
 description: Show an info board
 softdepend: [AncientRPG, Cranked, Essentials, Factions, Heroes, Infected, Jobs, LWC, Marriage, mcMMO, McTowns, MiniGames, Multiverse-Core, PlayerPoints, PlotMe, PointsAPI, PrisonRankup, PVPArena, PvpLevels, SimpleClans, Stats, Towny, WorldGuard, VanishNoPacket, GriefPrevention]

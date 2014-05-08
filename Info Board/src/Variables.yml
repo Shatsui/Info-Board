@@ -28,6 +28,16 @@
 # #
 # ################################################
 # +--------------------------------------------+ #
+# |                   Math                     | #
+# +--------------------------------------------+ #
+# ################################################
+# <math%+%>          | Replace % with variables you want to add
+# <math%-%>          | Replace % with variables you want to subtract
+# <math%*%>          | Replace % with variables you want to multiply
+# <math%/%>          | Replace % with variables you want to divide
+# #
+# ################################################
+# +--------------------------------------------+ #
 # |            UTF-8 Variables                 | #
 # +--------------------------------------------+ #
 # ################################################
@@ -108,6 +118,8 @@
 # <bootsdurability>     | The player's boot's durability | I
 # <handdurability>      | The player's item in hand's durability | I
 # <doihave&>         | Does the player have % as a permission node | B
+# <doesanyonehave&>  | Does any player on the server have % as a permission node | B
+# <howmanyhave&>     | How many players on the server have % as a permission node | I
 # #
 # ######################################################
 # +--------------------------------------------------+ #
@@ -267,6 +279,7 @@
 # ######################################################
 # <mcmmopowerlevel>  | The player's power level | I
 # <mcmmoacrobatics>  | The player's acrobatics level | I 
+# <mcmmoalchemy>     | The player's alchemy level | I 
 # <mcmmoarchery>     | The player's archery level | I
 # <mcmmoaxes>        | The player's axes level | I
 # <mcmmoexcavation>  | The player's excavation level | I
@@ -281,6 +294,7 @@
 # <mcmmowoodcutting> | The player's wood cutting level | I
 # <mcmmomaxpowerlevel>   | Max Powerlevel | I
 # <mcmmomaxmaxacrobatics>| Max acrobatics level | I
+# <mcmmomaxmaxalchemy>   | Max alchemy level | I
 # <mcmmomaxmaxarchery>   | Max archery level | I
 # <mcmmomaxaxes>         |Max axes level | I
 # <mcmmomaxexcavation>   | Max excavation level | I
@@ -295,6 +309,7 @@
 # <mcmmomaxwoodcutting>| Max wood cutting level | I
 # <mcmmonextpowerlevel>| Exp to next power level | I
 # <mcmmonextacrobatics>| Exp to next acrobatics level | I
+# <mcmmonextalchemy> | Exp to next alchemy level | I
 # <mcmmonextarchery> | Exp to next archery level | I
 # <mcmmonextaxes>    | Exp to next axes level | I
 # <mcmmonextexcavation>| Exp to next excavation level | I

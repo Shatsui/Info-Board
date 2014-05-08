@@ -1,8 +1,6 @@
 # Info Board Config, Last Edited in v0.1.7
 # Max rows is 15, and most characters in a row is 16(Unless you enable scroll) (This includes color/formating codes)
-# The group setting will always go to default if the players group isn't found.(Scoreboards per group requires vault to be on the server)
-# The world setting will always go to global if the players world isn't found.
-
+# #
 # =============================================================
 # #                   Example
 # Info Board:
@@ -12,7 +10,7 @@
 #     Show Time: 10
 # # What world sees this page (global = All)
 #     global:
-# # What Permissions group sees this page
+# # What Permissions group sees this page (default = All)
 #       default:
 # # Pages Title
 #         Title: '&4&lDuskHaven'
@@ -29,6 +27,7 @@
 #         - 'seen by Admins'
 #   '2':
 #     Show Time: 5
+# Because there is no 'default' for the worlds, the page will only be shown in that world
 #     world:
 #       default:
 #         Title: '&a&lStats'
@@ -53,7 +52,6 @@
 # Custom Variables are pretty simple, just follow this setup:
 # Custom Variables: 
 #  <Variable>: What it gets replaced to
-# (Also can be used to change "false" to "No")
 # ==================================================================
 # ==================================================================
 # For Disabled Worlds, Any worlds you want disabled put them here!  
@@ -74,13 +72,18 @@
 # ==================================================================
 Check for Updates: true
 Custom Variables:
-  <website>: www.youtube.com/user/sniperzciinema
+  <website>: SniperzCiinema.com
   <plugindev>: SniperzCiinema
 
 Disabled Worlds:
 - DisabledWorld1
 - DisabledWorld2
 
+WorldGuard:
+  Prevent Showing In:
+  - regionNamesAreCapSensitive
+  - regionName2
+  
 Scrolling Text:
   Enable: false
   Shift Time: 0.25
@@ -100,11 +103,11 @@ Info Board:
         - '&l<player>'
         - ' '
         - '&a&lOnline:'
-        - <onlineplayers>
+        - '<onlineplayers>'
         - ' '
         - '~!<level>&6&lLevel:'
         - '~!<level>&e<level>'
         - ' '
         - '&e&lWebsite:'
-        - <website>
+        - '<website>'
         - '&6<nuke>----=<skull>=----<nuke>'
