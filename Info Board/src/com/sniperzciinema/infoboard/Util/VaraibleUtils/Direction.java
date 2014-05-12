@@ -6,6 +6,28 @@ import org.bukkit.entity.Player;
 
 public class Direction {
 	
+	/**
+	 * Get the Directions of the player
+	 * <p>
+	 * - North
+	 * <p>
+	 * - Northeast
+	 * <p>
+	 * - East
+	 * <p>
+	 * - Southeast
+	 * <p>
+	 * - South
+	 * <p>
+	 * - Southwest
+	 * <p>
+	 * - West
+	 * <p>
+	 * - Northwest
+	 * 
+	 * @param player
+	 * @return
+	 */
 	public static String getCardinalDirection(Player player) {
 		int degrees = (Math.round(player.getLocation().getYaw()) + 270) % 360;
 		if (degrees <= 22)

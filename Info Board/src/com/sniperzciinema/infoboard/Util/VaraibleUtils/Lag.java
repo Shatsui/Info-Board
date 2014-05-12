@@ -1,6 +1,9 @@
 
 package com.sniperzciinema.infoboard.Util.VaraibleUtils;
 
+/**
+ * @author LazyLemons
+ */
 public class Lag implements Runnable {
 	
 	public static int			TICK_COUNT	= 0;

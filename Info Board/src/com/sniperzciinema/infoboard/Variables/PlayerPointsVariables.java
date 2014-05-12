@@ -14,7 +14,7 @@ public class PlayerPointsVariables {
 		PlayerPointsAPI pp = ((PlayerPoints) Bukkit.getServer().getPluginManager().getPlugin("PlayerPoints")).getAPI();
 		
 		if (newString.contains("<playerpoints>"))
-			newString = newString.replaceAll("<playerpoints>", String.valueOf(pp.look(player.getName())));
+			newString = newString.replaceAll("<playerpoints>", String.valueOf(pp.look(player.getUniqueId())));
 		
 		return newString;
 	}

@@ -4,6 +4,8 @@ package com.sniperzciinema.infoboard.Util;
 public class Time {
 	
 	/**
+	 * Get the time in a fancy format
+	 * 
 	 * @param time
 	 * @return the time in a stats format
 	 */

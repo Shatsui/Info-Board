@@ -603,8 +603,9 @@
 # |   http://dev.bukkit.org/bukkit-plugins/vault/    | #
 # +--------------------------------------------------+ #
 # ######################################################
-# <money>            | The player's balance | I
-# <rank>             | The player's rank | S
+# <money>              | The player's balance | I
+# <rank>               | The player's rank | S
+# <ranklist%>          | Creates a list of the staff | S
 # <vaultcurrencyplural>| The currency symbol(Plural) | S
 # <vaultcurrencysingle>| The currency symbol(Single) | S
 # #

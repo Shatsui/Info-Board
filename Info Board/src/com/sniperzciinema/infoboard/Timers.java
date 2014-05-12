@@ -6,64 +6,83 @@ import org.bukkit.entity.Player;
 
 import com.sniperzciinema.infoboard.Scoreboard.Create;
 import com.sniperzciinema.infoboard.Scoreboard.Update;
-import com.sniperzciinema.infoboard.Util.Files;
+import com.sniperzciinema.infoboard.Scroll.ScrollText;
+import com.sniperzciinema.infoboard.Util.Settings;
 
 
 public class Timers {
 	
-	private static int	total	= 0;
-	private static int	timer	= 0;
-	private static int	scoreBoard;
+	private int	showTime, time, rotation;
 	
-	public static void reset() {
-		total = 0;
-		timer = 0;
-		Bukkit.getScheduler().cancelTask(scoreBoard);
+	public Timers()
+	{
+		this.time = 0;
+		this.rotation = 1;
+		this.showTime = InfoBoard.getFileManager().getBoard().getInt("Info Board." + this.rotation + ".Show Time");
+	}
+	
+	/**
+	 * Reset timers back to default
+	 */
+	public void reset() {
+		this.time = 0;
+		this.rotation = 1;
+		this.showTime = InfoBoard.getFileManager().getBoard().getInt("Info Board." + String.valueOf(this.rotation) + ".Show Time");
+		
+		Bukkit.getScheduler().cancelTasks(InfoBoard.me);
 		start();
 	}
 	
-	public static void setPage(int page) {
-		InfoBoard.rotation = page;
-		timer = 0;
-		total = InfoBoard.me.getConfig().getInt("Info Board." + page + ".Show Time");
+	/**
+	 * Manually set the page showing
+	 * 
+	 * @param page
+	 */
+	public void setPage(int page) {
+		this.rotation = page;
+		this.time = -1;
+		this.showTime = InfoBoard.getFileManager().getBoard().getInt("Info Board." + String.valueOf(this.rotation) + ".Show Time");
 	}
 	
-	public static void start() {
-		// Start Rotation Timer
-		scoreBoard = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(InfoBoard.me, new Runnable()
+	/**
+	 * Get the current page
+	 * 
+	 * @return page
+	 */
+	public int getPage() {
+		return this.rotation;
+	}
+	
+	/**
+	 * Start all the timers
+	 */
+	public void start() {
+		
+		// ============================================ PAGE ROTATION =====================================================
+		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(InfoBoard.me, new Runnable()
 		{
 			
 			@Override
 			public void run() {
-				// System.out.println(timer +"/" + total);
-				// Add one to the timer if it doesnt equal the total
-				if (!(Timers.timer >= Timers.total))
-					Timers.timer++;
-				// If they do equal, say that we're ready for a reset
-				else if (Timers.timer >= Timers.total)
+				if (time >= showTime)
 				{
+					setPage(getPage() + 1);
 					
-					// Add on to scoreboard
-					InfoBoard.rotation++;
-					Timers.total = Files.getConfig().getInt("Info Board." + String.valueOf(InfoBoard.rotation) + ".Show Time");
-					Timers.timer = 0;
-					
-					if (Timers.total == 0)
-					{
-						InfoBoard.rotation = 1;
-						Timers.timer = 0;
-						Timers.total = Files.getConfig().getInt("Info Board." + String.valueOf(InfoBoard.rotation) + ".Show Time");
-					}
+					if (showTime == 0)
+						setPage(1);
 					
 					// Set scoreboard of current InfoBoard.rotation
 					for (Player p : Bukkit.getOnlinePlayers())
 						if (p.hasPermission("InfoBoard.View"))
 							Create.createScoreBoard(p);
 				}
+				
+				// Add one to the timer
+				time++;
 			}
-		}, 0, 20);
+		}, 0, 20L);
 		
-		// Update Scores
+		// =================================================== UPDATE BOARD'S VALUE ==========================================================
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(InfoBoard.me, new Runnable()
 		{
 			
@@ -73,10 +92,12 @@ public class Timers {
 				for (Player p : Bukkit.getOnlinePlayers())
 					if (p.hasPermission("InfoBoard.View"))
 						Update.updateScoreBoard(p);
+				
 			}
-		}, 0, (long) Files.getConfig().getDouble("Update Time") * 20);
+		}, 0, (long) InfoBoard.getFileManager().getConfig().getDouble("Update Time") * 20);
 		
-		if (Files.getConfig().getBoolean("Scrolling Text.Enable"))
+		// ===================================================== SCROLLING TEXT ===============================================================
+		if (Settings.scrollingEnabled())
 			Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(InfoBoard.me, new Runnable()
 			{
 				
@@ -84,8 +105,8 @@ public class Timers {
 				public void run() {
 					for (Player p : Bukkit.getOnlinePlayers())
 						if (p.hasPermission("InfoBoard.View"))
-							InfoBoard.ScrollText.slideScore(p);
+							ScrollText.scroll(p);
 				}
-			}, 0, (long) (Files.getConfig().getDouble("Scrolling Text.Shift Time") * 20));
+			}, 0, (long) (InfoBoard.getFileManager().getConfig().getDouble("Scrolling Text.Shift Time") * 20));
 	}
 }

@@ -8,6 +8,10 @@ import java.util.Random;
 import org.bukkit.entity.Player;
 
 
+/**
+ * @author chdxD1
+ * @author Reflections by: Shevchik
+ */
 public class Ping {
 	
 	public static int getPing(Player p) {

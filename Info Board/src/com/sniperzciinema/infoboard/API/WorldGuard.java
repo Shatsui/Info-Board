@@ -13,8 +13,14 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sniperzciinema.infoboard.Util.Settings;
 
 
-public class WorldGuardAPI {
+public class WorldGuard {
 	
+	/**
+	 * Get a list of regions the user is currently in
+	 * 
+	 * @param loc
+	 * @return list of regions
+	 */
 	private static ArrayList<ProtectedRegion> getRegionsIn(Location loc) {
 		ArrayList<ProtectedRegion> inRegions = new ArrayList<ProtectedRegion>();
 		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getPluginManager().getPlugin("WorldGuard");
@@ -28,7 +34,13 @@ public class WorldGuardAPI {
 		return inRegions;
 	}
 	
-	public static boolean portalsAllowedHere(Location loc) {
+	/**
+	 * Are the boards allowed to be shown in the players current region
+	 * 
+	 * @param loc
+	 * @return
+	 */
+	public static boolean boardsAllowedHere(Location loc) {
 		boolean allowed = true;
 		if (hasWorldGuardOnServer())
 		{
@@ -39,6 +51,11 @@ public class WorldGuardAPI {
 		return allowed;
 	}
 	
+	/**
+	 * Does the server have world guard on it
+	 * 
+	 * @return true/false
+	 */
 	private static boolean hasWorldGuardOnServer() {
 		return Bukkit.getPluginManager().getPlugin("WorldGuard") != null;
 	}

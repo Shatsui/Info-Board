@@ -1,7 +1,6 @@
 
 package com.sniperzciinema.infoboard.Scoreboard;
 
-
 import org.bukkit.entity.Player;
 
 import com.sniperzciinema.infoboard.Util.Messages;
@@ -9,26 +8,21 @@ import com.sniperzciinema.infoboard.Util.Messages;
 
 public class ShouldSet {
 	
-	public static String getLine(String line, Player player) {
-		if (line.contains("~!<"))
-		{
-			String l = (line.split("~!<")[1]).split(">")[0];
-			
-			line = line.replaceAll("~!<" + l + ">", "");
-		}
-		// ~@ in front of a variable means it'll only show the
-		// line
-		// if the variable is "0" or "Unknown"
-		else if (line.contains("~@<"))
-		{
-			String l = (line.split("~@<")[1]).split(">")[0];
-			
-			line = line.replaceAll("~@<" + l + ">", "");
-		}
-		return line;
+	private String	line;
+	private Player	player;
+	
+	public ShouldSet(Player player, String line)
+	{
+		this.line = line;
+		this.player = player;
 	}
 	
-	public static boolean test(String line, Player player) {
+	/**
+	 * Should the line be set
+	 * 
+	 * @return true/false
+	 */
+	public boolean getBoolean() {
 		// If the variable isn't 0
 		if (line.contains("~!<"))
 		{
@@ -43,7 +37,6 @@ public class ShouldSet {
 		else if (line.contains("~@<"))
 		{
 			String l = (line.split("~@<")[1]).split(">")[0];
-			System.out.println(l);
 			String l1 = Messages.getLine("<" + l + ">", player);
 			if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("false") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0") || l1.equalsIgnoreCase("-1"))
 				return true;
@@ -52,5 +45,28 @@ public class ShouldSet {
 		}
 		else
 			return true;
+		
+	}
+	
+	/**
+	 * Gets the line after removing the boolean variables
+	 * 
+	 * @return the new line
+	 */
+	public String getLine() {
+		if (line.contains("~!<"))
+		{
+			String l = (line.split("~!<")[1]).split(">")[0];
+			
+			line = line.replaceAll("~!<" + l + ">", "");
+		}
+		
+		else if (line.contains("~@<"))
+		{
+			String l = (line.split("~@<")[1]).split(">")[0];
+			
+			line = line.replaceAll("~@<" + l + ">", "");
+		}
+		return line;
 	}
 }

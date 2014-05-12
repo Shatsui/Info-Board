@@ -1,7 +1,6 @@
 
 package com.sniperzciinema.infoboard.Variables;
 
-
 import org.bukkit.entity.Player;
 
 import com.sniperzciinema.infoboard.Util.Messages;

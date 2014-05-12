@@ -3,17 +3,14 @@ package com.sniperzciinema.infoboard.Scoreboard;
 
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
 
 import com.sniperzciinema.infoboard.InfoBoard;
+import com.sniperzciinema.infoboard.API.Vault;
+import com.sniperzciinema.infoboard.API.WorldGuard;
+import com.sniperzciinema.infoboard.Scroll.Scroll;
 import com.sniperzciinema.infoboard.Scroll.ScrollManager;
-import com.sniperzciinema.infoboard.Util.Files;
 import com.sniperzciinema.infoboard.Util.Messages;
 import com.sniperzciinema.infoboard.Util.Settings;
 
@@ -21,213 +18,131 @@ import com.sniperzciinema.infoboard.Util.Settings;
 public class Create {
 	
 	public static boolean createScoreBoard(Player player) {
-		
+		// Set the default variable values
 		String worldName = "global";
 		String rankName = "default";
-		int value = -1;
+		int row, spaces = 0;
 		
-		// Before we make the scoreboard lets make sure the player is okay to
-		// see it
-		if (!Settings.isWorldDisabled(player.getWorld().getName()) && player.hasPermission("InfoBoard.View") && !InfoBoard.hidefrom.contains(player.getName()) && ((player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null) || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
+		// Make sure the player is allowed to see the scoreboard
+		if (WorldGuard.boardsAllowedHere(player.getLocation()) && !Settings.isWorldDisabled(player.getWorld().getName()) && player.hasPermission("InfoBoard.View") && !InfoBoard.hidefrom.contains(player.getName()) && ((player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null) || player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard")))
 		{
-			// Does the config contain a scoreboard meant for the world the players
-			// currently in
-			if (Settings.doesWorldHaveScoreBoard(InfoBoard.rotation, player.getWorld().getName()))
+			// Get the board's world name
+			if (Settings.doesWorldHaveScoreBoard(InfoBoard.getTimers().getPage(), player.getWorld().getName()))
 				worldName = player.getWorld().getName();
-			else if (Settings.doesGlobalHaveScoreBoard(InfoBoard.rotation))
+			else if (Settings.doesGlobalHaveScoreBoard(InfoBoard.getTimers().getPage()))
 				worldName = "global";
 			else
 				return false;
 			
-			// Is there vault on the server? If so lets make sure it has a
-			// permissions plugin ready
-			if ((Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) && (InfoBoard.permission != null) && InfoBoard.permissionB)
-			{
-				try
-				{
-					// Get the players rank
-					String rank = InfoBoard.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
-					
-					// If the players rank/default is on the world's board set the
-					// rankname
-					if (Settings.doesRankHaveScoreBoard(InfoBoard.rotation, worldName, rank))
-						rankName = rank;
-				}
-				catch (UnsupportedOperationException UOE)
-				{
-					// Wasn't able to get players rank
-				}
-			}
+			// Get the players rank name
+			String rank = Vault.getRank(player);
+			
+			// Make sure the rank is on the board, if it is set that to the player's rankName
+			if (Settings.doesRankHaveScoreBoard(InfoBoard.getTimers().getPage(), worldName, rank))
+				rankName = rank;
+			
 			// Make sure there is a default for the board
-			if (!Settings.doesRankHaveScoreBoard(InfoBoard.rotation, worldName, rankName))
+			if (!Settings.doesRankHaveScoreBoard(InfoBoard.getTimers().getPage(), worldName, rankName))
 				return false;
 			
-			if (Settings.isPageValid(InfoBoard.rotation, worldName, rankName))
+			// Remove any old objective from the sidebar
+			if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null)
 			{
-				// If the player has an objective in the sidebar
-				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null)
+				player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).unregister();
+				player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+			}
+			// Create a new scoreboard and set it to the sidebar display
+			Board board = new Board();
+			
+			// Remove and scrolling texts that the player may have had
+			ScrollManager.reset(player);
+			
+			// Now we go to the title setting method thats down below
+			board.setTitle(Messages.getTitle(player, worldName, rankName));
+			
+			// Loop through the lines
+			List<String> lines = InfoBoard.getFileManager().getBoard().getStringList("Info Board." + String.valueOf(InfoBoard.getTimers().getPage()) + "." + worldName + "." + rankName + ".Rows");
+			
+			for (row = 0; row != lines.size(); row++)
+			{
+				String line = lines.get(row);
+				
+				// ShouldSet is used for the boolean variables (~! an ~@)
+				ShouldSet set = new ShouldSet(player, line);
+				line = set.getLine();
+				
+				if (set.getBoolean())
 				{
-					// unregister and remove that display(Normally the last page
-					// of
-					// InfoBoard
-					player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).unregister();
-					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-				}
-				// Create a new scoreboard and set it to the sidebar display
-				ScoreboardManager manager = Bukkit.getScoreboardManager();
-				
-				Scoreboard infoBoard = manager.getNewScoreboard();
-				Objective infoObjective = infoBoard.registerNewObjective("InfoBoard", "dummy");
-				infoObjective.setDisplaySlot(DisplaySlot.SIDEBAR);
-				
-				// Remove and scrolling texts that the player may have had
-				ScrollManager.reset(player);
-				
-				// Now we go to the title setting method thats down below
-				infoObjective.setDisplayName(Messages.getTitle(player, player.getScoreboard(), infoObjective, worldName, rankName));
-				
-				int row;
-				int spaces = 0;
-				
-				// I create a list variable to go through so i can remember what
-				// row
-				// number i'm on by using the for loop below
-				List<String> list = Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows");
-				for (row = 0; row != Files.getConfig().getStringList("Info Board." + String.valueOf(InfoBoard.rotation) + "." + worldName + "." + rankName + ".Rows").size(); row++)
-				{
-					// Set the basics
-					Score score = null;
-					// Get the line from the list using the row
-					String line = list.get(row);
-					boolean set = ShouldSet.test(line, player);
-					line = ShouldSet.getLine(line, player);
-					// If the line is just a space, it means empty line, so
-					// we'll
-					// just set it as only a color code
-					if (set)
+					// If the line is empty just assume it's an empty line
+					if (line.equals(" ") || line.equals(""))
 					{
-						if (line.equalsIgnoreCase(" "))
+						String space = "§" + spaces;
+						spaces++;
+						board.add(Messages.getColored(space), row);
+					}
+					else
+					{
+						// Manage all scrolling lines
+						if (line.startsWith("<scroll>"))
 						{
-							String space = "&" + spaces;
-							spaces++;
-							score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(space, player)));
-						}
-						else if (line.startsWith("<staff"))
-						{
-							String rank = line.split("<staff")[1].split(">")[0];
-							StringBuilder staff = new StringBuilder();
 							
-							if (InfoBoard.permissionB)
-								for (Player user : Bukkit.getOnlinePlayers())
-									if (InfoBoard.permission.getGroups()[0].equals(rank))
-									{
-										staff.append(user.getName());
-										staff.append(",");
-									}
-							ScrollManager.createScroller(player, staff.toString());
-							score = infoObjective.getScore(Bukkit.getOfflinePlayer(staff.toString()));
+							if (Settings.scrollingEnabled())
+							{
+								line = line.replaceAll("<scroll>", "");
+								int longestLine = getLongestLine(lines, player);
+								String string = Messages.getLine(line, player);
+								Scroll sc = ScrollManager.createScroller(player, string, -row, longestLine);
+								line = sc.getMessage();
+								board.add(line, row);
+							}
+							else
+							{
+								line = "Enable Scroll";
+								board.add(line, row);
+							}
 						}
+						// If the line has a split in it
+						else if (line.contains(";"))
+						{
+							String a = line.split(";")[0];
+							String b = line.split(";")[1];
+							
+							try
+							{
+								board.add(Messages.getLine(a, player), Integer.valueOf(Messages.getLine(b, player)));
+							}
+							catch (NumberFormatException ne)
+							{
+								board.add(Messages.getLine(a, player), 0);
+							}
+						}
+						// Just a regular line
 						else
 						{
-							// Now for the scrolling lines
-							if (line.startsWith("<scroll>") && !line.contains("<staff"))
-								// Replace <scroll> with "" and create the
-								// scroll
-								// object, but first lets make sure they
-								// have
-								// scroll
-								// on,
-								// because if its not then that means the
-								// timer
-								// was
-								// never started
-								if (Files.getConfig().getBoolean("Scrolling Text.Enable"))
-								{
-									line = line.replaceAll("<scroll>", "");
-									line = ScrollManager.createScroller(player, line).getScrolled();
-								}
-								else
-									line = "Enable Scroll";
-							// If the line contains <split> (They want to
-							// set
-							// their
-							// own
-							// score for the line
-							if (line.contains("<split>"))
-							{
-								// We'll split the line and the score, then
-								// set
-								// them
-								String a = line.split("<split>")[0];
-								String b = line.split("<split>")[1];
-								
-								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-								// Lets make sure it is a number first, if
-								// not
-								// we'll
-								// set
-								// it as 0
-								try
-								{
-									value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-								}
-								catch (NumberFormatException ne)
-								{
-									value = 0;
-								}
-							}// If the line contains ; (Same thing as
-								// <split>
-								// but
-								// looks
-								// nicer in a config)
-							else if (line.contains(";"))
-							{
-								String a = line.split(";")[0];
-								String b = line.split(";")[1];
-								
-								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(a, player)));
-								try
-								{
-									value = Integer.valueOf(Messages.getLine(b.replaceAll(" ", ""), player));
-								}
-								catch (NumberFormatException ne)
-								{
-									value = 0;
-								}
-							}// If the line doesn't contain any form of
-								// a split
-								// just
-								// set
-								// the line to the line
-							
-							else
-								score = infoObjective.getScore(Bukkit.getOfflinePlayer(Messages.getLine(line, player)));
-							
+							board.add(Messages.getLine(line, player), row);
 						}
-						// If it was determined that we are in fact showing this
-						// line,
-						// we'll give it a number that will help sort it on the
-						// scoreboard so it doesn't change the order
-						
-						if (value == -1)
-							value = list.size() - 1 - row;
-						
-						// I set it as 1 first, so if "value" is 0, it'll
-						// still show the value as 0
-						score.setScore(1);
-						score.setScore(value);
-						
-						// Then i set value back to -1(Which means it wants an
-						// auto number
-						value = -1;
-						
 					}
 				}
-				// then we just set the scoreboard for the player
-				player.setScoreboard(infoBoard);
 			}
+			// then we just set the scoreboard for the player
+			player.setScoreboard(board.getScoreboard());
+			
 		}
 		return true;
 	}
 	
+	public static int getLongestLine(List<String> lines, Player player) {
+		int longest = 0;
+		for (String line : lines)
+		{
+			if (!line.contains("<scroll>"))
+			{
+				String string = Messages.getReplacements(line, player);
+				if (string.length() > longest)
+					longest = string.length();
+				
+			}
+		}
+		return longest;
+	}
 }

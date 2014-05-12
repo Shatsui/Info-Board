@@ -12,12 +12,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.DisplaySlot;
 
-import com.sniperzciinema.infoboard.Scroll.ScrollText;
-import com.sniperzciinema.infoboard.Util.Files;
+import com.sniperzciinema.infoboard.API.Vault;
+import com.sniperzciinema.infoboard.Util.FileManager;
 import com.sniperzciinema.infoboard.Util.Metrics;
 import com.sniperzciinema.infoboard.Util.Updater;
 import com.sniperzciinema.infoboard.Util.VaraibleUtils.Lag;
@@ -35,10 +34,10 @@ public class InfoBoard extends JavaPlugin {
 	public static Permission				permission;
 	public static boolean						economyB;
 	public static boolean						permissionB;
+	private static Timers						timers;
+	private static FileManager			fileManager;
 	
-	public static ScrollText				ScrollText;
 	public static ArrayList<String>	hidefrom	= new ArrayList<String>();
-	public static int								rotation	= 1;
 	
 	@Override
 	public void onDisable() {
@@ -52,30 +51,29 @@ public class InfoBoard extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		InfoBoard.me = this;
-		InfoBoard.ScrollText = new ScrollText();
-		try
-		{
-			Metrics metrics = new Metrics(this);
-			metrics.start();
-			System.out.println("Metrics was started!");
-		}
-		catch (IOException e)
-		{
-			System.out.println("Metrics was unable to start...");
-		}
-		PlayerListener PlayerListener = new PlayerListener(this);
-		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(PlayerListener, this);
+		InfoBoard.fileManager = new FileManager();
 		
+		InfoBoard.timers = new Timers();
+		getTimers().start();
+		
+		Vault.load();
+		loadMetrics();
+		checkUpdates();
+		
+		PluginManager pm = getServer().getPluginManager();
+		pm.registerEvents(new PlayerListener(this), this);
 		getCommand("InfoBoard").setExecutor(new Commands(this));
 		
-		Files.getVariables().options().copyDefaults(true);
-		Files.saveVariables();
-		getConfig().options().copyDefaults(true);
+		// Start TPS
+		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 		
-		saveConfig();
-		
-		if (getConfig().getBoolean("Check for Updates"))
+	}
+	
+	/**
+	 * Check for updates
+	 */
+	private void checkUpdates() {
+		if (getFileManager().getConfig().getBoolean("Check for Updates"))
 		{
 			try
 			{
@@ -90,41 +88,39 @@ public class InfoBoard extends JavaPlugin {
 				System.out.println("The auto-updater tried to contact dev.bukkit.org, but was unsuccessful.");
 			}
 			if (this.update)
-				System.out.println("Theres a new update for InfoBoard(v" + this.name + ").");
+				System.out.println("Theres a new update for InfoBoard(" + this.name + ").");
 		}
 		
-		// Start TPS
-		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
-		
-		// Set up Scoreboard
-		
-		if (!(getServer().getPluginManager().getPlugin("Vault") == null))
+	}
+	
+	/**
+	 * Load Metrics
+	 */
+	private void loadMetrics() {
+		try
 		{
-			setupEconomy();
-			setupPermissions();
+			Metrics metrics = new Metrics(this);
+			metrics.start();
+			System.out.println("Metrics was started!");
 		}
-		Timers.start();
-		
+		catch (IOException e)
+		{
+			System.out.println("Metrics was unable to start...");
+		}
 	}
 	
-	private boolean setupEconomy() {
-		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (economyProvider != null)
-			InfoBoard.economy = economyProvider.getProvider();
-		if (InfoBoard.economy != null)
-			InfoBoard.economyB = true;
-		
-		return (InfoBoard.economy != null);
+	/**
+	 * @return the timer
+	 */
+	public static Timers getTimers() {
+		return timers;
 	}
 	
-	private boolean setupPermissions() {
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
-		if (permissionProvider != null)
-			InfoBoard.permission = permissionProvider.getProvider();
-		if (InfoBoard.permission != null)
-			InfoBoard.permissionB = true;
-		
-		return (InfoBoard.permission != null);
+	/**
+	 * @return the fileManager
+	 */
+	public static FileManager getFileManager() {
+		return fileManager;
 	}
 	
 }

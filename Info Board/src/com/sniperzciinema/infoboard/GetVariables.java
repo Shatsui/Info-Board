@@ -4,7 +4,6 @@ package com.sniperzciinema.infoboard;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.sniperzciinema.infoboard.Util.Files;
 import com.sniperzciinema.infoboard.Util.Messages;
 import com.sniperzciinema.infoboard.Variables.ALTVariables;
 import com.sniperzciinema.infoboard.Variables.AncientRPGVariables;
@@ -86,70 +85,87 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("Cranked") != null)
 			if (newString.contains("<cranked"))
 				newString = CrankedVariables.replaceVariables(newString, player);
+		
 		// Cranked Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("CommandPoints") != null)
 			if (newString.contains("<commandpoints"))
 				newString = CommandPointsVariables.replaceVariables(newString, player);
+		
 		// McTowns Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("MCTowns") != null)
 			if (newString.contains("<mctowns"))
 				newString = McTownsVariables.replaceVariables(newString, player);
+		
 		// Towny Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Towny") != null)
 			if (newString.contains("<towny"))
 				newString = TownyVariables.replaceVariables(newString, player);
+		
 		// Factions Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Factions") != null)
 			if (newString.contains("<factions"))
 				newString = FactionsVariables.replaceVariables(newString, player);
+		
 		// GriefPrevention Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("GriefPrevention") != null)
 			if (newString.contains("<griefprevention"))
 				newString = GriefPreventionVariables.replaceVariables(newString, player);
+		
 		// Heroes Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Heroes") != null)
 			if (newString.contains("<heroes"))
 				newString = HeroesVariables.replaceVariables(newString, player);
+		
 		// mcMMO Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("mcMMO") != null)
 			if (newString.contains("<mcmmo"))
 				newString = mcMMOVariables.replaceVariables(newString, player);
+		
 		// Vault Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null)
 			if (newString.contains("<vault") || newString.contains("<rank") || newString.contains("<money"))
 				newString = VaultVariables.replaceVariables(newString, player);
+		
 		// Jobs Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Jobs") != null)
 			if (newString.contains("<jobs"))
 				newString = JobsVariables.replaceVariables(newString, player);
+		
 		// PlayerPoints Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PlayerPoints") != null)
 			if (newString.contains("<playerpoints"))
 				newString = PlayerPointsVariables.replaceVariables(newString, player);
+		
 		// PlayerPoints Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("pvpstats") != null)
 			if (newString.contains("<pvpstats"))
 				newString = PVPStatsVariables.replaceVariables(newString, player);
+		
 		// PlotMe Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PlotMe") != null)
 			if (newString.contains("<plotme"))
 				newString = PlotMeVariables.replaceVariables(newString, player);
+		
 		// PVPArena Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("pvparena") != null)
 			if (newString.contains("<pvparena"))
 				newString = PVPArenaVariables.replaceVariables(newString, player);
+		
 		// PvpLevels Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PvpLevels") != null)
 			if (newString.contains("<pvplevels"))
 				newString = PvpLevelsVariables.replaceVariables(newString, player);
+		
 		// PointsAPI Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PointsAPI") != null)
 			if (newString.contains("<pointsapi"))
 				newString = PointsAPIVariables.replaceVariables(newString, player);
+		
 		// PrisonRankup Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("PrisonRankup") != null)
 			if (newString.contains("<prisonrankup"))
 				newString = PrisionRankupVariables.replaceVariables(newString, player);
+		
 		// Stats Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Stats") != null)
 			if (newString.contains("<stats"))
@@ -163,22 +179,27 @@ public class GetVariables {
 		if (Bukkit.getServer().getPluginManager().getPlugin("Skillz") != null)
 			if (newString.contains("<skillz"))
 				newString = SkillzVariables.replaceVariables(newString, player);
+		
 		// WorldGuard Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("WorldGuard") != null)
 			if (newString.contains("<worldguard"))
 				newString = WorldGuardVariables.replaceVariables(newString, player);
+		
 		// VanishNoPacket Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("VanishNoPacket") != null)
 			if (newString.contains("<vanish"))
 				newString = VanishNoPacketVariables.replaceVariables(newString, player);
+		
 		// MiniGames Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("MiniGames") != null)
 			if (newString.contains("<minigames"))
 				newString = MiniGamesVariables.replaceVariables(newString, player);
+		
 		// Multiverse Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core") != null)
 			if (newString.contains("<multiverse"))
 				newString = MultiverseVariables.replaceVariables(newString, player);
+		
 		// OnTime Support
 		if (Bukkit.getServer().getPluginManager().getPlugin("OnTime") != null)
 			if (newString.contains("<ontime"))
@@ -188,9 +209,9 @@ public class GetVariables {
 		newString = ALTVariables.replaceVariables(newString);
 		
 		// Custom Variables
-		for (String custom : Files.getConfig().getConfigurationSection("Custom Variables").getKeys(true))
+		for (String custom : InfoBoard.getFileManager().getConfig().getConfigurationSection("Custom Variables").getKeys(true))
 			if (newString.contains(custom))
-				newString = newString.replaceAll(custom, Messages.getLine(Files.getConfig().getString("Custom Variables." + custom), player));
+				newString = newString.replaceAll(custom, Messages.getColored(InfoBoard.getFileManager().getConfig().getString("Custom Variables." + custom)));
 		
 		return newString;
 	}

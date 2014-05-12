@@ -25,7 +25,7 @@ public class PlayerListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if ((event.getPlayer().isOp() || (InfoBoard.permissionB && InfoBoard.permission.has(event.getPlayer(), "*"))) && this.plugin.update)
+		if (event.getPlayer().isOp() && this.plugin.update)
 			event.getPlayer().sendMessage(ChatColor.DARK_AQUA + "Theres a new update for InfoBoard(" + ChatColor.YELLOW + this.plugin.name + ChatColor.DARK_AQUA + ").");
 	}
 }
