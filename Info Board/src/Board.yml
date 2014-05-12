@@ -48,7 +48,7 @@ Info Board:
       default:
         Title: '&lWelcome To <servername>'
         Rows:
-        - '&6<nuke>----&4~<skull>~&6----<nuke>'
+        - '&6<nuke>----~<skull>~----<nuke>'
         - ' '
         - '&e&lWelcome!'
         - '&l<player>'
@@ -61,14 +61,14 @@ Info Board:
         - ' '
         - '&e&lWebsite:'
         - '<website>'
-        - '&6<nuke>----&4=<skull>=&6----<nuke>'
+        - '&6<nuke>----=<skull>=----<nuke>'
   '2':
     Show Time: 10
     global:
       default:
-        Title: '&6&lPlayer Stats'
+        Title: '&e&lPlayer Stats'
         Rows:
-        - '&6<nuke>----&4~<skull>~&6----<nuke>'
+        - '&6<nuke>----~<skull>~----<nuke>'
         - ' '
         - '&e&lLevel:'
         - '&l<math<level>+<exp>>'
@@ -81,11 +81,11 @@ Info Board:
         - ' '
         - '&e&lWebsite:'
         - '<website>'
-        - '&6<nuke>----&4=<skull>=&6----<nuke>'  
+        - '&6<nuke>----=<skull>=----<nuke>'  
       Admin:
-        Title: '&6&lServer Stats'
+        Title: '&e&lServer Stats'
         Rows:
-        - '&6<nuke>----&4~<skull>~&6----<nuke>'
+        - '&6<nuke>----~<skull>~----<nuke>'
         - ' '
         - '&a&lMemory:'
         - '&e<usedram>&7/&e<maxram>'

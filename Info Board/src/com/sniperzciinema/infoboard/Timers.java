@@ -21,6 +21,14 @@ public class Timers {
 		this.showTime = InfoBoard.getFileManager().getBoard().getInt("Info Board." + this.rotation + ".Show Time");
 	}
 	
+	public void stop() {
+		this.time = 0;
+		this.rotation = 1;
+		this.showTime = InfoBoard.getFileManager().getBoard().getInt("Info Board." + String.valueOf(this.rotation) + ".Show Time");
+		
+		Bukkit.getScheduler().cancelTasks(InfoBoard.me);
+	}
+	
 	/**
 	 * Reset timers back to default
 	 */
