@@ -9,22 +9,33 @@ import com.sniperzciinema.infoboard.InfoBoard;
 public class Settings {
 	
 	/**
-	 * Determine if the world given is blocked
+	 * Determines if the rank has valid scoreboard
 	 * 
-	 * @param world
-	 * @return
+	 * @param rotation
+	 * @return true/false
 	 */
-	public static boolean isWorldDisabled(String world) {
-		return InfoBoard.getFileManager().getConfig().getStringList("Disabled Worlds").contains(world) || (world == null);
+	public static boolean doesGlobalHaveScoreBoard(int rotation) {
+		boolean hasBoard = false;
+		for (String s : InfoBoard.getFileManager().getBoard().getConfigurationSection("Info Board." + String.valueOf(rotation)).getKeys(true))
+			if (!s.contains("."))
+				if (s.equals("global"))
+				{
+					hasBoard = true;
+					break;
+				}
+		return hasBoard;
 	}
 	
-	/**
-	 * Get the list of blocked regions for worldguard
-	 * 
-	 * @return list
-	 */
-	public static List<String> getRegionsDisabled() {
-		return InfoBoard.getFileManager().getConfig().getStringList("WorldGuard.Prevent Showing In");
+	public static boolean doesRankHaveScoreBoard(int rotation, String world, String rank) {
+		boolean hasBoard = false;
+		for (String s : InfoBoard.getFileManager().getBoard().getConfigurationSection("Info Board." + String.valueOf(rotation) + "." + world).getKeys(true))
+			if (!s.contains("."))
+				if (s.equals(rank))
+				{
+					hasBoard = true;
+					break;
+				}
+		return hasBoard;
 	}
 	
 	/**
@@ -37,49 +48,32 @@ public class Settings {
 	public static boolean doesWorldHaveScoreBoard(int rotation, String world) {
 		boolean hasBoard = false;
 		for (String s : InfoBoard.getFileManager().getBoard().getConfigurationSection("Info Board." + String.valueOf(rotation)).getKeys(true))
-		{
 			if (!s.contains("."))
 				if (s.equalsIgnoreCase(world))
 				{
 					hasBoard = true;
 					break;
 				}
-		}
 		return hasBoard;
 	}
 	
 	/**
-	 * Determines if the rank has valid scoreboard
+	 * Get the list of blocked regions for worldguard
 	 * 
-	 * @param rotation
-	 * @return true/false
+	 * @return list
 	 */
-	public static boolean doesGlobalHaveScoreBoard(int rotation) {
-		boolean hasBoard = false;
-		for (String s : InfoBoard.getFileManager().getBoard().getConfigurationSection("Info Board." + String.valueOf(rotation)).getKeys(true))
-		{
-			if (!s.contains("."))
-				if (s.equals("global"))
-				{
-					hasBoard = true;
-					break;
-				}
-		}
-		return hasBoard;
+	public static List<String> getRegionsDisabled() {
+		return InfoBoard.getFileManager().getConfig().getStringList("WorldGuard.Prevent Showing In");
 	}
 	
-	public static boolean doesRankHaveScoreBoard(int rotation, String world, String rank) {
-		boolean hasBoard = false;
-		for (String s : InfoBoard.getFileManager().getBoard().getConfigurationSection("Info Board." + String.valueOf(rotation) + "." + world).getKeys(true))
-		{
-			if (!s.contains("."))
-				if (s.equals(rank))
-				{
-					hasBoard = true;
-					break;
-				}
-		}
-		return hasBoard;
+	/**
+	 * Determine if the world given is blocked
+	 * 
+	 * @param world
+	 * @return
+	 */
+	public static boolean isWorldDisabled(String world) {
+		return InfoBoard.getFileManager().getConfig().getStringList("Disabled Worlds").contains(world) || (world == null);
 	}
 	
 	/**

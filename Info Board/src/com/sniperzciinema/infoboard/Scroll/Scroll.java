@@ -30,31 +30,12 @@ public class Scroll {
 		this.width = width;
 		this.origionalMessage = message;
 		StringBuilder builder = new StringBuilder(message);
-		while (builder.length() <= width * 2)
+		while (builder.length() <= (width * 2))
 			builder.append("          " + message);
 		
 		String string = builder.toString();
 		
 		this.message = string;
-	}
-	
-	/**
-	 * Move position up one unless it's being paused for 3 counts first
-	 */
-	public void next() {
-		
-		if (position == 0 && pause != 3)
-			pause++;
-		else
-		{
-			position++;
-			pause = 0;
-			
-			if (this.position == this.origionalMessage.length() + 10)
-				this.position = 0;
-			
-		}
-		
 	}
 	
 	/**
@@ -64,10 +45,10 @@ public class Scroll {
 	 */
 	public String getMessage() {
 		
-		String message = this.message.substring(this.position, Math.min(this.message.length(), width - 2 + this.position));
+		String message = this.message.substring(this.position, Math.min(this.message.length(), (this.width - 2) + this.position));
 		
-		if (message.charAt(0) != COLORCHAR)
-			message = color + message;
+		if (message.charAt(0) != this.COLORCHAR)
+			message = this.color + message;
 		return message;
 	}
 	
@@ -75,7 +56,26 @@ public class Scroll {
 	 * @return the row
 	 */
 	public int getRow() {
-		return row;
+		return this.row;
+	}
+	
+	/**
+	 * Move position up one unless it's being paused for 3 counts first
+	 */
+	public void next() {
+		
+		if ((this.position == 0) && (this.pause != 3))
+			this.pause++;
+		else
+		{
+			this.position++;
+			this.pause = 0;
+			
+			if (this.position == (this.origionalMessage.length() + 10))
+				this.position = 0;
+			
+		}
+		
 	}
 	
 }

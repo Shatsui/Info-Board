@@ -14,15 +14,6 @@ import com.sniperzciinema.infoboard.InfoBoard;
 public class Vault {
 	
 	/**
-	 * Does the server have vault and did everything for vault load okay
-	 * 
-	 * @return true/false
-	 */
-	private static boolean hasVaultOnServer() {
-		return (Bukkit.getPluginManager().getPlugin("Vault") != null) && (InfoBoard.permission != null) && (InfoBoard.permissionB);
-	}
-	
-	/**
 	 * Gets the players rank
 	 * 
 	 * @param player
@@ -31,7 +22,6 @@ public class Vault {
 	public static String getRank(Player player) {
 		String rank = "default";
 		if (hasVaultOnServer())
-		{
 			try
 			{
 				rank = InfoBoard.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
@@ -39,8 +29,16 @@ public class Vault {
 			catch (UnsupportedOperationException UOE)
 			{
 			}
-		}
 		return rank;
+	}
+	
+	/**
+	 * Does the server have vault and did everything for vault load okay
+	 * 
+	 * @return true/false
+	 */
+	private static boolean hasVaultOnServer() {
+		return (Bukkit.getPluginManager().getPlugin("Vault") != null) && (InfoBoard.permission != null) && (InfoBoard.permissionB);
 	}
 	
 	/**

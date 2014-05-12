@@ -21,12 +21,13 @@ public class Timers {
 		this.showTime = InfoBoard.getFileManager().getBoard().getInt("Info Board." + this.rotation + ".Show Time");
 	}
 	
-	public void stop() {
-		this.time = 0;
-		this.rotation = 1;
-		this.showTime = InfoBoard.getFileManager().getBoard().getInt("Info Board." + String.valueOf(this.rotation) + ".Show Time");
-		
-		Bukkit.getScheduler().cancelTasks(InfoBoard.me);
+	/**
+	 * Get the current page
+	 * 
+	 * @return page
+	 */
+	public int getPage() {
+		return this.rotation;
 	}
 	
 	/**
@@ -53,15 +54,6 @@ public class Timers {
 	}
 	
 	/**
-	 * Get the current page
-	 * 
-	 * @return page
-	 */
-	public int getPage() {
-		return this.rotation;
-	}
-	
-	/**
 	 * Start all the timers
 	 */
 	public void start() {
@@ -72,11 +64,11 @@ public class Timers {
 			
 			@Override
 			public void run() {
-				if (time >= showTime)
+				if (Timers.this.time >= Timers.this.showTime)
 				{
 					setPage(getPage() + 1);
 					
-					if (showTime == 0)
+					if (Timers.this.showTime == 0)
 						setPage(1);
 					
 					// Set scoreboard of current InfoBoard.rotation
@@ -86,7 +78,7 @@ public class Timers {
 				}
 				
 				// Add one to the timer
-				time++;
+				Timers.this.time++;
 			}
 		}, 0, 20L);
 		
@@ -116,5 +108,13 @@ public class Timers {
 							ScrollText.scroll(p);
 				}
 			}, 0, (long) (InfoBoard.getFileManager().getConfig().getDouble("Scrolling Text.Shift Time") * 20));
+	}
+	
+	public void stop() {
+		this.time = 0;
+		this.rotation = 1;
+		this.showTime = InfoBoard.getFileManager().getBoard().getInt("Info Board." + String.valueOf(this.rotation) + ".Show Time");
+		
+		Bukkit.getScheduler().cancelTasks(InfoBoard.me);
 	}
 }

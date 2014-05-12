@@ -16,6 +16,21 @@ import com.sniperzciinema.infoboard.Util.Settings;
 public class WorldGuard {
 	
 	/**
+	 * Are the boards allowed to be shown in the players current region
+	 * 
+	 * @param loc
+	 * @return
+	 */
+	public static boolean boardsAllowedHere(Location loc) {
+		boolean allowed = true;
+		if (hasWorldGuardOnServer())
+			for (ProtectedRegion region : getRegionsIn(loc))
+				if (Settings.getRegionsDisabled().contains(region.getId()))
+					allowed = false;
+		return allowed;
+	}
+	
+	/**
 	 * Get a list of regions the user is currently in
 	 * 
 	 * @param loc
@@ -32,23 +47,6 @@ public class WorldGuard {
 			inRegions.add(iter.next());
 		
 		return inRegions;
-	}
-	
-	/**
-	 * Are the boards allowed to be shown in the players current region
-	 * 
-	 * @param loc
-	 * @return
-	 */
-	public static boolean boardsAllowedHere(Location loc) {
-		boolean allowed = true;
-		if (hasWorldGuardOnServer())
-		{
-			for (ProtectedRegion region : getRegionsIn(loc))
-				if (Settings.getRegionsDisabled().contains(region.getId()))
-					allowed = false;
-		}
-		return allowed;
 	}
 	
 	/**

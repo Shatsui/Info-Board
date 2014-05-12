@@ -31,6 +31,20 @@ public class FileManager {
 		saveConfig();
 	}
 	
+	/**
+	 * Get the board file
+	 * 
+	 * @return
+	 */
+	public FileConfiguration getBoard() {
+		if (this.board == null)
+		{
+			reloadBoard();
+			saveBoard();
+		}
+		return this.board;
+	}
+	
 	public FileConfiguration getConfig() {
 		return InfoBoard.me.getConfig();
 	}
@@ -41,26 +55,30 @@ public class FileManager {
 	 * @return
 	 */
 	public FileConfiguration getVariables() {
-		if (variable == null)
+		if (this.variable == null)
 		{
 			reloadVariables();
 			saveVariables();
 		}
-		return variable;
+		return this.variable;
 	}
 	
 	/**
-	 * Get the board file
-	 * 
-	 * @return
+	 * Reload Boards file
 	 */
-	public FileConfiguration getBoard() {
-		if (board == null)
+	public void reloadBoard() {
+		if (this.boardFile == null)
+			this.boardFile = new File(Bukkit.getPluginManager().getPlugin("Info-Board").getDataFolder(),
+					"Board.yml");
+		this.board = YamlConfiguration.loadConfiguration(this.boardFile);
+		// Look for defaults in the jar
+		InputStream defConfigStream = Bukkit.getPluginManager().getPlugin("Info-Board").getResource("Board.yml");
+		if (defConfigStream != null)
 		{
-			reloadBoard();
-			saveBoard();
+			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+			if (!this.boardFile.exists() || (this.boardFile.length() == 0))
+				this.board.setDefaults(defConfig);
 		}
-		return board;
 	}
 	
 	/**
@@ -74,34 +92,32 @@ public class FileManager {
 	 * Reload variables file
 	 */
 	public void reloadVariables() {
-		if (variableFile == null)
-			variableFile = new File(Bukkit.getPluginManager().getPlugin("Info-Board").getDataFolder(),
-					"Variables.yml");
-		variable = YamlConfiguration.loadConfiguration(variableFile);
+		if (this.variableFile == null)
+			this.variableFile = new File(
+					Bukkit.getPluginManager().getPlugin("Info-Board").getDataFolder(), "Variables.yml");
+		this.variable = YamlConfiguration.loadConfiguration(this.variableFile);
 		// Look for defaults in the jar
 		InputStream defConfigStream = Bukkit.getPluginManager().getPlugin("Info-Board").getResource("Variables.yml");
 		if (defConfigStream != null)
 		{
 			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-			variable.setDefaults(defConfig);
+			this.variable.setDefaults(defConfig);
 		}
 	}
 	
 	/**
-	 * Reload Boards file
+	 * Save Board file
 	 */
-	public void reloadBoard() {
-		if (boardFile == null)
-			boardFile = new File(Bukkit.getPluginManager().getPlugin("Info-Board").getDataFolder(),
-					"Board.yml");
-		board = YamlConfiguration.loadConfiguration(boardFile);
-		// Look for defaults in the jar
-		InputStream defConfigStream = Bukkit.getPluginManager().getPlugin("Info-Board").getResource("Board.yml");
-		if (defConfigStream != null)
+	public void saveBoard() {
+		if ((this.board == null) || (this.boardFile == null))
+			return;
+		try
 		{
-			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-			if (!boardFile.exists() || (boardFile.length() == 0))
-				board.setDefaults(defConfig);
+			getBoard().save(this.boardFile);
+		}
+		catch (IOException ex)
+		{
+			Bukkit.getLogger().log(Level.SEVERE, "Could not save config " + this.boardFile, ex);
 		}
 	}
 	
@@ -116,31 +132,15 @@ public class FileManager {
 	 * Save Variables file
 	 */
 	public void saveVariables() {
-		if ((variable == null) || (variableFile == null))
+		if ((this.variable == null) || (this.variableFile == null))
 			return;
 		try
 		{
-			getVariables().save(variableFile);
+			getVariables().save(this.variableFile);
 		}
 		catch (IOException ex)
 		{
-			Bukkit.getLogger().log(Level.SEVERE, "Could not save config " + variableFile, ex);
-		}
-	}
-	
-	/**
-	 * Save Board file
-	 */
-	public void saveBoard() {
-		if ((board == null) || (boardFile == null))
-			return;
-		try
-		{
-			getBoard().save(boardFile);
-		}
-		catch (IOException ex)
-		{
-			Bukkit.getLogger().log(Level.SEVERE, "Could not save config " + boardFile, ex);
+			Bukkit.getLogger().log(Level.SEVERE, "Could not save config " + this.variableFile, ex);
 		}
 	}
 	

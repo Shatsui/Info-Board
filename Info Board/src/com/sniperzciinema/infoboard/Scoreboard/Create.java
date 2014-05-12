@@ -72,7 +72,6 @@ public class Create {
 				line = set.getLine();
 				
 				if (set.getBoolean())
-				{
 					// If the line is empty just assume it's an empty line
 					if (line.equals(" ") || line.equals(""))
 					{
@@ -80,49 +79,43 @@ public class Create {
 						spaces++;
 						board.add(Messages.getColored(space), row);
 					}
-					else
+					else // Manage all scrolling lines
+					if (line.startsWith("<scroll>"))
 					{
-						// Manage all scrolling lines
-						if (line.startsWith("<scroll>"))
+						
+						if (Settings.scrollingEnabled())
 						{
-							
-							if (Settings.scrollingEnabled())
-							{
-								line = line.replaceAll("<scroll>", "");
-								int longestLine = getLongestLine(lines, player);
-								String string = Messages.getLine(line, player);
-								Scroll sc = ScrollManager.createScroller(player, string, -row, longestLine);
-								line = sc.getMessage();
-								board.add(line, row);
-							}
-							else
-							{
-								line = "Enable Scroll";
-								board.add(line, row);
-							}
+							line = line.replaceAll("<scroll>", "");
+							int longestLine = getLongestLine(lines, player);
+							String string = Messages.getLine(line, player);
+							Scroll sc = ScrollManager.createScroller(player, string, -row, longestLine);
+							line = sc.getMessage();
+							board.add(line, row);
 						}
-						// If the line has a split in it
-						else if (line.contains(";"))
-						{
-							String a = line.split(";")[0];
-							String b = line.split(";")[1];
-							
-							try
-							{
-								board.add(Messages.getLine(a, player), Integer.valueOf(Messages.getLine(b, player)));
-							}
-							catch (NumberFormatException ne)
-							{
-								board.add(Messages.getLine(a, player), 0);
-							}
-						}
-						// Just a regular line
 						else
 						{
-							board.add(Messages.getLine(line, player), row);
+							line = "Enable Scroll";
+							board.add(line, row);
 						}
 					}
-				}
+					// If the line has a split in it
+					else if (line.contains(";"))
+					{
+						String a = line.split(";")[0];
+						String b = line.split(";")[1];
+						
+						try
+						{
+							board.add(Messages.getLine(a, player), Integer.valueOf(Messages.getLine(b, player)));
+						}
+						catch (NumberFormatException ne)
+						{
+							board.add(Messages.getLine(a, player), 0);
+						}
+					}
+					// Just a regular line
+					else
+						board.add(Messages.getLine(line, player), row);
 			}
 			// then we just set the scoreboard for the player
 			player.setScoreboard(board.getScoreboard());
@@ -134,7 +127,6 @@ public class Create {
 	public static int getLongestLine(List<String> lines, Player player) {
 		int longest = 0;
 		for (String line : lines)
-		{
 			if (!line.contains("<scroll>"))
 			{
 				String string = Messages.getReplacements(line, player);
@@ -142,7 +134,6 @@ public class Create {
 					longest = string.length();
 				
 			}
-		}
 		return longest;
 	}
 }

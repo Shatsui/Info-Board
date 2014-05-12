@@ -17,7 +17,6 @@ public class ScrollText {
 		{
 			if (ScrollManager.getScrollers(player) != null)
 				for (Scroll sc : ScrollManager.getScrollers(player))
-				{
 					try
 					{
 						// Move scroller over one, and add the new line
@@ -31,10 +30,8 @@ public class ScrollText {
 					catch (Exception e)
 					{
 					}
-				}
 			
 			if (ScrollManager.getTitleScroller(player) != null)
-			{
 				try
 				{
 					Scroll sc = ScrollManager.getTitleScroller(player);
@@ -50,7 +47,6 @@ public class ScrollText {
 				catch (Exception e)
 				{
 				}
-			}
 			
 		}
 		else

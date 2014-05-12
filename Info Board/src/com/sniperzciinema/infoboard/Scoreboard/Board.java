@@ -26,17 +26,6 @@ public class Board {
 	}
 	
 	/**
-	 * Use the current objective and scoreboard
-	 * 
-	 * @param board
-	 */
-	public Board(Scoreboard board)
-	{
-		this.scoreboard = board;
-		this.objective = board.getObjective(DisplaySlot.SIDEBAR);
-	}
-	
-	/**
 	 * Use the current objective and scoreboard that the player is shown
 	 * 
 	 * @param player
@@ -48,29 +37,35 @@ public class Board {
 	}
 	
 	/**
-	 * Set up the new objective
+	 * Use the current objective and scoreboard
+	 * 
+	 * @param board
 	 */
-	private void setup() {
-		this.objective = scoreboard.registerNewObjective("InfoBoard", "dummy");
-		this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+	public Board(Scoreboard board)
+	{
+		this.scoreboard = board;
+		this.objective = board.getObjective(DisplaySlot.SIDEBAR);
 	}
 	
 	/**
-	 * Set the title
+	 * Add a line to the board
 	 * 
-	 * @param title
+	 * @param line
+	 * @param row
 	 */
-	public void setTitle(String title) {
-		objective.setDisplayName(title);
-	}
-	
-	/**
-	 * Get the title
-	 * 
-	 * @return the title
-	 */
-	public String getTitle() {
-		return objective.getDisplayName();
+	public void add(String line, int row) {
+		
+		if (row > 0)
+			row *= -1;
+		
+		if (line.length() > 16)
+			addCreatingTeam(line, row);
+		else
+		{
+			Score score = this.objective.getScore(Bukkit.getOfflinePlayer(line));
+			score.setScore(1);
+			score.setScore(row);
+		}
 	}
 	
 	/**
@@ -102,7 +97,7 @@ public class Board {
 		
 		OfflinePlayer op = Bukkit.getOfflinePlayer(name);
 		
-		if (prefix != null || suffix != null)
+		if ((prefix != null) || (suffix != null))
 		{
 			Team team = this.scoreboard.getPlayerTeam(op);
 			
@@ -122,24 +117,31 @@ public class Board {
 	}
 	
 	/**
-	 * Add a line to the board
+	 * Get the score for the line
 	 * 
 	 * @param line
-	 * @param row
+	 * @return score
 	 */
-	public void add(String line, int row) {
-		
-		if (row > 0)
-			row *= -1;
-		
-		if (line.length() > 16)
-			addCreatingTeam(line, row);
-		else
-		{
-			Score score = this.objective.getScore(Bukkit.getOfflinePlayer(line));
-			score.setScore(1);
-			score.setScore(row);
-		}
+	public Score getScore(String line) {
+		return this.objective.getScore(Bukkit.getOfflinePlayer(line));
+	}
+	
+	/**
+	 * Get the scoreboard
+	 * 
+	 * @return the scoreboard
+	 */
+	public Scoreboard getScoreboard() {
+		return this.scoreboard;
+	}
+	
+	/**
+	 * Get the title
+	 * 
+	 * @return the title
+	 */
+	public String getTitle() {
+		return this.objective.getDisplayName();
 	}
 	
 	/**
@@ -152,6 +154,23 @@ public class Board {
 		if (this.scoreboard.getTeam(line) != null)
 			this.scoreboard.getTeam(line).unregister();
 		
+	}
+	
+	/**
+	 * Set the title
+	 * 
+	 * @param title
+	 */
+	public void setTitle(String title) {
+		this.objective.setDisplayName(title);
+	}
+	
+	/**
+	 * Set up the new objective
+	 */
+	private void setup() {
+		this.objective = this.scoreboard.registerNewObjective("InfoBoard", "dummy");
+		this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 	}
 	
 	/**
@@ -175,33 +194,12 @@ public class Board {
 		if (!this.scoreboard.getPlayers().contains(Bukkit.getOfflinePlayer(name)))
 		{
 			for (OfflinePlayer op : this.scoreboard.getPlayers())
-			{
 				if (this.objective.getScore(op).getScore() == row)
 				{
 					remove(op.getName());
 					break;
 				}
-			}
 			add(line, row);
 		}
-	}
-	
-	/**
-	 * Get the score for the line
-	 * 
-	 * @param line
-	 * @return score
-	 */
-	public Score getScore(String line) {
-		return this.objective.getScore(Bukkit.getOfflinePlayer(line));
-	}
-	
-	/**
-	 * Get the scoreboard
-	 * 
-	 * @return the scoreboard
-	 */
-	public Scoreboard getScoreboard() {
-		return this.scoreboard;
 	}
 }

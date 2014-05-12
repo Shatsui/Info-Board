@@ -25,17 +25,6 @@ public class Messages {
 	}
 	
 	/**
-	 * Get the <strong>Replaced</strong> version of the line
-	 * 
-	 * @param line
-	 * @param player
-	 * @return new line
-	 */
-	public static String getReplacements(String line, Player player) {
-		return GetVariables.replaceVariables(line, player);
-	}
-	
-	/**
 	 * Get the new line by doing everything
 	 * 
 	 * @param line
@@ -50,6 +39,17 @@ public class Messages {
 		line = getColored(line);
 		
 		return line;
+	}
+	
+	/**
+	 * Get the <strong>Replaced</strong> version of the line
+	 * 
+	 * @param line
+	 * @param player
+	 * @return new line
+	 */
+	public static String getReplacements(String line, Player player) {
+		return GetVariables.replaceVariables(line, player);
 	}
 	
 	/**

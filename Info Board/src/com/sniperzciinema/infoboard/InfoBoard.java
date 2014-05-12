@@ -39,34 +39,18 @@ public class InfoBoard extends JavaPlugin {
 	
 	public static ArrayList<String>	hidefrom	= new ArrayList<String>();
 	
-	@Override
-	public void onDisable() {
-		Bukkit.getScheduler().cancelTasks(this);
-		for (Player player : Bukkit.getOnlinePlayers())
-			if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null)
-				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard"))
-					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+	/**
+	 * @return the fileManager
+	 */
+	public static FileManager getFileManager() {
+		return InfoBoard.fileManager;
 	}
 	
-	@Override
-	public void onEnable() {
-		InfoBoard.me = this;
-		InfoBoard.fileManager = new FileManager();
-		
-		InfoBoard.timers = new Timers();
-		getTimers().start();
-		
-		Vault.load();
-		loadMetrics();
-		checkUpdates();
-		
-		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(new PlayerListener(this), this);
-		getCommand("InfoBoard").setExecutor(new Commands(this));
-		
-		// Start TPS
-		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
-		
+	/**
+	 * @return the timer
+	 */
+	public static Timers getTimers() {
+		return InfoBoard.timers;
 	}
 	
 	/**
@@ -109,18 +93,34 @@ public class InfoBoard extends JavaPlugin {
 		}
 	}
 	
-	/**
-	 * @return the timer
-	 */
-	public static Timers getTimers() {
-		return timers;
+	@Override
+	public void onDisable() {
+		Bukkit.getScheduler().cancelTasks(this);
+		for (Player player : Bukkit.getOnlinePlayers())
+			if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null)
+				if (player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getName().equalsIgnoreCase("InfoBoard"))
+					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 	}
 	
-	/**
-	 * @return the fileManager
-	 */
-	public static FileManager getFileManager() {
-		return fileManager;
+	@Override
+	public void onEnable() {
+		InfoBoard.me = this;
+		InfoBoard.fileManager = new FileManager();
+		
+		InfoBoard.timers = new Timers();
+		getTimers().start();
+		
+		Vault.load();
+		loadMetrics();
+		checkUpdates();
+		
+		PluginManager pm = getServer().getPluginManager();
+		pm.registerEvents(new PlayerListener(this), this);
+		getCommand("InfoBoard").setExecutor(new Commands(this));
+		
+		// Start TPS
+		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
+		
 	}
 	
 }

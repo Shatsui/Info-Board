@@ -34,13 +34,11 @@ public class VaultVariables {
 				StringBuilder group = new StringBuilder();
 				
 				for (Player user : Bukkit.getOnlinePlayers())
-				{
 					if (InfoBoard.permission.getGroups()[0].equalsIgnoreCase(r))
 					{
 						group.append(user.getName());
 						group.append(", ");
 					}
-				}
 				try
 				{
 					group.delete(group.length() - 3, group.length() - 1);

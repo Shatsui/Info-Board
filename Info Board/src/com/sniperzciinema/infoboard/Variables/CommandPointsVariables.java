@@ -1,14 +1,13 @@
 
 package com.sniperzciinema.infoboard.Variables;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.sniperzciinema.infoboard.InfoBoard;
-
 import pgDev.bukkit.CommandPoints.CommandPoints;
 import pgDev.bukkit.CommandPoints.CommandPointsAPI;
+
+import com.sniperzciinema.infoboard.InfoBoard;
 
 
 public class CommandPointsVariables {

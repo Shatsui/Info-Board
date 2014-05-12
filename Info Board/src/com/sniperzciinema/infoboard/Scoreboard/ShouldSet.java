@@ -24,20 +24,20 @@ public class ShouldSet {
 	 */
 	public boolean getBoolean() {
 		// If the variable isn't 0
-		if (line.contains("~!<"))
+		if (this.line.contains("~!<"))
 		{
-			String l = (line.split("~!<")[1]).split(">")[0];
-			String l1 = Messages.getLine("<" + l + ">", player);
+			String l = (this.line.split("~!<")[1]).split(">")[0];
+			String l1 = Messages.getLine("<" + l + ">", this.player);
 			if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("false") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0") || l1.equalsIgnoreCase("-1"))
 				return false;
 			else
 				return true;
 		}
 		// If the variable is 0
-		else if (line.contains("~@<"))
+		else if (this.line.contains("~@<"))
 		{
-			String l = (line.split("~@<")[1]).split(">")[0];
-			String l1 = Messages.getLine("<" + l + ">", player);
+			String l = (this.line.split("~@<")[1]).split(">")[0];
+			String l1 = Messages.getLine("<" + l + ">", this.player);
 			if (l1.equalsIgnoreCase("Unknown") || l1.equalsIgnoreCase("false") || l1.equalsIgnoreCase("None") || l1.equalsIgnoreCase("") || l1.equalsIgnoreCase("0") || l1.equalsIgnoreCase("-1"))
 				return true;
 			else
@@ -54,19 +54,19 @@ public class ShouldSet {
 	 * @return the new line
 	 */
 	public String getLine() {
-		if (line.contains("~!<"))
+		if (this.line.contains("~!<"))
 		{
-			String l = (line.split("~!<")[1]).split(">")[0];
+			String l = (this.line.split("~!<")[1]).split(">")[0];
 			
-			line = line.replaceAll("~!<" + l + ">", "");
+			this.line = this.line.replaceAll("~!<" + l + ">", "");
 		}
 		
-		else if (line.contains("~@<"))
+		else if (this.line.contains("~@<"))
 		{
-			String l = (line.split("~@<")[1]).split(">")[0];
+			String l = (this.line.split("~@<")[1]).split(">")[0];
 			
-			line = line.replaceAll("~@<" + l + ">", "");
+			this.line = this.line.replaceAll("~@<" + l + ">", "");
 		}
-		return line;
+		return this.line;
 	}
 }
