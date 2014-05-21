@@ -13,6 +13,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import com.sniperzciinema.infoboard.InfoBoard;
 
 
+@SuppressWarnings("deprecation")
 public class FileManager {
 	
 	private YamlConfiguration	variable;

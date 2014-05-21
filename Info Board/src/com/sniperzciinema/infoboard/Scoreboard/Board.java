@@ -11,6 +11,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 
+@SuppressWarnings("deprecation")
 public class Board {
 	
 	private Scoreboard	scoreboard;

@@ -3,6 +3,8 @@ package com.sniperzciinema.infoboard.Scroll;
 
 import org.bukkit.ChatColor;
 
+import com.sniperzciinema.infoboard.Util.Messages;
+
 
 public class Scroll {
 	
@@ -35,6 +37,8 @@ public class Scroll {
 		
 		String string = builder.toString();
 		
+		string = Messages.getColored(string);
+		
 		this.message = string;
 	}
 	
@@ -46,10 +50,21 @@ public class Scroll {
 	public String getMessage() {
 		
 		String message = this.message.substring(this.position, Math.min(this.message.length(), (this.width - 2) + this.position));
+		if (message.charAt(0) == this.COLORCHAR)
+			this.color = ChatColor.getByChar(message.charAt(1));
 		
-		if (message.charAt(0) != this.COLORCHAR)
-			message = this.color + message;
+		else
+		{
+			message = message.substring(1, message.length());
+			message = "" + this.color + message;
+		}
+		if (message.charAt(message.length() - 1) == this.COLORCHAR)
+		{
+			message = message.substring(0, message.length() - 2);
+			message = message + " ";
+		}
 		return message;
+		
 	}
 	
 	/**

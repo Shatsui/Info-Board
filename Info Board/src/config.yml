@@ -9,6 +9,7 @@
 # | WorldGuard.Prevent Showing In - A List of regions the board won't show in |
 # |---------------------------------------------------------------------------|
 # | Scrolling Text is a cool feature where text will scroll across the board  |
+# |    Currently format codes aren't supported                                |
 # |            Shift Time - How long between the text scrolling               |
 # =============================================================================
 Check for Updates: true

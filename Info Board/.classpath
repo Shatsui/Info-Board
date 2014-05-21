@@ -29,13 +29,13 @@
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/pvpstats.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Skillz.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/GriefPrevention.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/bukkit-1.7.2-R0.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/craftbukkit-1.7.2-R0.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/OnTime.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/PrisonRankup_v2.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/VanishNoPacket.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/Marriage.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/PointsAPI.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/Dependancies/PvpLevels.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/bukkit-1.7.9-R0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Randy/Documents/Downloads/craftbukkit-1.7.9-R0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

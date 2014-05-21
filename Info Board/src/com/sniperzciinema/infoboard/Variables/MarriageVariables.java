@@ -8,6 +8,7 @@ import com.lenis0012.bukkit.marriage.MPlayer;
 import com.lenis0012.bukkit.marriage.Marriage;
 
 
+@SuppressWarnings("deprecation")
 public class MarriageVariables {
 	
 	public static String replaceVariables(String string, Player player) {

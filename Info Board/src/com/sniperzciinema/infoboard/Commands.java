@@ -114,12 +114,21 @@ public class Commands implements CommandExecutor {
 			{
 				sender.sendMessage("");
 				sender.sendMessage(ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "============[" + ChatColor.DARK_AQUA + ChatColor.BOLD + " Info Board " + ChatColor.ITALIC + " v" + this.plugin.getDescription().getVersion() + ChatColor.GOLD + " " + ChatColor.STRIKETHROUGH + "]============");
-				sender.sendMessage(this.plugin.ib + "/IB Hide " + ChatColor.YELLOW + "- Hide the board");
-				sender.sendMessage(this.plugin.ib + "/IB Show " + ChatColor.YELLOW + "- Show the board");
-				sender.sendMessage(this.plugin.ib + "/IB Reload " + ChatColor.YELLOW + "- Reload the config");
+				sender.sendMessage(this.plugin.ib + "/IB Hide      " + ChatColor.YELLOW + "- Hide the board");
+				sender.sendMessage(this.plugin.ib + "/IB Show     " + ChatColor.YELLOW + "- Show the board");
+				sender.sendMessage(this.plugin.ib + "/IB Reload   " + ChatColor.YELLOW + "- Reload the config");
 				sender.sendMessage(this.plugin.ib + "/IB Set <Pg> " + ChatColor.YELLOW + "- Set the page to view");
+				sender.sendMessage(this.plugin.ib + ChatColor.GOLD + ChatColor.STRIKETHROUGH + "--------------------------------------------");
+				sender.sendMessage(this.plugin.ib + ChatColor.DARK_AQUA + ChatColor.BOLD + "Author: " + ChatColor.WHITE + ChatColor.BOLD + "SniperzCiinema");
+				sender.sendMessage(this.plugin.ib + ChatColor.DARK_AQUA + ChatColor.BOLD + "BukkitDev: " + ChatColor.WHITE + ChatColor.BOLD + "http://bit.ly/Info-Board");
+				
+				sender.sendMessage(this.plugin.ib + ChatColor.GOLD + ChatColor.STRIKETHROUGH + "--------------------------------------------");
 				if (this.plugin.update)
+				{
 					sender.sendMessage(ChatColor.DARK_GREEN + "Theres a new update for InfoBoard" + ChatColor.DARK_AQUA + "( " + ChatColor.YELLOW + "" + ChatColor.ITALIC + this.plugin.name + ChatColor.DARK_AQUA + " ).");
+					sender.sendMessage(this.plugin.ib + ChatColor.GOLD + ChatColor.STRIKETHROUGH + "--------------------------------------------");
+				}
+				
 			}
 		return true;
 	}
