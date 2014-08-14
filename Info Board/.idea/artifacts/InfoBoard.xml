@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="InfoBoard">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="InfoBoard.jar">
+      <element id="module-output" name="Info Board" />
+    </root>
+  </artifact>
+</component>

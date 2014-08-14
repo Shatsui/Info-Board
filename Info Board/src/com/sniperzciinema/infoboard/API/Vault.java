@@ -24,7 +24,7 @@ public class Vault {
 		if (hasVaultOnServer())
 			try
 			{
-				rank = InfoBoard.permission.getPlayerGroups(player.getWorld(), player.getName())[0];
+				rank = (InfoBoard.permission.getPlayerGroups(player.getWorld().getName(), player))[0];
 			}
 			catch (UnsupportedOperationException UOE)
 			{
